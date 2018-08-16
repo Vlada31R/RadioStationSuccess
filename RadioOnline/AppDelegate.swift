@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        
 //        self.window?.rootViewController = initialViewController
 //        self.window?.makeKeyAndVisible()
-        
+        //xcode work very bad
         DataManager.load()
         DataManager.loadFavorites()
         return true
