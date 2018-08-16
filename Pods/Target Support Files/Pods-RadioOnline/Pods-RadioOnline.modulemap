@@ -1,0 +1,6 @@
+framework module Pods_RadioOnline {
+  umbrella header "Pods-RadioOnline-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,502 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2CA5B4900F48E05AA753F41A /* Pods_RadioOnline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30EAF89276417A8610C608B9 /* Pods_RadioOnline.framework */; };
+		3F4AE1BD21247C26003120ED /* CollectionFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4AE1BC21247C26003120ED /* CollectionFavoritesViewController.swift */; };
+		3FF9454521258C1E009C9587 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9454421258C1E009C9587 /* SettingsViewController.swift */; };
+		3FFDF6DC2122B4BD00E69812 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF6DB2122B4BD00E69812 /* AppDelegate.swift */; };
+		3FFDF6E12122B4BD00E69812 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDF6DF2122B4BD00E69812 /* Main.storyboard */; };
+		3FFDF6E32122B4BE00E69812 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDF6E22122B4BE00E69812 /* Assets.xcassets */; };
+		3FFDF6E62122B4BE00E69812 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDF6E42122B4BE00E69812 /* LaunchScreen.storyboard */; };
+		3FFDF71C21231F4A00E69812 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDF71B21231F4A00E69812 /* CustomCell.xib */; };
+		3FFDF71E21231F5B00E69812 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF71D21231F5B00E69812 /* CustomCell.swift */; };
+		3FFDF7202123272300E69812 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF71F2123272300E69812 /* FavoritesViewController.swift */; };
+		3FFDF7222124064C00E69812 /* AllStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF7212124064C00E69812 /* AllStationViewController.swift */; };
+		3FFDF72C2124300C00E69812 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF7232124300700E69812 /* Settings.swift */; };
+		3FFDF72D2124300C00E69812 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF7242124300700E69812 /* CollectionViewController.swift */; };
+		3FFDF72E2124300C00E69812 /* CollectionViewCellXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF7252124300800E69812 /* CollectionViewCellXib.swift */; };
+		3FFDF72F2124300C00E69812 /* SearchCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF7262124300900E69812 /* SearchCollectionReusableView.swift */; };
+		3FFDF7302124300C00E69812 /* RadioStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF7272124300900E69812 /* RadioStation.swift */; };
+		3FFDF7312124300C00E69812 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF7282124300A00E69812 /* DataManager.swift */; };
+		3FFDF7322124300C00E69812 /* CollectionViewCellXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDF7292124300B00E69812 /* CollectionViewCellXib.xib */; };
+		3FFDF7332124300C00E69812 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF72A2124300B00E69812 /* CollectionViewCell.swift */; };
+		3FFDF7342124300C00E69812 /* stations.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDF72B2124300C00E69812 /* stations.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		30EAF89276417A8610C608B9 /* Pods_RadioOnline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RadioOnline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		33045C6372B62B8AFB0A6679 /* Pods-RadioOnline.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RadioOnline.release.xcconfig"; path = "Pods/Target Support Files/Pods-RadioOnline/Pods-RadioOnline.release.xcconfig"; sourceTree = "<group>"; };
+		3F4AE1BC21247C26003120ED /* CollectionFavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionFavoritesViewController.swift; sourceTree = "<group>"; };
+		3FF9454421258C1E009C9587 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3FFDF6D82122B4BD00E69812 /* RadioOnline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioOnline.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FFDF6DB2122B4BD00E69812 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3FFDF6E02122B4BD00E69812 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3FFDF6E22122B4BE00E69812 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3FFDF6E52122B4BE00E69812 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3FFDF6E72122B4BE00E69812 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FFDF71B21231F4A00E69812 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
+		3FFDF71D21231F5B00E69812 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		3FFDF71F2123272300E69812 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		3FFDF7212124064C00E69812 /* AllStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStationViewController.swift; sourceTree = "<group>"; };
+		3FFDF7232124300700E69812 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		3FFDF7242124300700E69812 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		3FFDF7252124300800E69812 /* CollectionViewCellXib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCellXib.swift; sourceTree = "<group>"; };
+		3FFDF7262124300900E69812 /* SearchCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionReusableView.swift; sourceTree = "<group>"; };
+		3FFDF7272124300900E69812 /* RadioStation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioStation.swift; sourceTree = "<group>"; };
+		3FFDF7282124300A00E69812 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		3FFDF7292124300B00E69812 /* CollectionViewCellXib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCellXib.xib; sourceTree = "<group>"; };
+		3FFDF72A2124300B00E69812 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		3FFDF72B2124300C00E69812 /* stations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stations.json; sourceTree = "<group>"; };
+		85CE0378CAF0F4DBDB6518F9 /* Pods-RadioOnline.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RadioOnline.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RadioOnline/Pods-RadioOnline.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3FFDF6D52122B4BD00E69812 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CA5B4900F48E05AA753F41A /* Pods_RadioOnline.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		334EC28788AE7E51D73B70E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				30EAF89276417A8610C608B9 /* Pods_RadioOnline.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3FFDF6CF2122B4BD00E69812 = {
+			isa = PBXGroup;
+			children = (
+				3FFDF6DA2122B4BD00E69812 /* RadioOnline */,
+				3FFDF6D92122B4BD00E69812 /* Products */,
+				4646B90E0F196214A332D7DE /* Pods */,
+				334EC28788AE7E51D73B70E2 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3FFDF6D92122B4BD00E69812 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3FFDF6D82122B4BD00E69812 /* RadioOnline.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3FFDF6DA2122B4BD00E69812 /* RadioOnline */ = {
+			isa = PBXGroup;
+			children = (
+				3FFDF73921243B1700E69812 /* Collection View Controller */,
+				3FFDF73821243B0100E69812 /* Table View Controller */,
+				3FFDF73721243A8300E69812 /* Model and settings */,
+				3FFDF73621243A6C00E69812 /* Custom Table Cell */,
+				3FFDF73521243A3900E69812 /* Custom Collection Cell */,
+				3FFDF6DB2122B4BD00E69812 /* AppDelegate.swift */,
+				3FFDF6DF2122B4BD00E69812 /* Main.storyboard */,
+				3FFDF6E22122B4BE00E69812 /* Assets.xcassets */,
+				3FFDF6E42122B4BE00E69812 /* LaunchScreen.storyboard */,
+				3FFDF6E72122B4BE00E69812 /* Info.plist */,
+			);
+			path = RadioOnline;
+			sourceTree = "<group>";
+		};
+		3FFDF73521243A3900E69812 /* Custom Collection Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3FFDF72A2124300B00E69812 /* CollectionViewCell.swift */,
+				3FFDF7252124300800E69812 /* CollectionViewCellXib.swift */,
+				3FFDF7292124300B00E69812 /* CollectionViewCellXib.xib */,
+			);
+			path = "Custom Collection Cell";
+			sourceTree = "<group>";
+		};
+		3FFDF73621243A6C00E69812 /* Custom Table Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3FFDF71B21231F4A00E69812 /* CustomCell.xib */,
+				3FFDF71D21231F5B00E69812 /* CustomCell.swift */,
+			);
+			path = "Custom Table Cell";
+			sourceTree = "<group>";
+		};
+		3FFDF73721243A8300E69812 /* Model and settings */ = {
+			isa = PBXGroup;
+			children = (
+				3FF9454421258C1E009C9587 /* SettingsViewController.swift */,
+				3FFDF7262124300900E69812 /* SearchCollectionReusableView.swift */,
+				3FFDF7282124300A00E69812 /* DataManager.swift */,
+				3FFDF7272124300900E69812 /* RadioStation.swift */,
+				3FFDF7232124300700E69812 /* Settings.swift */,
+				3FFDF72B2124300C00E69812 /* stations.json */,
+			);
+			path = "Model and settings";
+			sourceTree = "<group>";
+		};
+		3FFDF73821243B0100E69812 /* Table View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3FFDF71F2123272300E69812 /* FavoritesViewController.swift */,
+				3FFDF7212124064C00E69812 /* AllStationViewController.swift */,
+			);
+			path = "Table View Controller";
+			sourceTree = "<group>";
+		};
+		3FFDF73921243B1700E69812 /* Collection View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3F4AE1BC21247C26003120ED /* CollectionFavoritesViewController.swift */,
+				3FFDF7242124300700E69812 /* CollectionViewController.swift */,
+			);
+			path = "Collection View Controller";
+			sourceTree = "<group>";
+		};
+		4646B90E0F196214A332D7DE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				85CE0378CAF0F4DBDB6518F9 /* Pods-RadioOnline.debug.xcconfig */,
+				33045C6372B62B8AFB0A6679 /* Pods-RadioOnline.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3FFDF6D72122B4BD00E69812 /* RadioOnline */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3FFDF6EA2122B4BE00E69812 /* Build configuration list for PBXNativeTarget "RadioOnline" */;
+			buildPhases = (
+				106591FC8088A3142312D996 /* [CP] Check Pods Manifest.lock */,
+				3FFDF6D42122B4BD00E69812 /* Sources */,
+				3FFDF6D52122B4BD00E69812 /* Frameworks */,
+				3FFDF6D62122B4BD00E69812 /* Resources */,
+				274059CC38C1057468C78ED7 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RadioOnline;
+			productName = RadioOnline;
+			productReference = 3FFDF6D82122B4BD00E69812 /* RadioOnline.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3FFDF6D02122B4BD00E69812 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = student;
+				TargetAttributes = {
+					3FFDF6D72122B4BD00E69812 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 3FFDF6D32122B4BD00E69812 /* Build configuration list for PBXProject "RadioOnline" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3FFDF6CF2122B4BD00E69812;
+			productRefGroup = 3FFDF6D92122B4BD00E69812 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3FFDF6D72122B4BD00E69812 /* RadioOnline */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3FFDF6D62122B4BD00E69812 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FFDF71C21231F4A00E69812 /* CustomCell.xib in Resources */,
+				3FFDF6E62122B4BE00E69812 /* LaunchScreen.storyboard in Resources */,
+				3FFDF7342124300C00E69812 /* stations.json in Resources */,
+				3FFDF6E32122B4BE00E69812 /* Assets.xcassets in Resources */,
+				3FFDF7322124300C00E69812 /* CollectionViewCellXib.xib in Resources */,
+				3FFDF6E12122B4BD00E69812 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		106591FC8088A3142312D996 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RadioOnline-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		274059CC38C1057468C78ED7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RadioOnline/Pods-RadioOnline-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RadioOnline/Pods-RadioOnline-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3FFDF6D42122B4BD00E69812 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FFDF72D2124300C00E69812 /* CollectionViewController.swift in Sources */,
+				3FFDF7312124300C00E69812 /* DataManager.swift in Sources */,
+				3FFDF72F2124300C00E69812 /* SearchCollectionReusableView.swift in Sources */,
+				3FFDF7302124300C00E69812 /* RadioStation.swift in Sources */,
+				3F4AE1BD21247C26003120ED /* CollectionFavoritesViewController.swift in Sources */,
+				3FFDF7222124064C00E69812 /* AllStationViewController.swift in Sources */,
+				3FFDF72E2124300C00E69812 /* CollectionViewCellXib.swift in Sources */,
+				3FFDF71E21231F5B00E69812 /* CustomCell.swift in Sources */,
+				3FFDF7202123272300E69812 /* FavoritesViewController.swift in Sources */,
+				3FFDF6DC2122B4BD00E69812 /* AppDelegate.swift in Sources */,
+				3FF9454521258C1E009C9587 /* SettingsViewController.swift in Sources */,
+				3FFDF72C2124300C00E69812 /* Settings.swift in Sources */,
+				3FFDF7332124300C00E69812 /* CollectionViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3FFDF6DF2122B4BD00E69812 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FFDF6E02122B4BD00E69812 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3FFDF6E42122B4BE00E69812 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FFDF6E52122B4BE00E69812 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3FFDF6E82122B4BE00E69812 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3FFDF6E92122B4BE00E69812 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3FFDF6EB2122B4BE00E69812 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 85CE0378CAF0F4DBDB6518F9 /* Pods-RadioOnline.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3T7H82P2KH;
+				INFOPLIST_FILE = RadioOnline/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vlada.RadioOnline;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		3FFDF6EC2122B4BE00E69812 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 33045C6372B62B8AFB0A6679 /* Pods-RadioOnline.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3T7H82P2KH;
+				INFOPLIST_FILE = RadioOnline/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vlada.RadioOnline;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3FFDF6D32122B4BD00E69812 /* Build configuration list for PBXProject "RadioOnline" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FFDF6E82122B4BE00E69812 /* Debug */,
+				3FFDF6E92122B4BE00E69812 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3FFDF6EA2122B4BE00E69812 /* Build configuration list for PBXNativeTarget "RadioOnline" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FFDF6EB2122B4BE00E69812 /* Debug */,
+				3FFDF6EC2122B4BE00E69812 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3FFDF6D02122B4BD00E69812 /* Project object */;
+}
