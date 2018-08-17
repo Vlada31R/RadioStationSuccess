@@ -1,11 +1,3 @@
-//
-//  RadioStation.swift
-//  RadioStation
-//
-//  Created by student on 8/14/18.
-//  Copyright © 2018 student. All rights reserved.
-//
-
 import Foundation
 
 struct RadioStation: Codable {
@@ -24,5 +16,11 @@ struct RadioStation: Codable {
         self.desc = desc
         self.favorites = favorites
         self.new = new
+    }
+}
+extension RadioStation: Equatable {
+    
+    static func ==(lhs: RadioStation, rhs: RadioStation) -> Bool {
+        return (lhs.name == rhs.name) && (lhs.streamURL == rhs.streamURL) && (lhs.imageURL == rhs.imageURL) && (lhs.desc == rhs.desc) 
     }
 }

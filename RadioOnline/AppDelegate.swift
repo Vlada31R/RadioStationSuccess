@@ -26,6 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //xcode work very bad
         DataManager.load()
         DataManager.loadFavorites()
+        // MPNowPlayingInfoCenter
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        
+        
+        // FRadioPlayer config
+        FRadioPlayer.shared.isAutoPlay = true
+        FRadioPlayer.shared.enableArtwork = true
+        FRadioPlayer.shared.artworkSize = 600
+        
         return true
     }
 
@@ -45,8 +54,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         DataManager.save()
-    }
+        UIApplication.shared.endReceivingRemoteControlEvents()
 
+    }
+    
+    // MARK: - Remote Controls
+    
+    override func remoteControlReceived(with event: UIEvent?) {
+        super.remoteControlReceived(with: event)
+        
+        guard let event = event, event.type == UIEventType.remoteControl else { return }
+        
+        switch event.subtype {
+        case .remoteControlPlay:
+            FRadioPlayer.shared.play()
+        case .remoteControlPause:
+            FRadioPlayer.shared.pause()
+        case .remoteControlTogglePlayPause:
+            FRadioPlayer.shared.togglePlaying()
+        default:
+            break
+        }
+    }
 
 }
 

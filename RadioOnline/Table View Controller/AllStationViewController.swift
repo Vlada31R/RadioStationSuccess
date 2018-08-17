@@ -8,13 +8,17 @@
 
 import UIKit
 
-class AllStationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AllStationViewController:  UIViewController,  UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
+    var radioSetter = RadioSetter()
+    //*****************************************************************
+    // MARK: - viewDidLoad Method
+    //*****************************************************************
     override func viewDidLoad() {
         super.viewDidLoad()
         //DataManager.firstSave()
-
+        radioSetter.setupRadio()
         //DataManager.load()
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
@@ -77,10 +81,29 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
         UIApplication.shared.keyWindow?.rootViewController = viewController
     }
     
-    
-
-
+    //MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "RadioPlayer", let radioPlayerVC = segue.destination as? RadioPlayerViewController else { return }
+        
+        title = ""
+        
+        let newStation: Bool
+        
+        if let indexPath = (sender as? IndexPath) {
+            // User clicked on row, load/reset station
+            radioSetter.set(radioStation: DataManager.stations[indexPath.row])
+            newStation = true
+        } else {
+            // User clicked on Now Playing button
+            newStation = false
+        }
+        
+        radioSetter.radioPlayerViewController = radioPlayerVC
+        radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
+    }
+// End of Class
 }
+
 extension UIImageView {
     
     func downloadedFrom(link:String) {
@@ -119,7 +142,18 @@ extension AllStationViewController: UISearchBarDelegate{
     }
     
 }
-
+extension AllStationViewController{
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "RadioPlayer", sender: indexPath)
+    }
+    
+    
+    
+}
 
 
 
