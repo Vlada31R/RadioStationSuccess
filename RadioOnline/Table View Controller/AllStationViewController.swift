@@ -18,7 +18,7 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
         //add xib cell
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
-<<<<<<< HEAD
+
         
         DataManager.changeColor(view: self.view)
         
@@ -28,7 +28,7 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
     @objc func reload(notification: NSNotification){
         DataManager.changeColor(view: self.view)
         tableView.reloadData()
-=======
+
         //set bandge
         if let tabItems = self.tabBarController?.tabBar.items as NSArray?
         {
@@ -44,7 +44,6 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
->>>>>>> feature/bandge
     }
     
     //*******************************************************************************************************************************************
@@ -116,17 +115,17 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
         let viewController = mainStoryboard.instantiateViewController(withIdentifier: "AllVC") as! UITabBarController
         UIApplication.shared.keyWindow?.rootViewController = viewController
     }
-<<<<<<< HEAD
+
     
 }
-=======
-}
+
+
 
 //*******************************************************************************************************************************************
 //MARK: extension to load image from URL
 //*******************************************************************************************************************************************
 
->>>>>>> feature/bandge
+
 extension UIImageView {
     
     func downloadedFrom(link:String) {

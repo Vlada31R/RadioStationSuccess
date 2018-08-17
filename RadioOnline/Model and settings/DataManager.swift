@@ -201,7 +201,7 @@ struct DataManager {
         save()
     }
     
-<<<<<<< HEAD
+
     static func changeColor(view : UIView)
     {
         let userDefaults = UserDefaults.standard
@@ -224,7 +224,8 @@ struct DataManager {
         for subview in view.subviews {
             subview.backgroundColor = view.backgroundColor
         }
-=======
+    }
+
     static func reloadFavoritesNEW(index: Int){
         for i in 0...stations.count-1 {
             if stations[i].name == stationsFavorites[index].name && stations[i].streamURL == stationsFavorites[index].streamURL{
@@ -242,7 +243,7 @@ struct DataManager {
         
         //loadFavorites()
         save()
->>>>>>> feature/bandge
+
     }
     
     static var stations = [RadioStation]()
