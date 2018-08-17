@@ -22,7 +22,6 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.favoritesTableView.register(nib, forCellReuseIdentifier: "Cell")
-        
         DataManager.changeColor(view: self.view)
     }
     
@@ -83,13 +82,32 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     //*******************************************************************************************************************************************
     //MARK: func - set swipe cell table view
     //*******************************************************************************************************************************************
+    @available(iOS 9.0, *)
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let share = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
+            if indexPath.row <= DataManager.stationsFavorites.count {
+                DataManager.stationsFavorites[indexPath.row].favorites = false
+                DataManager.reloadFavorites(index: indexPath.row)
+                self.favoritesTableView.reloadData()
+            } else {
+                print("error deleting radiostation")
+                
+            }
+        }
+        share.backgroundColor = .red
+        share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "delete"))
+        
+        return [share]
+    }
 
+    @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = self.contextualDeleteAction(forRowAtIndexPath: indexPath)
         let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
         return swipeConfig
     }
     
+    @available(iOS 11.0, *)
     func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath)-> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
             if self.deleteRadiostation(indexPath) {
@@ -103,6 +121,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         return action
     }
     
+    @available(iOS 11.0, *)
     func deleteRadiostation(_ indexPath: IndexPath) -> Bool{
         if indexPath.row <= DataManager.stationsFavorites.count {
             DataManager.stationsFavorites[indexPath.row].favorites = false

@@ -161,7 +161,7 @@ struct DataManager {
         radiostation = RadioStation(name: "Classic Rock", streamURL: "http://rfcmedia.streamguys1.com/classicrock.mp3", imageURL: "https://cdn-images.audioaddict.com/e/8/b/6/f/5/e8b6f5258a60a9a11495ecbc1d1bc881.png", desc: "Classic Rock Hits", longDesc: "", favorites: false, new: false)
         arrayLoad.append(radiostation)
         
-        radiostation = RadioStation(name: "Radio 1190", streamURL: "http://radio1190.colorado.edu:8000/high.mp3", imageURL: "https://mytuner.global.ssl.fastly.net/media/tvos_radios/yyz3srxjbd6u.png", desc: "KVCU - Boulder, CO", longDesc: "", favorites: false, new: false)
+        radiostation = RadioStation(name: "DFM Club", streamURL: "http://icecast.radiodfm.cdnvideo.ru/st01.mp3", imageURL: "http://station.ru/upload/contents/304/dfm_club.jpg", desc: "Sorry guy its for me)", longDesc: "", favorites: false, new: false)
         arrayLoad.append(radiostation)
         
         stations = arrayLoad

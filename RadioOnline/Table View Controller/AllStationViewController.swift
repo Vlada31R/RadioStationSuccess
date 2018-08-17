@@ -62,6 +62,34 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     //*******************************************************************************************************************************************
     //MARK: tableView cell swipe
     //*******************************************************************************************************************************************
+    @available(iOS 9.0, *)
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let share = UITableViewRowAction(style: .normal, title: "add") { action, index in
+            if DataManager.stations[indexPath.row].favorites == true {
+                DataManager.stations[indexPath.row].favorites = false
+                DataManager.stations[indexPath.row].new = false
+                tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.middle)
+            } else {
+                DataManager.stations[indexPath.row].favorites = true
+                DataManager.stations[indexPath.row].new = true
+                tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.middle)
+            }
+            DataManager.loadFavorites()
+            DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
+            NotificationCenter.default.post(name: .reloadFavoritesTableView, object: nil)
+        }
+        if DataManager.stations[indexPath.row].favorites == true {
+            share.backgroundColor = .orange
+        } else {
+            share.backgroundColor = .gray
+        }
+        share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "favorites"))
+        
+        
+        return [share]
+    }
+    
+    @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let flagAction = self.contextualToggleFlagAction(forRowAtIndexPath: indexPath)
         if DataManager.stations[indexPath.row].favorites == true {
@@ -73,6 +101,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         return swipeConfig
     }
     
+    @available(iOS 11.0, *)
     func contextualToggleFlagAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Flag") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
             
@@ -86,6 +115,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         return action
     }
     
+    @available(iOS 11.0, *)
     func addFavorites(_ indexPath: IndexPath) -> Bool{
         if DataManager.stations[indexPath.row].favorites == true {
             DataManager.stations[indexPath.row].favorites = false
