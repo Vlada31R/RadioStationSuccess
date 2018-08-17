@@ -1,6 +1,7 @@
 import UIKit
 import MediaPlayer
 import AVFoundation
+import ChameleonFramework
 
 var savedTrackArray = [Track]()
 
@@ -42,6 +43,10 @@ class RadioPlayerViewController: UIViewController {
         //setupRemoteCommandCenter()
         
         newStation ? stationDidChanged() : playerStateDidChange(radioPlayer.state)
+        DataManager.changeColor(view: self.view)
+        stationName.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
+        artistLabel.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
+        songLabel.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
     }
     
     override func didReceiveMemoryWarning() {
