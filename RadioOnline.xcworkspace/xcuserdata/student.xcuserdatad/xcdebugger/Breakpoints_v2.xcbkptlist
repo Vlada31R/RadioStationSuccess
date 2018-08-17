@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RadioOnline/Table View Controller/AllStationViewController.swift"
-            timestampString = "556203630.186137"
+            timestampString = "556205617.028577"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "prepare(for:sender:)"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "addFavorites(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RadioOnline/Table View Controller/AllStationViewController.swift"
-            timestampString = "556203630.186203"
+            timestampString = "556205617.028908"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "prepare(for:sender:)"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "addFavorites(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

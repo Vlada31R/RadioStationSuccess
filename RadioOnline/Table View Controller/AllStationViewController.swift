@@ -12,24 +12,18 @@ import ChameleonFramework
 class AllStationViewController:  UIViewController,  UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
-<<<<<<< HEAD
     var nowPlayingSongBar: UIView!
     
     var radioSetter = RadioSetter()
+    
     //*****************************************************************
     // MARK: - viewDidLoad Method
     //*****************************************************************
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        //DataManager.firstSave()
         radioSetter.setupRadio()
-        //DataManager.load()
-=======
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
->>>>>>> 37b1451e96e3159caef105d86e3e011983c26485
+
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
         DataManager.changeColor(view: self.view)
@@ -121,7 +115,6 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         let viewController = mainStoryboard.instantiateViewController(withIdentifier: "AllVC") as! UITabBarController
         UIApplication.shared.keyWindow?.rootViewController = viewController
     }
-<<<<<<< HEAD
     
     //MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -143,18 +136,15 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         radioSetter.radioPlayerViewController = radioPlayerVC
         radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
     }
-// End of Class
+    // End of Class
 }
 
-=======
-}
+
 
 //*******************************************************************************************************************************************
 //MARK: extension to load image from URL
 //*******************************************************************************************************************************************
 
-
->>>>>>> 37b1451e96e3159caef105d86e3e011983c26485
 extension UIImageView {
     func downloadedFrom(link:String) {
         self.image = #imageLiteral(resourceName: "stationImage")
