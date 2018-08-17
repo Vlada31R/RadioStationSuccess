@@ -102,7 +102,7 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
                 tabItem.badgeValue = String(DataManager.countFavorites)
             }
         }
-        NotificationCenter.default.post(name: .reload, object: nil)
+        NotificationCenter.default.post(name: .reloadFavoritesTableView, object: nil)
         return true
     }
     
@@ -118,8 +118,6 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
 
     
 }
-
-
 
 //*******************************************************************************************************************************************
 //MARK: extension to load image from URL

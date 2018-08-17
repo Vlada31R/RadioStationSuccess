@@ -17,6 +17,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(notification:)), name: .reloadFavoritesTableView, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
         //DataManager.loadFavorites()
         let nib = UINib(nibName: "CustomCell", bundle: nil)
@@ -26,6 +27,11 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     @objc func reload(notification: NSNotification){
+        DataManager.changeColor(view: self.view)
+        favoritesTableView.reloadData()
+    }
+    
+    @objc func reloadTableView(notification: NSNotification){
         DataManager.changeColor(view: self.view)
         favoritesTableView.reloadData()
     }
@@ -136,6 +142,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
 
 extension Notification.Name {
     static let reload = Notification.Name("reload")
+    static let reloadFavoritesTableView = Notification.Name("reload Table View")
     
 }
 
