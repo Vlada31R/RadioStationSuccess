@@ -11,13 +11,13 @@ import UIKit
 class AllStationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //DataManager.firstSave()
-
-        //DataManager.load()
+        //add xib cell
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
+        //set bandge
         if let tabItems = self.tabBarController?.tabBar.items as NSArray?
         {
             let tabItem = tabItems[1] as! UITabBarItem
@@ -27,12 +27,16 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
                 tabItem.badgeValue = String(DataManager.countFavorites)
             }
         }
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
+    
+    //*******************************************************************************************************************************************
+    //MARK: tableView method
+    //*******************************************************************************************************************************************
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (DataManager.stations.count)
@@ -46,9 +50,9 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell
     }
     
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        return nil
-    }
+    //*******************************************************************************************************************************************
+    //MARK: tableView cell swipe
+    //*******************************************************************************************************************************************
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let flagAction = self.contextualToggleFlagAction(forRowAtIndexPath: indexPath)
@@ -84,22 +88,24 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         NotificationCenter.default.post(name: .reload, object: nil)
-        //let c = tableView.cellForRow(at: indexPath)
-        //c?.backgroundColor = UIColor.yellow
         return true
     }
     
+    //*******************************************************************************************************************************************
+    //MARK: segue to collectionView
+    //*******************************************************************************************************************************************
     
     @IBAction func action(_ sender: Any) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = mainStoryboard.instantiateViewController(withIdentifier: "AllVC") as! UITabBarController
         UIApplication.shared.keyWindow?.rootViewController = viewController
     }
-    
-    
-
-
 }
+
+//*******************************************************************************************************************************************
+//MARK: extension to load image from URL
+//*******************************************************************************************************************************************
+
 extension UIImageView {
     
     func downloadedFrom(link:String) {
@@ -114,6 +120,10 @@ extension UIImageView {
     }
     
 }
+
+//*******************************************************************************************************************************************
+//MARK: extension to search bar
+//*******************************************************************************************************************************************
 
 extension AllStationViewController: UISearchBarDelegate{
     
@@ -136,7 +146,6 @@ extension AllStationViewController: UISearchBarDelegate{
             }
         }
     }
-    
 }
 
 
