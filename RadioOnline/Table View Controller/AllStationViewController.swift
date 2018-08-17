@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class AllStationViewController:  UIViewController,  UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
+<<<<<<< HEAD
     var nowPlayingSongBar: UIView!
     
     var radioSetter = RadioSetter()
@@ -23,14 +25,30 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         //DataManager.firstSave()
         radioSetter.setupRadio()
         //DataManager.load()
+=======
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+>>>>>>> 37b1451e96e3159caef105d86e3e011983c26485
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
+        DataManager.changeColor(view: self.view)
+        NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
+        DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
+    }
+    
+    @objc func reload(notification: NSNotification){
+        DataManager.changeColor(view: self.view)
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
+    
+    //*******************************************************************************************************************************************
+    //MARK: tableView method
+    //*******************************************************************************************************************************************
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (DataManager.stations.count)
@@ -38,18 +56,25 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomCell
+        cell.backgroundColor = self.view.backgroundColor
         cell.nameLabel.text = DataManager.stations[indexPath.row].name
+        cell.nameLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
         cell.descriptionLabel.text = DataManager.stations[indexPath.row].desc
+        cell.descriptionLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
         cell.imageRadioStation.downloadedFrom(link: DataManager.stations[indexPath.row].imageURL)
         return cell
     }
     
+    //*******************************************************************************************************************************************
+    //MARK: tableView cell swipe
+    //*******************************************************************************************************************************************
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        return nil
-    }
-    
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let flagAction = self.contextualToggleFlagAction(forRowAtIndexPath: indexPath)
+        if DataManager.stations[indexPath.row].favorites == true {
+            flagAction.backgroundColor = UIColor.orange
+        } else {
+            flagAction.backgroundColor = UIColor.gray
+        }
         let swipeConfig = UISwipeActionsConfiguration(actions: [flagAction])
         return swipeConfig
     }
@@ -62,27 +87,41 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
             } else {
                 completionHandler(false)
             }
-            
         }
         action.image = UIImage(named: "favorites")
         return action
     }
     
     func addFavorites(_ indexPath: IndexPath) -> Bool{
-        DataManager.stations[indexPath.row].favorites = true
+        if DataManager.stations[indexPath.row].favorites == true {
+            DataManager.stations[indexPath.row].favorites = false
+            DataManager.stations[indexPath.row].new = false
+            let alert = UIAlertController(title: "Radiostation removed from favorites!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            DataManager.stations[indexPath.row].favorites = true
+            DataManager.stations[indexPath.row].new = true
+            let alert = UIAlertController(title: "Radiostation add to favorites!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
         DataManager.loadFavorites()
-        NotificationCenter.default.post(name: .reload, object: nil)
-        //let c = tableView.cellForRow(at: indexPath)
-        //c?.backgroundColor = UIColor.yellow
+        DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
+        NotificationCenter.default.post(name: .reloadFavoritesTableView, object: nil)
         return true
     }
     
+    //*******************************************************************************************************************************************
+    //MARK: segue to collectionView
+    //*******************************************************************************************************************************************
     
     @IBAction func action(_ sender: Any) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = mainStoryboard.instantiateViewController(withIdentifier: "AllVC") as! UITabBarController
         UIApplication.shared.keyWindow?.rootViewController = viewController
     }
+<<<<<<< HEAD
     
     //MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -107,8 +146,16 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
 // End of Class
 }
 
+=======
+}
+
+//*******************************************************************************************************************************************
+//MARK: extension to load image from URL
+//*******************************************************************************************************************************************
+
+
+>>>>>>> 37b1451e96e3159caef105d86e3e011983c26485
 extension UIImageView {
-    
     func downloadedFrom(link:String) {
         self.image = #imageLiteral(resourceName: "stationImage")
         guard let url = URL(string: link) else { return }
@@ -119,11 +166,13 @@ extension UIImageView {
             }
         }).resume()
     }
-    
 }
 
+//*******************************************************************************************************************************************
+//MARK: extension to search bar
+//*******************************************************************************************************************************************
+
 extension AllStationViewController: UISearchBarDelegate{
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if(!(searchBar.text?.isEmpty)!){
             DataManager.stations = DataManager.stations.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
@@ -143,7 +192,6 @@ extension AllStationViewController: UISearchBarDelegate{
             }
         }
     }
-    
 }
 extension AllStationViewController{
     

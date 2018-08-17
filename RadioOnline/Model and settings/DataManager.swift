@@ -171,10 +171,16 @@ struct DataManager {
     
 
     static func loadFavorites() {
+        countFavorites = 0
         stationsFavorites.removeAll()
         for i in 0...stations.count-1 {
             if stations[i].favorites == true {
-                stationsFavorites.append(stations[i])
+                if stations[i].new == true {
+                    stationsFavorites.insert(stations[i], at: 0) 
+                    countFavorites = countFavorites + 1
+                } else {
+                    stationsFavorites.append(stations[i])
+                }
             }
          }
         save()
@@ -184,13 +190,77 @@ struct DataManager {
         for i in 0...stations.count-1 {
             if stations[i].name == stationsFavorites[index].name && stations[i].streamURL == stationsFavorites[index].streamURL {
                 stations[i].favorites = false
+                if stations[i].new == true {
+                    stations[i].new = false
+                    countFavorites = countFavorites - 1
+                }
                 stationsFavorites.remove(at: index)
                 return
             }
         }
         save()
     }
+    
+
+    static func changeColor(view : UIView)
+    {
+        let userDefaults = UserDefaults.standard
+        let redColor : Float
+        let greenColor : Float
+        let blueColor : Float
+        if let redInfo = userDefaults.value(forKey: "redInfo"), let greenInfo = userDefaults.value(forKey: "greenInfo"), let blueInfo = userDefaults.value(forKey: "blueInfo")
+        {
+             redColor = redInfo as! Float
+             greenColor = greenInfo as! Float
+             blueColor = blueInfo as! Float
+        }
+        else
+        {
+             redColor = 1
+             greenColor = 1
+             blueColor = 1
+        }
+        view.backgroundColor = UIColor(red: CGFloat(redColor), green: CGFloat(greenColor), blue: CGFloat(blueColor), alpha: 1.0)
+        for subview in view.subviews {
+            subview.backgroundColor = view.backgroundColor
+        }
+    }
+
+    static func reloadFavoritesNEW(index: Int){
+        for i in 0...stations.count-1 {
+            if stations[i].name == stationsFavorites[index].name && stations[i].streamURL == stationsFavorites[index].streamURL{
+                if  stationsFavorites[index].new == true {
+                    stations[i].new = false
+                    countFavorites = countFavorites - 1
+                    stationsFavorites[index].new = false
+                    return
+                } else {
+                    return
+                }
+                
+            }
+        }
+        
+        //loadFavorites()
+        save()
+
+    }
+    
+    static func updateBandge(TabItems: NSArray?){
+        if let tabItems = TabItems
+        {
+            //print(DataManager.countFavorites)
+            let tabItem = tabItems[1] as! UITabBarItem
+            if DataManager.countFavorites == 0 {
+                tabItem.badgeValue = nil
+            } else {
+                tabItem.badgeValue = String(DataManager.countFavorites)
+            }
+        }
+    }
+    
     static var stations = [RadioStation]()
+    static var countFavorites = 0
     static var stationsFavorites = [RadioStation]()
 }
 

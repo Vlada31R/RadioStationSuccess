@@ -13,9 +13,11 @@ class CustomCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var imageRadioStation: UIImageView!
+    @IBOutlet weak var newLabel: UILabel!
     
     override func prepareForReuse() {
         super.prepareForReuse()
     }
+    
     
 }
