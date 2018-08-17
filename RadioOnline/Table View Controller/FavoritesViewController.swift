@@ -90,3 +90,27 @@ extension Notification.Name {
     
 }
 
+extension FavoritesViewController: UISearchBarDelegate{
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if(!(searchBar.text?.isEmpty)!){
+            DataManager.stationsFavorites = DataManager.stationsFavorites.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
+            self.favoritesTableView?.reloadData()
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if(searchText.isEmpty){
+            if searchBar.text?.count == 0
+            {
+                DataManager.loadFavorites()
+                self.favoritesTableView?.reloadData()
+                DispatchQueue.main.async {
+                    searchBar.resignFirstResponder()
+                }
+            }
+        }
+    }
+    
+}
+
