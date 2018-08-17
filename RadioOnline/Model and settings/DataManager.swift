@@ -246,6 +246,19 @@ struct DataManager {
 
     }
     
+    static func updateBandge(TabItems: NSArray?){
+        if let tabItems = TabItems
+        {
+            //print(DataManager.countFavorites)
+            let tabItem = tabItems[1] as! UITabBarItem
+            if DataManager.countFavorites == 0 {
+                tabItem.badgeValue = nil
+            } else {
+                tabItem.badgeValue = String(DataManager.countFavorites)
+            }
+        }
+    }
+    
     static var stations = [RadioStation]()
     static var countFavorites = 0
     static var stationsFavorites = [RadioStation]()

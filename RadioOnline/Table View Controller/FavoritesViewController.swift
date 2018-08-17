@@ -15,6 +15,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
   
     @IBOutlet weak var favoritesTableView: UITableView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(notification:)), name: .reloadFavoritesTableView, object: nil)
@@ -24,7 +25,15 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         
         DataManager.changeColor(view: self.view)
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
 
+    //*******************************************************************************************************************************************
+    //MARK: Notification method
+    //*******************************************************************************************************************************************
+    
     @objc func reload(notification: NSNotification){
         DataManager.changeColor(view: self.view)
         favoritesTableView.reloadData()
@@ -35,22 +44,12 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         favoritesTableView.reloadData()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    
+    //*******************************************************************************************************************************************
+    //MARK: table view method
+    //*******************************************************************************************************************************************
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let tabItems = self.tabBarController?.tabBar.items as NSArray?
-        {
-            //print(DataManager.countFavorites)
-            let tabItem = tabItems[1] as! UITabBarItem
-            if DataManager.countFavorites == 0 {
-                tabItem.badgeValue = nil
-            } else {
-                tabItem.badgeValue = String(DataManager.countFavorites)
-            }
-        }
+        DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
         return (DataManager.stationsFavorites.count)
     }
     
@@ -75,22 +74,16 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if DataManager.stationsFavorites[indexPath.row].new == true {
             DataManager.reloadFavoritesNEW(index: indexPath.row)
-            if let tabItems = self.tabBarController?.tabBar.items as NSArray?
-            {
-                //print(DataManager.countFavorites)
-                let tabItem = tabItems[1] as! UITabBarItem
-                if DataManager.countFavorites == 0 {
-                    tabItem.badgeValue = nil
-                } else {
-                    tabItem.badgeValue = String(DataManager.countFavorites)
-                }
-            }
+            DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
             favoritesTableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.fade)
         }
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    //*******************************************************************************************************************************************
+    //MARK: func - set swipe cell table view
+    //*******************************************************************************************************************************************
+
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = self.contextualDeleteAction(forRowAtIndexPath: indexPath)
         let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
@@ -99,18 +92,15 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath)-> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-            
             if self.deleteRadiostation(indexPath) {
                 completionHandler(true)
                 self.favoritesTableView.reloadData()
             } else {
                 completionHandler(false)
             }
-            
         }
         action.image = UIImage(named: "delete")
         return action
-        
     }
     
     func deleteRadiostation(_ indexPath: IndexPath) -> Bool{
@@ -122,17 +112,21 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             print("error deleting radiostation")
             return false
         }
-        
     }
-    
-    
 }
+
+//*******************************************************************************************************************************************
+//MARK: extension notification settings
+//*******************************************************************************************************************************************
 
 extension Notification.Name {
     static let reload = Notification.Name("reload")
     static let reloadFavoritesTableView = Notification.Name("reload Table View")
-    
 }
+
+//*******************************************************************************************************************************************
+//MARK: extension to search bar
+//*******************************************************************************************************************************************
 
 extension FavoritesViewController: UISearchBarDelegate{
     
@@ -155,6 +149,5 @@ extension FavoritesViewController: UISearchBarDelegate{
             }
         }
     }
-    
 }
 

@@ -15,26 +15,11 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //add xib cell
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
-
-        
         DataManager.changeColor(view: self.view)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
-        
-        if let tabItems = self.tabBarController?.tabBar.items as NSArray?
-        {
-            //print(DataManager.countFavorites)
-            let tabItem = tabItems[1] as! UITabBarItem
-            if DataManager.countFavorites == 0 {
-                tabItem.badgeValue = nil
-            } else {
-                tabItem.badgeValue = String(DataManager.countFavorites)
-            }
-        }
-        
+        DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
     }
     
     @objc func reload(notification: NSNotification){
@@ -87,7 +72,6 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
             } else {
                 completionHandler(false)
             }
-            
         }
         action.image = UIImage(named: "favorites")
         return action
@@ -97,20 +81,18 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
         if DataManager.stations[indexPath.row].favorites == true {
             DataManager.stations[indexPath.row].favorites = false
             DataManager.stations[indexPath.row].new = false
+            let alert = UIAlertController(title: "Radiostation removed from favorites!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         } else {
             DataManager.stations[indexPath.row].favorites = true
             DataManager.stations[indexPath.row].new = true
+            let alert = UIAlertController(title: "Radiostation add to favorites!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         DataManager.loadFavorites()
-        if let tabItems = self.tabBarController?.tabBar.items as NSArray?
-        {
-            let tabItem = tabItems[1] as! UITabBarItem
-            if DataManager.countFavorites == 0 {
-                tabItem.badgeValue = nil
-            } else {
-                tabItem.badgeValue = String(DataManager.countFavorites)
-            }
-        }
+        DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
         NotificationCenter.default.post(name: .reloadFavoritesTableView, object: nil)
         return true
     }
@@ -124,8 +106,6 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
         let viewController = mainStoryboard.instantiateViewController(withIdentifier: "AllVC") as! UITabBarController
         UIApplication.shared.keyWindow?.rootViewController = viewController
     }
-
-    
 }
 
 //*******************************************************************************************************************************************
@@ -134,7 +114,6 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
 
 
 extension UIImageView {
-    
     func downloadedFrom(link:String) {
         self.image = #imageLiteral(resourceName: "stationImage")
         guard let url = URL(string: link) else { return }
@@ -145,7 +124,6 @@ extension UIImageView {
             }
         }).resume()
     }
-    
 }
 
 //*******************************************************************************************************************************************
@@ -153,7 +131,6 @@ extension UIImageView {
 //*******************************************************************************************************************************************
 
 extension AllStationViewController: UISearchBarDelegate{
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if(!(searchBar.text?.isEmpty)!){
             DataManager.stations = DataManager.stations.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
