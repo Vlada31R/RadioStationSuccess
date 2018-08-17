@@ -34,6 +34,13 @@
                         <constraint firstAttribute="width" constant="75" id="GE4-cm-6Hd"/>
                     </constraints>
                 </imageView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acp-mQ-lgb">
+                    <rect key="frame" x="0.0" y="0.0" width="46.5" height="24"/>
+                    <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -43,8 +50,10 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="077-nL-fWY" secondAttribute="trailing" constant="10" id="Nq8-qt-6Oe"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="T8I-bg-6ZS" secondAttribute="bottom" constant="10" id="Wvd-Jh-iSw"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="2Er-Ug-zzw" secondAttribute="bottom" id="XmU-Gp-jqg"/>
+                <constraint firstItem="acp-mQ-lgb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="qnF-qA-Q4L"/>
                 <constraint firstItem="077-nL-fWY" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="rAY-uN-KUG"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="T8I-bg-6ZS" secondAttribute="trailing" constant="10" id="spG-9K-HbU"/>
+                <constraint firstItem="acp-mQ-lgb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="wgU-L3-FyO"/>
                 <constraint firstItem="2Er-Ug-zzw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="zme-XF-TX3"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
@@ -55,6 +64,7 @@
                 <outlet property="descriptionLabel" destination="T8I-bg-6ZS" id="ggh-4h-Sgk"/>
                 <outlet property="imageRadioStation" destination="2Er-Ug-zzw" id="nR2-UV-V6f"/>
                 <outlet property="nameLabel" destination="077-nL-fWY" id="5R6-nm-rTR"/>
+                <outlet property="newLabel" destination="acp-mQ-lgb" id="jcb-D1-nya"/>
             </connections>
             <point key="canvasLocation" x="25.5" y="-202"/>
         </view>

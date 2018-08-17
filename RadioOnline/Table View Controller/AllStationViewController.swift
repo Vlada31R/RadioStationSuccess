@@ -18,6 +18,15 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
         //DataManager.load()
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
+        if let tabItems = self.tabBarController?.tabBar.items as NSArray?
+        {
+            let tabItem = tabItems[1] as! UITabBarItem
+            if DataManager.countFavorites == 0 {
+                tabItem.badgeValue = nil
+            } else {
+                tabItem.badgeValue = String(DataManager.countFavorites)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,7 +72,17 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func addFavorites(_ indexPath: IndexPath) -> Bool{
         DataManager.stations[indexPath.row].favorites = true
+        DataManager.stations[indexPath.row].new = true
         DataManager.loadFavorites()
+        if let tabItems = self.tabBarController?.tabBar.items as NSArray?
+        {
+            let tabItem = tabItems[1] as! UITabBarItem
+            if DataManager.countFavorites == 0 {
+                tabItem.badgeValue = nil
+            } else {
+                tabItem.badgeValue = String(DataManager.countFavorites)
+            }
+        }
         NotificationCenter.default.post(name: .reload, object: nil)
         //let c = tableView.cellForRow(at: indexPath)
         //c?.backgroundColor = UIColor.yellow

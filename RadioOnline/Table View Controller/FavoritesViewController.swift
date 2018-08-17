@@ -33,6 +33,16 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let tabItems = self.tabBarController?.tabBar.items as NSArray?
+        {
+            //print(DataManager.countFavorites)
+            let tabItem = tabItems[1] as! UITabBarItem
+            if DataManager.countFavorites == 0 {
+                tabItem.badgeValue = nil
+            } else {
+                tabItem.badgeValue = String(DataManager.countFavorites)
+            }
+        }
         return (DataManager.stationsFavorites.count)
     }
     
@@ -41,8 +51,42 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.nameLabel.text = DataManager.stationsFavorites[indexPath.row].name
         cell.descriptionLabel.text = DataManager.stationsFavorites[indexPath.row].desc
         cell.imageRadioStation.downloadedFrom(link: DataManager.stationsFavorites[indexPath.row].imageURL)
+        if DataManager.stationsFavorites[indexPath.row].new == true {
+            cell.newLabel.isHidden = false
+        } else {
+            cell.newLabel.isHidden = true
+        }
+        if let tabItems = self.tabBarController?.tabBar.items as NSArray?
+        {
+            //print(DataManager.countFavorites)
+            let tabItem = tabItems[1] as! UITabBarItem
+            if DataManager.countFavorites == 0 {
+                tabItem.badgeValue = nil
+            } else {
+                tabItem.badgeValue = String(DataManager.countFavorites)
+            }
+        }
         return cell
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if DataManager.stationsFavorites[indexPath.row].new == true {
+            DataManager.reloadFavoritesNEW(index: indexPath.row)
+            if let tabItems = self.tabBarController?.tabBar.items as NSArray?
+            {
+                //print(DataManager.countFavorites)
+                let tabItem = tabItems[1] as! UITabBarItem
+                if DataManager.countFavorites == 0 {
+                    tabItem.badgeValue = nil
+                } else {
+                    tabItem.badgeValue = String(DataManager.countFavorites)
+                }
+            }
+            favoritesTableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
