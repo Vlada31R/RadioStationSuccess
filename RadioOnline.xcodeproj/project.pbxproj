@@ -35,7 +35,6 @@
 		3FFDF7312124300C00E69812 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF7282124300A00E69812 /* DataManager.swift */; };
 		3FFDF7322124300C00E69812 /* CollectionViewCellXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDF7292124300B00E69812 /* CollectionViewCellXib.xib */; };
 		3FFDF7332124300C00E69812 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF72A2124300B00E69812 /* CollectionViewCell.swift */; };
-		3FFDF7342124300C00E69812 /* stations.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDF72B2124300C00E69812 /* stations.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +68,6 @@
 		3FFDF7282124300A00E69812 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3FFDF7292124300B00E69812 /* CollectionViewCellXib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCellXib.xib; sourceTree = "<group>"; };
 		3FFDF72A2124300B00E69812 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		3FFDF72B2124300C00E69812 /* stations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stations.json; sourceTree = "<group>"; };
 		85CE0378CAF0F4DBDB6518F9 /* Pods-RadioOnline.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RadioOnline.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RadioOnline/Pods-RadioOnline.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,7 +193,6 @@
 				3FFDF7282124300A00E69812 /* DataManager.swift */,
 				3FFDF7272124300900E69812 /* RadioStation.swift */,
 				3FFDF7232124300700E69812 /* Settings.swift */,
-				3FFDF72B2124300C00E69812 /* stations.json */,
 			);
 			path = "Model and settings";
 			sourceTree = "<group>";
@@ -290,7 +287,6 @@
 				3FDE805F2127081700A37FB8 /* Info.plist in Resources */,
 				3FFDF71C21231F4A00E69812 /* CustomCell.xib in Resources */,
 				3FFDF6E62122B4BE00E69812 /* LaunchScreen.storyboard in Resources */,
-				3FFDF7342124300C00E69812 /* stations.json in Resources */,
 				3FFDF6E32122B4BE00E69812 /* Assets.xcassets in Resources */,
 				3FFDF7322124300C00E69812 /* CollectionViewCellXib.xib in Resources */,
 				3FFDF6E12122B4BD00E69812 /* Main.storyboard in Resources */,

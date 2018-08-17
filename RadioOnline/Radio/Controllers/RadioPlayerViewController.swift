@@ -13,6 +13,7 @@ protocol RadioPlayerViewControllerDelegate: class {
 
 class RadioPlayerViewController: UIViewController {
     
+    
     @IBOutlet weak var stationName: UILabel!
     @IBOutlet weak var albumImage: UIImageView!
     @IBOutlet weak var artistLabel: UILabel!
@@ -33,11 +34,6 @@ class RadioPlayerViewController: UIViewController {
         
         // Setting background image
         //self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "back"))
-        
-       
-        
-        
-        
         
         // Setuping Volume Slider
         setupVolumeSlider()
@@ -212,7 +208,9 @@ class RadioPlayerViewController: UIViewController {
         saveTrack(track: playingTrack)
         print(savedTrackArray)
     }
-    
+    @IBAction func back(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     // End Of Class
 }
 
@@ -220,7 +218,7 @@ extension UIViewController{
     
     func addMusicView(parentView: UIView) -> UIView{
         let rect = CGRect(x: 0, y: parentView.frame.maxY * 0.8, width: parentView.frame.maxX, height: parentView.frame.maxY * 0.2)
-        var newView = UIView(frame: rect)
+        let newView = UIView(frame: rect)
         newView.backgroundColor = UIColor.gray
  
         return newView
