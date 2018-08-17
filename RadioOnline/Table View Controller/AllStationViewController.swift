@@ -23,15 +23,10 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
         DataManager.changeColor(view: self.view)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
-    }
-    
-    @objc func reload(notification: NSNotification){
-        DataManager.changeColor(view: self.view)
-        tableView.reloadData()
-
-        //set bandge
+        
         if let tabItems = self.tabBarController?.tabBar.items as NSArray?
         {
+            //print(DataManager.countFavorites)
             let tabItem = tabItems[1] as! UITabBarItem
             if DataManager.countFavorites == 0 {
                 tabItem.badgeValue = nil
@@ -40,6 +35,11 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         
+    }
+    
+    @objc func reload(notification: NSNotification){
+        DataManager.changeColor(view: self.view)
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -70,6 +70,11 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
     //*******************************************************************************************************************************************
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let flagAction = self.contextualToggleFlagAction(forRowAtIndexPath: indexPath)
+        if DataManager.stations[indexPath.row].favorites == true {
+            flagAction.backgroundColor = UIColor.orange
+        } else {
+            flagAction.backgroundColor = UIColor.gray
+        }
         let swipeConfig = UISwipeActionsConfiguration(actions: [flagAction])
         return swipeConfig
     }
@@ -89,8 +94,13 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func addFavorites(_ indexPath: IndexPath) -> Bool{
-        DataManager.stations[indexPath.row].favorites = true
-        DataManager.stations[indexPath.row].new = true
+        if DataManager.stations[indexPath.row].favorites == true {
+            DataManager.stations[indexPath.row].favorites = false
+            DataManager.stations[indexPath.row].new = false
+        } else {
+            DataManager.stations[indexPath.row].favorites = true
+            DataManager.stations[indexPath.row].new = true
+        }
         DataManager.loadFavorites()
         if let tabItems = self.tabBarController?.tabBar.items as NSArray?
         {

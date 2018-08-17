@@ -19,7 +19,6 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(notification:)), name: .reloadFavoritesTableView, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
-        //DataManager.loadFavorites()
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.favoritesTableView.register(nib, forCellReuseIdentifier: "Cell")
         
@@ -65,18 +64,10 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.imageRadioStation.downloadedFrom(link: DataManager.stationsFavorites[indexPath.row].imageURL)
         if DataManager.stationsFavorites[indexPath.row].new == true {
             cell.newLabel.isHidden = false
+            cell.newLabel.layer.masksToBounds = true
+            cell.newLabel.layer.cornerRadius = 10
         } else {
             cell.newLabel.isHidden = true
-        }
-        if let tabItems = self.tabBarController?.tabBar.items as NSArray?
-        {
-            //print(DataManager.countFavorites)
-            let tabItem = tabItems[1] as! UITabBarItem
-            if DataManager.countFavorites == 0 {
-                tabItem.badgeValue = nil
-            } else {
-                tabItem.badgeValue = String(DataManager.countFavorites)
-            }
         }
         return cell
     }
@@ -126,9 +117,6 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         if indexPath.row <= DataManager.stationsFavorites.count {
             DataManager.stationsFavorites[indexPath.row].favorites = false
             DataManager.reloadFavorites(index: indexPath.row)
-            //DataManager.save(array: stations)
-            //stations = DataManager.loadFavorites()
-            //stations.remove(at: indexPath.row)
             return true
         } else {
             print("error deleting radiostation")
