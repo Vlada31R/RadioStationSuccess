@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import ChameleonFramework
 
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -21,9 +22,11 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.favoritesTableView.register(nib, forCellReuseIdentifier: "Cell")
         
+        DataManager.changeColor(view: self.view)
     }
 
     @objc func reload(notification: NSNotification){
+        DataManager.changeColor(view: self.view)
         favoritesTableView.reloadData()
     }
     
@@ -38,11 +41,13 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomCell
+        cell.backgroundColor = self.view.backgroundColor
         cell.nameLabel.text = DataManager.stationsFavorites[indexPath.row].name
+        cell.nameLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
         cell.descriptionLabel.text = DataManager.stationsFavorites[indexPath.row].desc
+        cell.descriptionLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
         cell.imageRadioStation.downloadedFrom(link: DataManager.stationsFavorites[indexPath.row].imageURL)
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
