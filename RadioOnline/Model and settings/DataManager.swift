@@ -190,6 +190,31 @@ struct DataManager {
         }
         save()
     }
+    
+    static func changeColor(view : UIView)
+    {
+        let userDefaults = UserDefaults.standard
+        let redColor : Float
+        let greenColor : Float
+        let blueColor : Float
+        if let redInfo = userDefaults.value(forKey: "redInfo"), let greenInfo = userDefaults.value(forKey: "greenInfo"), let blueInfo = userDefaults.value(forKey: "blueInfo")
+        {
+             redColor = redInfo as! Float
+             greenColor = greenInfo as! Float
+             blueColor = blueInfo as! Float
+        }
+        else
+        {
+             redColor = 1
+             greenColor = 1
+             blueColor = 1
+        }
+        view.backgroundColor = UIColor(red: CGFloat(redColor), green: CGFloat(greenColor), blue: CGFloat(blueColor), alpha: 1.0)
+        for subview in view.subviews {
+            subview.backgroundColor = view.backgroundColor
+        }
+    }
+    
     static var stations = [RadioStation]()
     static var stationsFavorites = [RadioStation]()
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class AllStationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -18,11 +19,15 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
         //DataManager.load()
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
+        
+        DataManager.changeColor(view: self.view)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
+    @objc func reload(notification: NSNotification){
+        DataManager.changeColor(view: self.view)
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,8 +36,11 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomCell
+        cell.backgroundColor = self.view.backgroundColor
         cell.nameLabel.text = DataManager.stations[indexPath.row].name
+        cell.nameLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
         cell.descriptionLabel.text = DataManager.stations[indexPath.row].desc
+        cell.descriptionLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
         cell.imageRadioStation.downloadedFrom(link: DataManager.stations[indexPath.row].imageURL)
         return cell
     }
@@ -77,9 +85,6 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
         UIApplication.shared.keyWindow?.rootViewController = viewController
     }
     
-    
-
-
 }
 extension UIImageView {
     

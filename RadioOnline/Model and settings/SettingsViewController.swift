@@ -28,23 +28,18 @@ class SettingsViewController: UIViewController {
         collection.setImage(UIImage(named: "collection"), for: .normal)
         list.setImage(UIImage(named: "list"), for: .normal)
         
-        let userDefaults = UserDefaults.standard
-        if let redInfo = userDefaults.value(forKey: "redInfo"), let greenInfo = userDefaults.value(forKey: "greenInfo"), let blueInfo = userDefaults.value(forKey: "blueInfo")
-        {
-            redSlider.value = redInfo as! Float
-            greenSlider.value = greenInfo as! Float
-            blueSlider.value = blueInfo as! Float
-        }
-        else
-        {
-            redSlider.value = 1
-            greenSlider.value = 1
-            blueSlider.value = 1
-        }
-        self.view.backgroundColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: 1.0)
-        upView.backgroundColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: 1.0)
+        DataManager.changeColor(view: self.view)
+        upView.backgroundColor = self.view.backgroundColor
         modeLabel.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
         colorLabel.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
+        
+        let colour = self.view.backgroundColor
+        let rgbColour = colour?.cgColor
+        let rgbColours = rgbColour?.components
+        
+        redSlider.value = Float(rgbColours![0])
+        greenSlider.value = Float(rgbColours![1])
+        blueSlider.value = Float(rgbColours![2])
     }
     
     @IBAction func sliderValueChanged(_ sender: Any) {
@@ -61,6 +56,8 @@ class SettingsViewController: UIViewController {
         userDefaults.setValue(blueInfo, forKey: "blueInfo")
         modeLabel.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
         colorLabel.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
+        
+        NotificationCenter.default.post(name: .reload, object: nil)
     }
     
 }

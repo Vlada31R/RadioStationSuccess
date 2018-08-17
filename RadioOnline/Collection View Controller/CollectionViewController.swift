@@ -17,11 +17,19 @@ class ViewController: UIViewController {
 //        self.collectionView.register(nib, forCellWithReuseIdentifier: "collectionViewCell")
         
         //DataManager.load()
+        NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
         
         let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(_:)))
         lpgr.minimumPressDuration = 0.5
         lpgr.delaysTouchesBegan = true
         self.collectionView.addGestureRecognizer(lpgr)
+        
+        DataManager.changeColor(view: self.view)
+    }
+    
+    @objc func reload(notification: NSNotification){
+        DataManager.changeColor(view: self.view)
+        collectionView.reloadData()
     }
     
     @objc func handleLongPress(_ sender: UILongPressGestureRecognizer) {
@@ -86,7 +94,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! CollectionViewCell
         let station = DataManager.stations[indexPath.row]
-        cell.configureStationCell(station: station)
+        cell.configureStationCell(station: station, view: self.view)
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

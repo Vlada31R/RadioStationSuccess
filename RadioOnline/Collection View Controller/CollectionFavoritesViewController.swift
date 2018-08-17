@@ -7,11 +7,11 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class CollectionFavoritesViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var cell: CollectionViewCellXib!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +22,12 @@ class CollectionFavoritesViewController: UIViewController {
         lpgr.minimumPressDuration = 0.5
         lpgr.delaysTouchesBegan = true
         self.collectionView.addGestureRecognizer(lpgr)
+        
+        DataManager.changeColor(view: self.view)
     }
     
     @objc func reload(notification: NSNotification){
+        DataManager.changeColor(view: self.view)
         collectionView.reloadData()
     }
     
@@ -71,7 +74,7 @@ extension CollectionFavoritesViewController: UICollectionViewDataSource, UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! CollectionViewCell
         let station = DataManager.stationsFavorites[indexPath.row]
-        cell.configureStationCell(station: station)
+        cell.configureStationCell(station: station, view: self.view)
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
