@@ -57,8 +57,34 @@ class RadioSetter{
             return .success
         }
     }
+    
+    //*****************************************************************
+    // MARK: - MPNowPlayingInfoCenter (Lock screen)
+    //*****************************************************************
+    
+    func updateLockScreen(with track: Track?) {
+        
+        // Define Now Playing Info
+        var nowPlayingInfo = [String : Any]()
+        
+        if let image = track?.artworkImage {
+            nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image)
+        }
+        
+        if let artist = track?.artist {
+            nowPlayingInfo[MPMediaItemPropertyArtist] = artist
+        }
+        
+        if let title = track?.title {
+            nowPlayingInfo[MPMediaItemPropertyTitle] = title
+        }
+        
+        // Set the metadata
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
     // End of Class
 }
+
 
 //*****************************************************************
 // MARK: - NowPlayingViewControllerDelegate
@@ -75,10 +101,12 @@ extension RadioSetter: RadioPlayerDelegate {
     }
     
     func trackDidUpdate(_ track: Track?) {
+        updateLockScreen(with: track)
         radioPlayerViewController?.updateTrackMetadata(with: track)
     }
     
     func trackArtworkDidUpdate(_ track: Track?) {
+        updateLockScreen(with: track)
         radioPlayerViewController?.updateTrackArtwork(with: track)
     }
 }

@@ -11,12 +11,15 @@ import UIKit
 class AllStationViewController:  UIViewController,  UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
+    var nowPlayingSongBar: UIView!
+    
     var radioSetter = RadioSetter()
     //*****************************************************************
     // MARK: - viewDidLoad Method
     //*****************************************************************
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         //DataManager.firstSave()
         radioSetter.setupRadio()
         //DataManager.load()

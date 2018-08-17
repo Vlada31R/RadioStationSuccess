@@ -203,9 +203,6 @@ class RadioPlayerViewController: UIViewController {
     
     // Stop Button
     @IBAction func stopButtonPressed(_ sender: UIButton) {
-
-        
-    
         
         radioPlayer.stop()
     }
@@ -215,7 +212,17 @@ class RadioPlayerViewController: UIViewController {
         saveTrack(track: playingTrack)
         print(savedTrackArray)
     }
+    
     // End Of Class
 }
 
-
+extension UIViewController{
+    
+    func addMusicView(parentView: UIView) -> UIView{
+        let rect = CGRect(x: 0, y: parentView.frame.maxY * 0.8, width: parentView.frame.maxX, height: parentView.frame.maxY * 0.2)
+        var newView = UIView(frame: rect)
+        newView.backgroundColor = UIColor.gray
+ 
+        return newView
+    }
+}
