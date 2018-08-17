@@ -68,8 +68,7 @@ class AllStationViewController: UIViewController, UITableViewDelegate, UITableVi
     //*******************************************************************************************************************************************
     //MARK: tableView cell swipe
     //*******************************************************************************************************************************************
-    
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let flagAction = self.contextualToggleFlagAction(forRowAtIndexPath: indexPath)
         let swipeConfig = UISwipeActionsConfiguration(actions: [flagAction])
         return swipeConfig
