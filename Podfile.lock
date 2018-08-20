@@ -2,9 +2,15 @@ PODS:
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
+  - ProgressHUD (2.51)
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
+  - ProgressHUD
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - ProgressHUD
 
 EXTERNAL SOURCES:
   ChameleonFramework:
@@ -17,7 +23,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  ProgressHUD: 54b4c2fa202bf3da7dddc1c698ae4e6376333bd9
 
-PODFILE CHECKSUM: 05182b8c73a6bd5d4387d1b355b0a09e314fda88
+PODFILE CHECKSUM: a932f9a52c2882c06347c497241617d1082cda6b
 
 COCOAPODS: 1.5.3

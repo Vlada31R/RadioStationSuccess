@@ -8,6 +8,7 @@
 
 import UIKit
 import ChameleonFramework
+import ProgressHUD
 
 class AddRadioStationViewController: UIViewController {
     
@@ -76,13 +77,11 @@ class AddRadioStationViewController: UIViewController {
         if name.count > 0 && urlStream.count > 0 {
             DataManager.addNewRadioStation(name: name, desc: desc, urlStream: urlStream, urlImage: urlImage)
             NotificationCenter.default.post(name: .reload, object: nil)
-            let alert = UIAlertController(title: "Radiostation add all station!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            ProgressHUD.show()
+            ProgressHUD.showSuccess("Radiostation add all station!")
         } else {
-            let alert = UIAlertController(title: "Sorry... some error, please retry!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            ProgressHUD.show()
+            ProgressHUD.showError("Sorry... some error, please retry!")
         }
         
     }

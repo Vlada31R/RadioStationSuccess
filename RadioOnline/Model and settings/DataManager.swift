@@ -204,6 +204,15 @@ struct DataManager {
         stations.append(newStation)
     }
     
+    static func readImg(name: String) -> UIImage? {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentsURL.appendingPathComponent(name).path
+        if FileManager.default.fileExists(atPath: filePath) {
+            return UIImage(contentsOfFile: filePath)
+        }
+        return nil
+    }
+    
     static var stations = [RadioStation]()
     static var countFavorites = 0
     static var stationsFavorites = [RadioStation]()
