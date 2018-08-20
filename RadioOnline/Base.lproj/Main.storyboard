@@ -239,10 +239,10 @@
                                         </searchBar>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="xFG-NG-sdt" firstAttribute="top" secondItem="DNg-vd-jhC" secondAttribute="top" id="26X-um-KAg"/>
-                                        <constraint firstAttribute="bottom" secondItem="xFG-NG-sdt" secondAttribute="bottom" id="2uZ-M9-CDV"/>
-                                        <constraint firstItem="xFG-NG-sdt" firstAttribute="leading" secondItem="DNg-vd-jhC" secondAttribute="leading" id="FeX-e7-peJ"/>
-                                        <constraint firstAttribute="trailing" secondItem="xFG-NG-sdt" secondAttribute="trailing" id="MUp-df-FRT"/>
+                                        <constraint firstItem="xFG-NG-sdt" firstAttribute="top" secondItem="DNg-vd-jhC" secondAttribute="top" id="3kc-Rv-MOe"/>
+                                        <constraint firstAttribute="trailing" secondItem="xFG-NG-sdt" secondAttribute="trailing" id="9yw-n2-k6a"/>
+                                        <constraint firstAttribute="bottom" secondItem="xFG-NG-sdt" secondAttribute="bottom" id="X73-4n-0dt"/>
+                                        <constraint firstItem="xFG-NG-sdt" firstAttribute="leading" secondItem="DNg-vd-jhC" secondAttribute="leading" id="x9M-Ot-g8C"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="searchBar" destination="xFG-NG-sdt" id="Eah-fr-3vr"/>
@@ -272,6 +272,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="rdT-4I-Vt5" id="pse-ZU-58h"/>
+                        <segue destination="xFa-1g-xaV" kind="presentation" identifier="RadioPlayer" id="qZ5-2w-Vmq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vU4-AJ-jpY" sceneMemberID="firstResponder"/>
@@ -290,7 +291,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2gw-jx-XPm">
-                                    <size key="itemSize" width="200" height="189"/>
+                                    <size key="itemSize" width="181" height="145"/>
                                     <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -334,10 +335,10 @@
                                         </searchBar>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="3Td-IP-zbL" secondAttribute="bottom" id="LHS-NH-MK1"/>
-                                        <constraint firstItem="3Td-IP-zbL" firstAttribute="leading" secondItem="bED-Yf-F8F" secondAttribute="leading" id="Ww5-Cu-LmH"/>
-                                        <constraint firstAttribute="trailing" secondItem="3Td-IP-zbL" secondAttribute="trailing" id="YgE-Ir-Cyu"/>
-                                        <constraint firstItem="3Td-IP-zbL" firstAttribute="top" secondItem="bED-Yf-F8F" secondAttribute="top" id="ZQg-t4-8dX"/>
+                                        <constraint firstAttribute="trailing" secondItem="3Td-IP-zbL" secondAttribute="trailing" id="6mA-p8-MG7"/>
+                                        <constraint firstItem="3Td-IP-zbL" firstAttribute="top" secondItem="bED-Yf-F8F" secondAttribute="top" id="Enw-nW-OeI"/>
+                                        <constraint firstItem="3Td-IP-zbL" firstAttribute="leading" secondItem="bED-Yf-F8F" secondAttribute="leading" id="hjE-3h-fPt"/>
+                                        <constraint firstAttribute="bottom" secondItem="3Td-IP-zbL" secondAttribute="bottom" id="z4v-LI-gNy"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="searchBar" destination="3Td-IP-zbL" id="LMi-sq-byG"/>
@@ -714,7 +715,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcZ-eP-YI2" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-628" y="934.18290854572717"/>
+            <point key="canvasLocation" x="-862" y="-1858"/>
         </scene>
     </scenes>
     <resources>
@@ -730,6 +731,7 @@
         <image name="vol-min" width="11" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="qZ5-2w-Vmq"/>
         <segue reference="ILH-e6-uQu"/>
     </inferredMetricsTieBreakers>
 </document>

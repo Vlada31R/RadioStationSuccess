@@ -56,6 +56,7 @@ class SettingsViewController: UIViewController {
         userDefaults.setValue(blueInfo, forKey: "blueInfo")
         modeLabel.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
         colorLabel.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
+        print(colorLabel.textColor)
         
         NotificationCenter.default.post(name: .reload, object: nil)
     }

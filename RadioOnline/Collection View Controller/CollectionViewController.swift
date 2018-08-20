@@ -9,14 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    var nowPlayingSongBar: UIView!
+    var radioSetter = RadioSetter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let nib = UINib(nibName: "CollectionViewCellXib", bundle: nil)
-//        self.collectionView.register(nib, forCellWithReuseIdentifier: "collectionViewCell")
         
-        //DataManager.load()
+        radioSetter.setupRadio()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
         
         let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(_:)))
@@ -25,6 +28,8 @@ class ViewController: UIViewController {
         self.collectionView.addGestureRecognizer(lpgr)
         
         DataManager.changeColor(view: self.view)
+        
+        DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
     }
     
     @objc func reload(notification: NSNotification){
@@ -33,6 +38,7 @@ class ViewController: UIViewController {
     }
     
     @objc func handleLongPress(_ sender: UILongPressGestureRecognizer) {
+        
         if sender.state != UIGestureRecognizerState.ended {
             return
         }
@@ -44,16 +50,46 @@ class ViewController: UIViewController {
             
             let alertController = UIAlertController(title: "Station", message:DataManager.stations[index[1]].name, preferredStyle: .alert)
             
-            let image = UIImage(named: "favorites")
+            var title = ""
             let imageView = UIImageView()
-            imageView.image = image
-            imageView.frame =  CGRect(x: 35, y: 89, width: 24, height: 24)
+            if DataManager.stations[index[1]].favorites == true
+            {
+                title = "Remove from favorites"
+                let image = UIImage(named: "delete")
+                imageView.image = image
+                imageView.frame =  CGRect(x: 20, y: 89, width: 24, height: 24)
+                
+            }
+            else
+            {
+                title = "Add to Favorites"
+                let image = UIImage(named: "favorites")
+                imageView.image = image
+                imageView.frame =  CGRect(x: 35, y: 89, width: 24, height: 24)
+            }
             alertController.view.addSubview(imageView)
-            let addAction = UIAlertAction(title: "Add to Favourites", style: UIAlertActionStyle.default)
+            
+            var alert = UIAlertController()
+            let addAction = UIAlertAction(title: title, style: UIAlertActionStyle.default)
             { (action) in
-                DataManager.stations[index[1]].favorites = true
+                if DataManager.stations[index[1]].favorites == true
+                {
+                    DataManager.stations[index[1]].favorites = false
+                    DataManager.stations[index[1]].new = false
+                    alert = UIAlertController(title: "Radiostation removed from favorites!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                }
+                else
+                {
+                    DataManager.stations[index[1]].favorites = true
+                    DataManager.stations[index[1]].new = true
+                    alert = UIAlertController(title: "Radiostation add to favorites!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                }
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
                 DataManager.loadFavorites()
-                NotificationCenter.default.post(name: .reload, object: nil)
+                NotificationCenter.default.post(name: .reloadFavourites, object: nil)
+                DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
             }
             
             let image2 = UIImage(named: "delete")
@@ -64,7 +100,7 @@ class ViewController: UIViewController {
             let removeAction = UIAlertAction(title: "Remove", style: UIAlertActionStyle.default)
             { (action) in
                 //DataManager.stations.remove(at: index[1])
-                self.collectionView?.reloadData()
+                //self.collectionView?.reloadData()
             }
             
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
@@ -83,11 +119,34 @@ class ViewController: UIViewController {
         let viewController = mainStoryboard.instantiateViewController(withIdentifier: "TableVC") as! UITabBarController
         UIApplication.shared.keyWindow?.rootViewController = viewController
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "RadioPlayer", let radioPlayerVC = segue.destination as? RadioPlayerViewController else { return }
+        
+        title = ""
+        
+        let newStation: Bool
+        
+        if let indexPath = (sender as? IndexPath) {
+            // User clicked on row, load/reset station
+            radioSetter.set(radioStation: DataManager.stations[indexPath.row])
+            newStation = true
+        } else {
+            // User clicked on Now Playing button
+            newStation = false
+        }
+        
+        radioSetter.radioPlayerViewController = radioPlayerVC
+        radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
+    }
 
 }
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate
 {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "RadioPlayer", sender: indexPath)
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return DataManager.stations.count
     }
@@ -106,6 +165,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         }
         return UICollectionReusableView()
     }
+    
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if(!(searchBar.text?.isEmpty)!){
