@@ -15,6 +15,7 @@ protocol RadioPlayerViewControllerDelegate: class {
 class RadioPlayerViewController: UIViewController {
     
     
+    @IBOutlet weak var toggleButton: UIButton!
     @IBOutlet weak var stationName: UILabel!
     @IBOutlet weak var albumImage: UIImageView!
     @IBOutlet weak var artistLabel: UILabel!
@@ -193,9 +194,9 @@ class RadioPlayerViewController: UIViewController {
         
         switch radioPlayer.playbackState {
         case .paused, .stopped :
-            sender.setImage(#imageLiteral(resourceName: "pauseImageButton"), for: .normal)
+            toggleButton.setImage(#imageLiteral(resourceName: "pauseImageButton"), for: .normal)
         case .playing :
-            sender.setImage(#imageLiteral(resourceName: "playImageButton"), for: .normal)
+            toggleButton.setImage(#imageLiteral(resourceName: "playImageButton"), for: .normal)
             
         }
         
@@ -204,7 +205,7 @@ class RadioPlayerViewController: UIViewController {
     
     // Stop Button
     @IBAction func stopButtonPressed(_ sender: UIButton) {
-        
+        toggleButton.setImage(#imageLiteral(resourceName: "playImageButton"), for: .normal)
         radioPlayer.stop()
     }
     

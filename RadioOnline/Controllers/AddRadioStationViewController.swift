@@ -11,8 +11,7 @@ import ChameleonFramework
 
 class AddRadioStationViewController: UIViewController {
     
-
-
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var URLStreamTextField: UITextField!
@@ -25,6 +24,7 @@ class AddRadioStationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         DataManager.changeColor(view: self.view)
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
         recolourAllElements()

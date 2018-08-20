@@ -123,8 +123,6 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "RadioPlayer", let radioPlayerVC = segue.destination as? RadioPlayerViewController else { return }
         
-        title = ""
-        
         let newStation: Bool
         
         if let indexPath = (sender as? IndexPath) {

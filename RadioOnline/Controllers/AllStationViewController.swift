@@ -15,7 +15,6 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
 
     
     @IBOutlet var tableView: UITableView!
-    var nowPlayingSongBar: UIView!
     
     var radioSetter = RadioSetter()
     

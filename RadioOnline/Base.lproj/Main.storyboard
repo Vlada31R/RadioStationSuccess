@@ -131,6 +131,7 @@
                     <navigationItem key="navigationItem" title="Favorites Radio Station" id="1hG-Nw-sbR"/>
                     <connections>
                         <outlet property="favoritesTableView" destination="5lE-JB-qyH" id="q2G-8J-YaS"/>
+                        <segue destination="xFa-1g-xaV" kind="presentation" identifier="RadioPlayer" id="Bf8-Vl-6d8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q5A-na-20D" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -303,7 +304,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IKA-Jb-D34" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-628" y="173"/>
+            <point key="canvasLocation" x="-1092" y="751"/>
         </scene>
         <!--All Radio Station-->
         <scene sceneID="zqF-gh-Voe">
@@ -398,7 +399,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vU4-AJ-jpY" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1855" y="-2261"/>
+            <point key="canvasLocation" x="-1855" y="-2328"/>
         </scene>
         <!--Favorite Radio Stations-->
         <scene sceneID="8lZ-x3-0hI">
@@ -483,11 +484,12 @@
                     <navigationItem key="navigationItem" title="Favorites Radio Station" id="7dB-DM-Yeh"/>
                     <connections>
                         <outlet property="collectionView" destination="5Vd-Zh-hkh" id="f2k-LK-vHl"/>
+                        <segue destination="xFa-1g-xaV" kind="presentation" identifier="RadioPlayer" id="5Fb-Xg-Ogk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tH8-Dj-kCZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1855.2" y="-1600.7496251874063"/>
+            <point key="canvasLocation" x="-2049" y="-1600"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6Mi-Nv-iWe">
@@ -834,12 +836,13 @@
                         <outlet property="artistLabel" destination="fkc-1F-UOk" id="Y9Y-hD-ACq"/>
                         <outlet property="songLabel" destination="q6z-z4-Qdv" id="dPn-42-7Xh"/>
                         <outlet property="stationName" destination="uBM-Yp-JX9" id="tnn-35-dEx"/>
+                        <outlet property="toggleButton" destination="6LS-Z9-yq5" id="efg-p4-um9"/>
                         <outlet property="volumeParentView" destination="UzL-1Q-gH9" id="efu-35-SRB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcZ-eP-YI2" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-862" y="-1858"/>
+            <point key="canvasLocation" x="2223" y="-537"/>
         </scene>
     </scenes>
     <resources>
@@ -855,7 +858,7 @@
         <image name="vol-min" width="11" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qZ5-2w-Vmq"/>
+        <segue reference="5Fb-Xg-Ogk"/>
         <segue reference="ILH-e6-uQu"/>
     </inferredMetricsTieBreakers>
 </document>

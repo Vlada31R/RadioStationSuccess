@@ -12,12 +12,15 @@ import ChameleonFramework
 
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    var radioSetter = RadioSetter()
   
     @IBOutlet weak var favoritesTableView: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        radioSetter.setupRadio()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(notification:)), name: .reloadFavoritesTableView, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
         let nib = UINib(nibName: "CustomCell", bundle: nil)
@@ -77,6 +80,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             favoritesTableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.fade)
         }
         tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "RadioPlayer", sender: self)
     }
     
     //*******************************************************************************************************************************************
@@ -131,6 +135,23 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             print("error deleting radiostation")
             return false
         }
+    }
+    
+    //MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "RadioPlayer", let radioPlayerVC = segue.destination as? RadioPlayerViewController else { return }
+        
+        let newStation: Bool
+        
+        if let indexPath = (sender as? IndexPath) {
+            radioSetter.set(radioStation: DataManager.stationsFavorites[indexPath.row])
+            newStation = true
+        } else {
+            newStation = false
+        }
+        
+        radioSetter.radioPlayerViewController = radioPlayerVC
+        radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
     }
 }
 

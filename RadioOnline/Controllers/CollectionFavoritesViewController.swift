@@ -10,11 +10,15 @@ import UIKit
 import ChameleonFramework
 
 class CollectionFavoritesViewController: UIViewController {
+
+    var radioSetter = RadioSetter()
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        radioSetter.setupRadio()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFavourites(notification:)), name: .reloadFavourites, object: nil)
         collectionView.reloadData()
@@ -69,6 +73,24 @@ class CollectionFavoritesViewController: UIViewController {
             print("Could not find index path")
         }
     }
+    
+    //MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "RadioPlayer", let radioPlayerVC = segue.destination as? RadioPlayerViewController else { return }
+        
+        
+        let newStation: Bool
+        
+        if let indexPath = (sender as? IndexPath) {
+            radioSetter.set(radioStation: DataManager.stationsFavorites[indexPath.row])
+            newStation = true
+        } else {
+            newStation = false
+        }
+        
+        radioSetter.radioPlayerViewController = radioPlayerVC
+        radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
+    }
 }
 
 extension Notification.Name {
@@ -96,6 +118,7 @@ extension CollectionFavoritesViewController: UICollectionViewDataSource, UIColle
             collectionView.reloadItems(at: [indexPath])
         }
         collectionView.deselectItem(at: indexPath, animated: true)
+        performSegue(withIdentifier: "RadioPlayer", sender: self)
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
