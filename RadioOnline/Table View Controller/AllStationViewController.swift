@@ -1,4 +1,4 @@
-//
+    //
 //  AllStationViewController.swift
 //  RadioOnline
 //
@@ -24,7 +24,6 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     //*****************************************************************
     override func viewDidLoad() {
         super.viewDidLoad()
-
         radioSetter.setupRadio()
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
@@ -57,7 +56,15 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         cell.nameLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
         cell.descriptionLabel.text = DataManager.stations[indexPath.row].desc
         cell.descriptionLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
-        cell.imageRadioStation.downloadedFrom(link: DataManager.stations[indexPath.row].imageURL)
+        //check image in device and load from device or internet
+        let img = DataManager.readImg(name: "\(DataManager.stations[indexPath.row].name).png")
+        if img == nil || img == #imageLiteral(resourceName: "stationImage") {
+            cell.imageRadioStation.downloadedFrom(link: DataManager.stations[indexPath.row].imageURL, name: "\(DataManager.stations[indexPath.row].name).png")
+        } else {
+            cell.imageRadioStation.image = img
+            //print("image load from device")
+        }
+        
         return cell
     }
     
@@ -85,7 +92,9 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         } else {
             share.backgroundColor = .gray
         }
+        
         share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "favorites"))
+        
         
         
         return [share]
@@ -177,6 +186,29 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
 //*******************************************************************************************************************************************
 
 extension UIImageView {
+    func downloadedFrom(link:String, name: String) {
+        self.image = #imageLiteral(resourceName: "stationImage")
+        guard let url = URL(string: link) else { return }
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) -> Void in
+            guard let data = data , error == nil, let image = UIImage(data: data) else { return }
+            DispatchQueue.main.async { () -> Void in
+                self.image = image
+                //save image in device when image load from URL
+                do {
+                    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                    let fileURL = documentsURL.appendingPathComponent(name)
+                    if let pngImageData = UIImagePNGRepresentation(image) {
+                        try pngImageData.write(to: fileURL, options: .atomic)
+                        //print("image save")
+                    }
+                } catch {
+                    //print("Some error saving image")
+                }
+                //end save image
+            }
+        }).resume()
+    }
+    
     func downloadedFrom(link:String) {
         self.image = #imageLiteral(resourceName: "stationImage")
         guard let url = URL(string: link) else { return }
