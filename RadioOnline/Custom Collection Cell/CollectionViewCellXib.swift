@@ -12,6 +12,7 @@ class CollectionViewCellXib: UIView {
     @IBOutlet var cell: UIView!
     @IBOutlet weak var stationImage: UIImageView!
     @IBOutlet weak var stationName: UILabel!
+    @IBOutlet weak var newLabel: UILabel!
     override init(frame: CGRect)
     {
         super.init(frame: frame)

@@ -16,7 +16,7 @@ class CollectionFavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
-        //DataManager.load()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadFavourites(notification:)), name: .reloadFavourites, object: nil)
         collectionView.reloadData()
         let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(_:)))
         lpgr.minimumPressDuration = 0.5
@@ -27,6 +27,10 @@ class CollectionFavoritesViewController: UIViewController {
     }
     
     @objc func reload(notification: NSNotification){
+        DataManager.changeColor(view: self.view)
+        collectionView.reloadData()
+    }
+    @objc func reloadFavourites(notification: NSNotification){
         DataManager.changeColor(view: self.view)
         collectionView.reloadData()
     }
@@ -66,16 +70,32 @@ class CollectionFavoritesViewController: UIViewController {
         }
     }
 }
+
+extension Notification.Name {
+   // static let reload = Notification.Name("reload")
+    static let reloadFavourites = Notification.Name("reload Favourites")
+}
+
 extension CollectionFavoritesViewController: UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
         return DataManager.stationsFavorites.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! CollectionViewCell
         let station = DataManager.stationsFavorites[indexPath.row]
-        cell.configureStationCell(station: station, view: self.view)
+        cell.configureStationCell(station: station, view: self.view, fav: true)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if DataManager.stationsFavorites[indexPath.row].new == true {
+            DataManager.reloadFavoritesNEW(index: indexPath.row)
+            DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
+            collectionView.reloadItems(at: [indexPath])
+        }
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
