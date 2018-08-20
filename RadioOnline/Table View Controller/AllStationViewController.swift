@@ -9,8 +9,11 @@
 import UIKit
 import ChameleonFramework
 
+
 class AllStationViewController:  UIViewController,  UITableViewDelegate, UITableViewDataSource {
 
+
+    
     @IBOutlet var tableView: UITableView!
     var nowPlayingSongBar: UIView!
     
@@ -21,9 +24,8 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     //*****************************************************************
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-        radioSetter.setupRadio()
 
+        radioSetter.setupRadio()
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
         DataManager.changeColor(view: self.view)
@@ -150,7 +152,6 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "RadioPlayer", let radioPlayerVC = segue.destination as? RadioPlayerViewController else { return }
         
-        title = ""
         
         let newStation: Bool
         

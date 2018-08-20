@@ -9,67 +9,7 @@
 import Foundation
 import UIKit
 
-struct DataManager {
-//    static func loadStationsFromJSON() -> [RadioStation] {
-//        var stations = [RadioStation]()
-//        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-//        // Get the Radio Stations
-//        DataManager.getStationDataWithSuccess() { (data) in
-//            defer {
-//                DispatchQueue.main.async { UIApplication.shared.isNetworkActivityIndicatorVisible = false }
-//            }
-//            if kDebugLog { print("Stations JSON Found") }
-//            guard let data = data,
-//                let jsonDictionary = try? JSONDecoder().decode([String: [RadioStation]].self, from: data),
-//                let stationsArray = jsonDictionary["station"]
-//
-//                else {
-//                    if kDebugLog { print("JSON Station Loading Error") }
-//                    return
-//            }
-//             stations = stationsArray
-//        }
-//        print(stations)
-//        return stations
-//    }
-    
-    static func getStationDataWithSuccess(success: @escaping ((_ metaData: Data?) -> Void)) {
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            if useLocalStations {
-                getDataFromFileWithSuccess() { data in
-                    success(data)
-                }
-            } else {
-                guard let stationDataURL = URL(string: stationDataURL) else {
-                    if kDebugLog { print("stationDataURL not a valid URL") }
-                    success(nil)
-                    return
-                }
-                
-                loadDataFromURL(url: stationDataURL) { data, error in
-                    success(data)
-                }
-            }
-        }
-    }
-    
-    
-    static func getDataFromFileWithSuccess(success: (_ data: Data?) -> Void) {
-        guard let filePathURL = Bundle.main.url(forResource: "stations", withExtension: "json") else {
-            if kDebugLog { print("The local JSON file could not be found") }
-            success(nil)
-            return
-        }
-        
-        do {
-            let data = try Data(contentsOf: filePathURL, options: .uncached)
-            success(data)
-        } catch {
-            fatalError()
-        }
-    }
-    
+struct DataManager {    
     
     static func loadDataFromURL(url: URL, completion: @escaping (_ data: Data?, _ error: Error?) -> Void) {
         
@@ -257,6 +197,11 @@ struct DataManager {
                 tabItem.badgeValue = String(DataManager.countFavorites)
             }
         }
+    }
+    
+    static func addNewRadioStation(name: String, desc: String, urlStream: String, urlImage: String){
+        var newStation = RadioStation(name: name, streamURL: urlStream, imageURL: urlImage, desc: desc, longDesc: "", favorites: false, new: false)
+        stations.append(newStation)
     }
     
     static var stations = [RadioStation]()
