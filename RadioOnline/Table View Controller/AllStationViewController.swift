@@ -8,7 +8,7 @@
 
 import UIKit
 import ChameleonFramework
-
+import ProgressHUD
     
 
 class AllStationViewController:  UIViewController,  UITableViewDelegate, UITableViewDataSource {
@@ -81,10 +81,14 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
                 DataManager.stations[indexPath.row].favorites = false
                 DataManager.stations[indexPath.row].new = false
                 tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.middle)
+                ProgressHUD.show()
+                ProgressHUD.showError("Radio station removed from favorites!")
             } else {
                 DataManager.stations[indexPath.row].favorites = true
                 DataManager.stations[indexPath.row].new = true
                 tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.middle)
+                ProgressHUD.show()
+                ProgressHUD.showSuccess("Radio station add to favorites!")
             }
             DataManager.loadFavorites()
             DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
@@ -134,15 +138,13 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         if DataManager.stations[indexPath.row].favorites == true {
             DataManager.stations[indexPath.row].favorites = false
             DataManager.stations[indexPath.row].new = false
-            let alert = UIAlertController(title: "Radiostation removed from favorites!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            ProgressHUD.show()
+            ProgressHUD.showError("Radio station removed from favorites!")
         } else {
             DataManager.stations[indexPath.row].favorites = true
             DataManager.stations[indexPath.row].new = true
-            let alert = UIAlertController(title: "Radiostation add to favorites!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            ProgressHUD.show()
+            ProgressHUD.showSuccess("Radio station add to favorites!")
         }
         DataManager.loadFavorites()
         DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
@@ -191,6 +193,10 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
 extension UIImageView {
     func downloadedFrom(link:String, name: String) {
         self.image = #imageLiteral(resourceName: "stationImage")
+        //check empty url, if url empty return else load img and save
+        if link == "" {
+            return
+        }
         guard let url = URL(string: link) else { return }
         URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) -> Void in
             guard let data = data , error == nil, let image = UIImage(data: data) else { return }
