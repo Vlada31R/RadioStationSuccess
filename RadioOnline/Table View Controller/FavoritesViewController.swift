@@ -65,7 +65,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.imageRadioStation.downloadedFrom(link: DataManager.stationsFavorites[indexPath.row].imageURL, name: "\(DataManager.stations[indexPath.row].name).png")
         } else {
             cell.imageRadioStation.image = img
-            print("image load from device")
+            //print("image load from device")
         }
         
         if DataManager.stationsFavorites[indexPath.row].new == true {
@@ -92,7 +92,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     //*******************************************************************************************************************************************
     @available(iOS 9.0, *)
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let share = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
+        let share = UITableViewRowAction(style: .destructive, title: "               ") { action, index in
             if indexPath.row <= DataManager.stationsFavorites.count {
                 DataManager.stationsFavorites[indexPath.row].favorites = false
                 DataManager.reloadFavorites(index: indexPath.row)
@@ -103,7 +103,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         share.backgroundColor = .red
-        share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "delete"))
+        share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "deleteForIOS9"))
         
         return [share]
     }

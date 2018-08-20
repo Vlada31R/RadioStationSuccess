@@ -9,6 +9,7 @@
 import UIKit
 import ChameleonFramework
 
+    
 
 class AllStationViewController:  UIViewController,  UITableViewDelegate, UITableViewDataSource {
 
@@ -23,6 +24,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     // MARK: - viewDidLoad Method
     //*****************************************************************
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         radioSetter.setupRadio()
         let nib = UINib(nibName: "CustomCell", bundle: nil)
@@ -46,6 +48,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     //*******************************************************************************************************************************************
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(DataManager.stations.count)
         return (DataManager.stations.count)
     }
     
@@ -73,7 +76,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     //*******************************************************************************************************************************************
     @available(iOS 9.0, *)
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let share = UITableViewRowAction(style: .normal, title: "add") { action, index in
+        let share = UITableViewRowAction(style: .normal, title: "           ") { action, index in
             if DataManager.stations[indexPath.row].favorites == true {
                 DataManager.stations[indexPath.row].favorites = false
                 DataManager.stations[indexPath.row].new = false
@@ -93,7 +96,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
             share.backgroundColor = .gray
         }
         
-        share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "favorites"))
+        share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "favoritesForIOS9"))
         
         
         
