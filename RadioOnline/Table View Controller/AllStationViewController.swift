@@ -1,4 +1,4 @@
-//
+    //
 //  AllStationViewController.swift
 //  RadioOnline
 //
@@ -8,7 +8,8 @@
 
 import UIKit
 import ChameleonFramework
-
+import ProgressHUD
+    
 
 class AllStationViewController:  UIViewController,  UITableViewDelegate, UITableViewDataSource {
 
@@ -23,8 +24,8 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     // MARK: - viewDidLoad Method
     //*****************************************************************
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
         radioSetter.setupRadio()
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
@@ -47,6 +48,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     //*******************************************************************************************************************************************
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(DataManager.stations.count)
         return (DataManager.stations.count)
     }
     
@@ -57,7 +59,15 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         cell.nameLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
         cell.descriptionLabel.text = DataManager.stations[indexPath.row].desc
         cell.descriptionLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
-        cell.imageRadioStation.downloadedFrom(link: DataManager.stations[indexPath.row].imageURL)
+        //check image in device and load from device or internet
+        let img = DataManager.readImg(name: "\(DataManager.stations[indexPath.row].name).png")
+        if img == nil || img == #imageLiteral(resourceName: "stationImage") {
+            cell.imageRadioStation.downloadedFrom(link: DataManager.stations[indexPath.row].imageURL, name: "\(DataManager.stations[indexPath.row].name).png")
+        } else {
+            cell.imageRadioStation.image = img
+            //print("image load from device")
+        }
+        
         return cell
     }
     
@@ -66,15 +76,19 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     //*******************************************************************************************************************************************
     @available(iOS 9.0, *)
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let share = UITableViewRowAction(style: .normal, title: "add") { action, index in
+        let share = UITableViewRowAction(style: .normal, title: "           ") { action, index in
             if DataManager.stations[indexPath.row].favorites == true {
                 DataManager.stations[indexPath.row].favorites = false
                 DataManager.stations[indexPath.row].new = false
                 tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.middle)
+                ProgressHUD.show()
+                ProgressHUD.showError("Radio station removed from favorites!")
             } else {
                 DataManager.stations[indexPath.row].favorites = true
                 DataManager.stations[indexPath.row].new = true
                 tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.middle)
+                ProgressHUD.show()
+                ProgressHUD.showSuccess("Radio station add to favorites!")
             }
             DataManager.loadFavorites()
             DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
@@ -85,7 +99,9 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         } else {
             share.backgroundColor = .gray
         }
-        share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "favorites"))
+        
+        share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "favoritesForIOS9"))
+        
         
         
         return [share]
@@ -122,15 +138,13 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         if DataManager.stations[indexPath.row].favorites == true {
             DataManager.stations[indexPath.row].favorites = false
             DataManager.stations[indexPath.row].new = false
-            let alert = UIAlertController(title: "Radiostation removed from favorites!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            ProgressHUD.show()
+            ProgressHUD.showError("Radio station removed from favorites!")
         } else {
             DataManager.stations[indexPath.row].favorites = true
             DataManager.stations[indexPath.row].new = true
-            let alert = UIAlertController(title: "Radiostation add to favorites!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            ProgressHUD.show()
+            ProgressHUD.showSuccess("Radio station add to favorites!")
         }
         DataManager.loadFavorites()
         DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
@@ -177,6 +191,33 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
 //*******************************************************************************************************************************************
 
 extension UIImageView {
+    func downloadedFrom(link:String, name: String) {
+        self.image = #imageLiteral(resourceName: "stationImage")
+        //check empty url, if url empty return else load img and save
+        if link == "" {
+            return
+        }
+        guard let url = URL(string: link) else { return }
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) -> Void in
+            guard let data = data , error == nil, let image = UIImage(data: data) else { return }
+            DispatchQueue.main.async { () -> Void in
+                self.image = image
+                //save image in device when image load from URL
+                do {
+                    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                    let fileURL = documentsURL.appendingPathComponent(name)
+                    if let pngImageData = UIImagePNGRepresentation(image) {
+                        try pngImageData.write(to: fileURL, options: .atomic)
+                        //print("image save")
+                    }
+                } catch {
+                    //print("Some error saving image")
+                }
+                //end save image
+            }
+        }).resume()
+    }
+    
     func downloadedFrom(link:String) {
         self.image = #imageLiteral(resourceName: "stationImage")
         guard let url = URL(string: link) else { return }
