@@ -855,11 +855,7 @@
         <image name="vol-min" width="11" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
-        <segue reference="c7W-ZD-BJ5"/>
-=======
         <segue reference="qZ5-2w-Vmq"/>
         <segue reference="ILH-e6-uQu"/>
->>>>>>> playerDraw
     </inferredMetricsTieBreakers>
 </document>
