@@ -180,6 +180,7 @@ extension Notification.Name {
 extension FavoritesViewController: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
         if(!(searchBar.text?.isEmpty)!){
             DataManager.stationsFavorites = DataManager.stationsFavorites.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
             self.favoritesTableView?.reloadData()

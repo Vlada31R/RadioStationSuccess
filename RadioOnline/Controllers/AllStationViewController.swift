@@ -8,97 +8,9 @@
 
 import UIKit
 import ChameleonFramework
-import ProgressHUD
-import SwiftSoup
-    
+import ProgressHUD  
 
 class AllStationViewController:  UIViewController,  UITableViewDelegate, UITableViewDataSource {
-    //parser start
-    func parse(){
-        var name: String?
-        var desc: String?
-        var url: String?
-        var myHTMLString = ""
-        let myURLString = "http://www.radiosure.com/rsdbms/details.php?id=150604#info"
-        guard let myURL = URL(string: myURLString) else {
-            print("Error: \(myURLString) doesn't seem to be a valid URL")
-            return
-        }
-        
-        do {
-            myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
-            print("HTML : in string save")
-        } catch let error {
-            print("Error: \(error)")
-        }
-        
-        do{
-            let doc = try SwiftSoup.parse(myHTMLString)
-            do{
-                let element = try doc.select("td").array()
-                
-                    do{
-                    name = try element[3].text()
-                    desc = try element[7].text()
-                    url = try element[15].text()
-                    } catch {
-                        print("error get text")
-                    }
-                
-            }catch{
-                
-            }
-            
-        } catch {
-            
-        }
-        print(name,desc,url)
-    }
-    var arrayOfURLtoParse = [String]()
-    func parseAndGetArrayOfLink(pos: Int){
-        let search = ""
-        //let pos = 0
-        
-        var myHTMLString = ""
-        let myURLString = "http://www.radiosure.com/rsdbms/search.php?status=active&search=\(search)&pos=\(pos)&reset_pos=0#info"
-        guard let myURL = URL(string: myURLString) else {
-            print("Error: \(myURLString) doesn't seem to be a valid URL")
-            return
-        }
-        
-        do {
-            myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
-            print("HTML : in string save")
-        } catch let error {
-            print("Error: \(error)")
-        }
-        
-        do{
-            let doc = try SwiftSoup.parse(myHTMLString)
-            do{
-                let element = try doc.select("a").array()
-                
-                do{
-                    for i in 7...element.count-5{
-                        arrayOfURLtoParse.append(try element[i].attr("href"))
-                        //print(try element[i].attr("href")+"\(i) \n")
-                    }
-                    
-                    
-                } catch {
-                    print("error get text")
-                }
-                
-            }catch{
-                
-            }
-            
-        } catch {
-            
-        }
-    }
-    
-    //perser finish
     
     @IBOutlet var tableView: UITableView!
     
@@ -108,18 +20,6 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     // MARK: - viewDidLoad Method
     //*****************************************************************
     override func viewDidLoad() {
-        let count = 15
-        for i in 0...lroundf(Float(count)/30.0){
-            parseAndGetArrayOfLink(pos:i*30)//parser function
-        }
-        print(arrayOfURLtoParse.count)
-        var myArray = [String]()
-        for i in 0...count-1{
-            myArray.append(arrayOfURLtoParse[i])
-        }
-        print(myArray.count)
-        
-        
         super.viewDidLoad()
         radioSetter.setupRadio()
         let nib = UINib(nibName: "CustomCell", bundle: nil)
@@ -195,7 +95,11 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
             share.backgroundColor = .gray
         }
         
-        share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "favoritesForIOS9"))
+        if DataManager.stations[indexPath.row].favorites == false{
+            share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "favoritesForIOS9"))
+        } else {
+            share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "delete_favoritesIOS9"))
+        }
         
         
         
@@ -331,6 +235,7 @@ extension UIImageView {
 
 extension AllStationViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
         if(!(searchBar.text?.isEmpty)!){
             DataManager.stations = DataManager.stations.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
             self.tableView?.reloadData()

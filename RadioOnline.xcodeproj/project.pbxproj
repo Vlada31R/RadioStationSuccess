@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2CA5B4900F48E05AA753F41A /* Pods_RadioOnline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30EAF89276417A8610C608B9 /* Pods_RadioOnline.framework */; };
+		3F227CD3212C17C5003CEA6C /* ParserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F227CD2212C17C5003CEA6C /* ParserViewController.swift */; };
 		3F2E1DFD212AA23000D06BEB /* AddRadioStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2E1DFC212AA23000D06BEB /* AddRadioStationViewController.swift */; };
 		3F2E1DFF212ABEBB00D06BEB /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2E1DFE212ABEBB00D06BEB /* CustomTabBarController.swift */; };
 		3F4AE1BD21247C26003120ED /* CollectionFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4AE1BC21247C26003120ED /* CollectionFavoritesViewController.swift */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		30EAF89276417A8610C608B9 /* Pods_RadioOnline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RadioOnline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33045C6372B62B8AFB0A6679 /* Pods-RadioOnline.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RadioOnline.release.xcconfig"; path = "Pods/Target Support Files/Pods-RadioOnline/Pods-RadioOnline.release.xcconfig"; sourceTree = "<group>"; };
+		3F227CD2212C17C5003CEA6C /* ParserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserViewController.swift; sourceTree = "<group>"; };
 		3F2E1DFC212AA23000D06BEB /* AddRadioStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRadioStationViewController.swift; sourceTree = "<group>"; };
 		3F2E1DFE212ABEBB00D06BEB /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		3F4AE1BC21247C26003120ED /* CollectionFavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionFavoritesViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 		3F3DBB19212B10D10019BBBF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3F227CD2212C17C5003CEA6C /* ParserViewController.swift */,
 				3F2E1DFC212AA23000D06BEB /* AddRadioStationViewController.swift */,
 				3FFDF7212124064C00E69812 /* AllStationViewController.swift */,
 				3F4AE1BC21247C26003120ED /* CollectionFavoritesViewController.swift */,
@@ -325,6 +328,7 @@
 				3FFDF7302124300C00E69812 /* RadioStation.swift in Sources */,
 				3FDE805B2126C80A00A37FB8 /* RadioPlayer.swift in Sources */,
 				3F4AE1BD21247C26003120ED /* CollectionFavoritesViewController.swift in Sources */,
+				3F227CD3212C17C5003CEA6C /* ParserViewController.swift in Sources */,
 				3FFDF7222124064C00E69812 /* AllStationViewController.swift in Sources */,
 				3FFDF72E2124300C00E69812 /* CollectionViewCellXib.swift in Sources */,
 				3F2E1DFF212ABEBB00D06BEB /* CustomTabBarController.swift in Sources */,

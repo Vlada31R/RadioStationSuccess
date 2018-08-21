@@ -208,55 +208,58 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4M-9p-vdO">
-                                <rect key="frame" x="30" y="114" width="95.5" height="21"/>
+                                <rect key="frame" x="10" y="74" width="100" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRd-q0-wYO">
-                                <rect key="frame" x="30" y="175" width="95.5" height="21"/>
+                                <rect key="frame" x="10" y="135" width="100" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL stream" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhk-g1-2kQ">
-                                <rect key="frame" x="30" y="236" width="95.5" height="21"/>
+                                <rect key="frame" x="10" y="196" width="100" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="rVj-D3-Jb1"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsY-Za-ySs">
-                                <rect key="frame" x="30" y="297" width="95.5" height="21"/>
+                                <rect key="frame" x="10" y="257" width="100" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DkV-4s-n6Q">
-                                <rect key="frame" x="165.5" y="114" width="199.5" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DkV-4s-n6Q">
+                                <rect key="frame" x="130" y="74" width="235" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GsK-39-wlr">
-                                <rect key="frame" x="165.5" y="169" width="199.5" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GsK-39-wlr">
+                                <rect key="frame" x="130" y="129" width="235" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yrd-fG-SN6">
-                                <rect key="frame" x="165.5" y="229" width="199.5" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="URL new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yrd-fG-SN6">
+                                <rect key="frame" x="130" y="189" width="235" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IuV-BX-NyV">
-                                <rect key="frame" x="165.5" y="289" width="199.5" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Image for new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IuV-BX-NyV">
+                                <rect key="frame" x="130" y="249" width="235" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a40-E4-gNX">
-                                <rect key="frame" x="0.0" y="369" width="375" height="36"/>
+                                <rect key="frame" x="0.0" y="289" width="375" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Add"/>
                                 <connections>
@@ -267,30 +270,30 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xhk-g1-2kQ" firstAttribute="top" secondItem="kRd-q0-wYO" secondAttribute="bottom" constant="40" id="1BU-4S-Jeq"/>
-                            <constraint firstItem="Yrd-fG-SN6" firstAttribute="leading" secondItem="xhk-g1-2kQ" secondAttribute="trailing" constant="40" id="66A-e6-qRy"/>
+                            <constraint firstItem="Yrd-fG-SN6" firstAttribute="leading" secondItem="xhk-g1-2kQ" secondAttribute="trailing" constant="20" id="66A-e6-qRy"/>
                             <constraint firstItem="x5d-yq-8RQ" firstAttribute="trailing" secondItem="a40-E4-gNX" secondAttribute="trailing" id="7ZN-Cc-QZT"/>
-                            <constraint firstItem="DkV-4s-n6Q" firstAttribute="leading" secondItem="A4M-9p-vdO" secondAttribute="trailing" constant="40" id="8eO-TY-tzy"/>
-                            <constraint firstItem="GsK-39-wlr" firstAttribute="leading" secondItem="kRd-q0-wYO" secondAttribute="trailing" constant="40" id="At5-cH-F75"/>
+                            <constraint firstItem="DkV-4s-n6Q" firstAttribute="leading" secondItem="A4M-9p-vdO" secondAttribute="trailing" constant="20" id="8eO-TY-tzy"/>
+                            <constraint firstItem="GsK-39-wlr" firstAttribute="leading" secondItem="kRd-q0-wYO" secondAttribute="trailing" constant="20" id="At5-cH-F75"/>
                             <constraint firstItem="kRd-q0-wYO" firstAttribute="width" secondItem="A4M-9p-vdO" secondAttribute="width" id="CE3-jE-8nq"/>
                             <constraint firstItem="x5d-yq-8RQ" firstAttribute="trailing" secondItem="DkV-4s-n6Q" secondAttribute="trailing" constant="10" id="Cp8-vK-62Z"/>
                             <constraint firstItem="gsY-Za-ySs" firstAttribute="top" secondItem="xhk-g1-2kQ" secondAttribute="bottom" constant="40" id="Eks-fN-rfh"/>
                             <constraint firstItem="x5d-yq-8RQ" firstAttribute="trailing" secondItem="Yrd-fG-SN6" secondAttribute="trailing" constant="10" id="FlX-7a-eIK"/>
-                            <constraint firstItem="a40-E4-gNX" firstAttribute="top" secondItem="IuV-BX-NyV" secondAttribute="bottom" constant="50" id="Hdb-NZ-vsx"/>
-                            <constraint firstItem="DkV-4s-n6Q" firstAttribute="top" secondItem="x5d-yq-8RQ" secondAttribute="top" constant="50" id="Iee-K9-alx"/>
-                            <constraint firstItem="kRd-q0-wYO" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="30" id="IfI-cJ-6vH"/>
+                            <constraint firstItem="a40-E4-gNX" firstAttribute="top" secondItem="IuV-BX-NyV" secondAttribute="bottom" constant="10" id="Hdb-NZ-vsx"/>
+                            <constraint firstItem="DkV-4s-n6Q" firstAttribute="top" secondItem="x5d-yq-8RQ" secondAttribute="top" constant="10" id="Iee-K9-alx"/>
+                            <constraint firstItem="kRd-q0-wYO" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="10" id="IfI-cJ-6vH"/>
                             <constraint firstItem="GsK-39-wlr" firstAttribute="top" secondItem="DkV-4s-n6Q" secondAttribute="bottom" constant="25" id="KGT-as-Of6"/>
                             <constraint firstItem="x5d-yq-8RQ" firstAttribute="trailing" secondItem="GsK-39-wlr" secondAttribute="trailing" constant="10" id="N4V-fh-hTi"/>
-                            <constraint firstItem="gsY-Za-ySs" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="30" id="UL6-NC-d24"/>
+                            <constraint firstItem="gsY-Za-ySs" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="10" id="UL6-NC-d24"/>
                             <constraint firstItem="xhk-g1-2kQ" firstAttribute="width" secondItem="A4M-9p-vdO" secondAttribute="width" id="Z6o-1W-bti"/>
                             <constraint firstItem="Yrd-fG-SN6" firstAttribute="top" secondItem="GsK-39-wlr" secondAttribute="bottom" constant="30" id="aIT-Tu-Luk"/>
                             <constraint firstItem="kRd-q0-wYO" firstAttribute="top" secondItem="A4M-9p-vdO" secondAttribute="bottom" constant="40" id="bqg-ac-ksi"/>
                             <constraint firstItem="a40-E4-gNX" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" id="dWy-vm-kVg"/>
                             <constraint firstItem="IuV-BX-NyV" firstAttribute="top" secondItem="Yrd-fG-SN6" secondAttribute="bottom" constant="30" id="eyb-e2-O1X"/>
-                            <constraint firstItem="IuV-BX-NyV" firstAttribute="leading" secondItem="gsY-Za-ySs" secondAttribute="trailing" constant="40" id="kmu-Zo-k0v"/>
-                            <constraint firstItem="A4M-9p-vdO" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="30" id="m1R-1a-TK6"/>
-                            <constraint firstItem="xhk-g1-2kQ" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="30" id="qMJ-VX-BJ0"/>
+                            <constraint firstItem="IuV-BX-NyV" firstAttribute="leading" secondItem="gsY-Za-ySs" secondAttribute="trailing" constant="20" id="kmu-Zo-k0v"/>
+                            <constraint firstItem="A4M-9p-vdO" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="10" id="m1R-1a-TK6"/>
+                            <constraint firstItem="xhk-g1-2kQ" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="10" id="qMJ-VX-BJ0"/>
                             <constraint firstItem="x5d-yq-8RQ" firstAttribute="trailing" secondItem="IuV-BX-NyV" secondAttribute="trailing" constant="10" id="sOD-3V-CUn"/>
-                            <constraint firstItem="A4M-9p-vdO" firstAttribute="top" secondItem="x5d-yq-8RQ" secondAttribute="top" constant="50" id="wyh-qU-2If"/>
+                            <constraint firstItem="A4M-9p-vdO" firstAttribute="top" secondItem="x5d-yq-8RQ" secondAttribute="top" constant="10" id="wyh-qU-2If"/>
                             <constraint firstItem="gsY-Za-ySs" firstAttribute="width" secondItem="A4M-9p-vdO" secondAttribute="width" id="zhi-DX-bQB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="x5d-yq-8RQ"/>
@@ -682,28 +685,31 @@
             </objects>
             <point key="canvasLocation" x="-1855" y="-537"/>
         </scene>
-        <!--View Controller-->
+        <!--Parser radio station-->
         <scene sceneID="asm-bA-OKH">
             <objects>
-                <viewController id="XJ4-vE-yMH" sceneMemberID="viewController">
+                <viewController id="XJ4-vE-yMH" customClass="ParserViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bcf-1C-4bz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c99-zo-uTa">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="15" borderStyle="roundedRect" placeholder="count" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c99-zo-uTa">
                                 <rect key="frame" x="250" y="74" width="75" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="mjo-op-DBs"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2W-Im-ORP">
                                 <rect key="frame" x="335" y="74" width="30" height="30"/>
                                 <state key="normal" title="ok"/>
+                                <connections>
+                                    <action selector="parse:" destination="XJ4-vE-yMH" eventType="touchUpInside" id="CU1-WL-ckm"/>
+                                </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c5J-eq-x3u">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search creteria" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c5J-eq-x3u">
                                 <rect key="frame" x="10" y="74" width="120" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="eog-RK-Y34"/>
@@ -712,19 +718,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hjs-Xr-JHH">
-                                <rect key="frame" x="0.0" y="114" width="375" height="504"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Hjs-Xr-JHH">
+                                <rect key="frame" x="0.0" y="114" width="375" height="453"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="4sa-bB-9Ey">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="4sa-bB-9Ey" customClass="MyCusstomCell" customModule="RadioOnline" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4sa-bB-9Ey" id="BmH-gI-i4P">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="XJ4-vE-yMH" id="Gss-fU-CFP"/>
+                                    <outlet property="delegate" destination="XJ4-vE-yMH" id="xpa-uv-4qd"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -735,14 +745,19 @@
                             <constraint firstItem="Hjs-Xr-JHH" firstAttribute="leading" secondItem="Cw3-ZH-9N0" secondAttribute="leading" id="U7H-zz-Tae"/>
                             <constraint firstItem="V2W-Im-ORP" firstAttribute="leading" secondItem="c99-zo-uTa" secondAttribute="trailing" constant="10" id="WqG-u7-wzo"/>
                             <constraint firstItem="c5J-eq-x3u" firstAttribute="top" secondItem="Cw3-ZH-9N0" secondAttribute="top" constant="10" id="c8r-G3-KsG"/>
+                            <constraint firstItem="Cw3-ZH-9N0" firstAttribute="bottom" secondItem="Hjs-Xr-JHH" secondAttribute="bottom" constant="51" id="dyj-OY-L9K"/>
                             <constraint firstItem="Cw3-ZH-9N0" firstAttribute="trailing" secondItem="Hjs-Xr-JHH" secondAttribute="trailing" id="eVX-iY-9ui"/>
-                            <constraint firstItem="Cw3-ZH-9N0" firstAttribute="bottom" secondItem="Hjs-Xr-JHH" secondAttribute="bottom" id="mPh-UY-xWQ"/>
                             <constraint firstItem="V2W-Im-ORP" firstAttribute="top" secondItem="Cw3-ZH-9N0" secondAttribute="top" constant="10" id="yCC-X7-c0W"/>
                             <constraint firstItem="c99-zo-uTa" firstAttribute="top" secondItem="Cw3-ZH-9N0" secondAttribute="top" constant="10" id="zLT-Ij-tX4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Cw3-ZH-9N0"/>
                     </view>
-                    <navigationItem key="navigationItem" id="dyE-iG-PNh"/>
+                    <navigationItem key="navigationItem" title="Parser radio station" id="dyE-iG-PNh"/>
+                    <connections>
+                        <outlet property="countTextField" destination="c99-zo-uTa" id="HFa-yF-2Xf"/>
+                        <outlet property="creteriaTextField" destination="c5J-eq-x3u" id="x2u-1V-mzj"/>
+                        <outlet property="tableView" destination="Hjs-Xr-JHH" id="Cyt-ja-hDm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cRP-wL-Hi0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -930,7 +945,7 @@
         <image name="vol-min" width="11" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Wy9-VZ-RdF"/>
+        <segue reference="5Fb-Xg-Ogk"/>
         <segue reference="ILH-e6-uQu"/>
     </inferredMetricsTieBreakers>
 </document>
