@@ -6,5 +6,5 @@ target 'RadioOnline' do
 
   # Pods for RadioOnline
 pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
-
+pod 'FBSDKLoginKit'
 end

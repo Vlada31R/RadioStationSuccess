@@ -16,14 +16,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 //        self.window = UIWindow(frame: UIScreen.main.bounds)
-//        
+//
 //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        
-//        let initialViewController = storyboard.instantiateViewController(withIdentifier: "AllVC")
-//        
+//
+//        let initialViewController = storyboard.instantiateViewController(withIdentifier: "AllVC") as! UITabBarController
+//
 //        self.window?.rootViewController = initialViewController
 //        self.window?.makeKeyAndVisible()
         //make bandge
+        
+
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let userDefaults = UserDefaults.standard
+        var viewController : UITabBarController = mainStoryboard.instantiateViewController(withIdentifier: "TableVC") as! UITabBarController
+        if let mode = userDefaults.string(forKey: "mode")
+        {
+            if mode == "collection"
+            {
+                viewController = mainStoryboard.instantiateViewController(withIdentifier: "AllVC") as! UITabBarController
+                
+            }
+            else if mode == "list"
+            {
+                viewController = mainStoryboard.instantiateViewController(withIdentifier: "TableVC") as! UITabBarController
+            }
+            self.window?.rootViewController = viewController
+            self.window?.makeKeyAndVisible()
+        }
         DataManager.load()
         DataManager.loadFavorites()
         // MPNowPlayingInfoCenter
@@ -34,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FRadioPlayer.shared.isAutoPlay = true
         FRadioPlayer.shared.enableArtwork = true
         FRadioPlayer.shared.artworkSize = 600
+        
         
         return true
     }

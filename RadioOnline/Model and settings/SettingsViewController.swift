@@ -25,6 +25,19 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let userDefaults = UserDefaults.standard
+        if let mode = userDefaults.string(forKey: "mode")
+        {
+            if mode == "collection"
+            {
+                collection.isSelected = true
+            }
+            else if mode == "list"
+            {
+                list.isSelected = true
+            }
+        }
         collection.setImage(UIImage(named: "collection"), for: .normal)
         list.setImage(UIImage(named: "list"), for: .normal)
         
@@ -60,5 +73,21 @@ class SettingsViewController: UIViewController {
         
         NotificationCenter.default.post(name: .reload, object: nil)
     }
+    
+    @IBAction func listButtonClicked(_ sender: Any) {
+        list.isSelected = true
+        collection.isSelected = false
+        setMode(mode: "list")
+    }
+    @IBAction func collectionButtonClicked(_ sender: Any) {
+        collection.isSelected = true
+        list.isSelected = false
+        setMode(mode: "collection")
+    }
+    func setMode(mode: String) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(mode, forKey: "mode")
+    }
+    
     
 }
