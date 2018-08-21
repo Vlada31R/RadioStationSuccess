@@ -129,7 +129,13 @@
                         <viewLayoutGuide key="safeArea" id="mqR-vG-8Fd"/>
                     </view>
                     <tabBarItem key="tabBarItem" tag="2" systemItem="favorites" id="9VE-Ox-uze"/>
-                    <navigationItem key="navigationItem" title="Favorites Radio Station" id="1hG-Nw-sbR"/>
+                    <navigationItem key="navigationItem" title="Favorites Radio Station" id="1hG-Nw-sbR">
+                        <barButtonItem key="rightBarButtonItem" image="collection" style="plain" id="K2z-ez-bIc">
+                            <connections>
+                                <action selector="SetNewVc:" destination="Bft-xk-W28" id="z4K-j0-iEY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="favoritesTableView" destination="5lE-JB-qyH" id="q2G-8J-YaS"/>
                         <segue destination="xFa-1g-xaV" kind="presentation" identifier="RadioPlayer" id="Bf8-Vl-6d8"/>
@@ -251,41 +257,70 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a40-E4-gNX">
-                                <rect key="frame" x="0.0" y="369" width="375" height="36"/>
+                                <rect key="frame" x="0.0" y="489" width="375" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Add"/>
                                 <connections>
                                     <action selector="addNewRadioStation:" destination="x5h-16-gWY" eventType="touchUpInside" id="0ww-2x-gYX"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lul-wh-bns">
+                                <rect key="frame" x="33" y="371" width="138" height="33"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Pick from gallery">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="chooseImageButton:" destination="x5h-16-gWY" eventType="touchUpInside" id="ptR-aX-ApJ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXA-bo-vsy">
+                                <rect key="frame" x="30" y="342" width="20" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KEG-XL-Pi1">
+                                <rect key="frame" x="184" y="342" width="181" height="114"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="114" id="RlW-tZ-qeg"/>
+                                    <constraint firstAttribute="width" constant="181" id="n4o-c6-f0R"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xhk-g1-2kQ" firstAttribute="top" secondItem="kRd-q0-wYO" secondAttribute="bottom" constant="40" id="1BU-4S-Jeq"/>
                             <constraint firstItem="Yrd-fG-SN6" firstAttribute="leading" secondItem="xhk-g1-2kQ" secondAttribute="trailing" constant="40" id="66A-e6-qRy"/>
-                            <constraint firstItem="x5d-yq-8RQ" firstAttribute="trailing" secondItem="a40-E4-gNX" secondAttribute="trailing" id="7ZN-Cc-QZT"/>
                             <constraint firstItem="DkV-4s-n6Q" firstAttribute="leading" secondItem="A4M-9p-vdO" secondAttribute="trailing" constant="40" id="8eO-TY-tzy"/>
                             <constraint firstItem="GsK-39-wlr" firstAttribute="leading" secondItem="kRd-q0-wYO" secondAttribute="trailing" constant="40" id="At5-cH-F75"/>
+                            <constraint firstItem="Lul-wh-bns" firstAttribute="top" secondItem="ZXA-bo-vsy" secondAttribute="bottom" constant="8" id="BrQ-Fd-55S"/>
                             <constraint firstItem="kRd-q0-wYO" firstAttribute="width" secondItem="A4M-9p-vdO" secondAttribute="width" id="CE3-jE-8nq"/>
                             <constraint firstItem="x5d-yq-8RQ" firstAttribute="trailing" secondItem="DkV-4s-n6Q" secondAttribute="trailing" constant="10" id="Cp8-vK-62Z"/>
                             <constraint firstItem="gsY-Za-ySs" firstAttribute="top" secondItem="xhk-g1-2kQ" secondAttribute="bottom" constant="40" id="Eks-fN-rfh"/>
                             <constraint firstItem="x5d-yq-8RQ" firstAttribute="trailing" secondItem="Yrd-fG-SN6" secondAttribute="trailing" constant="10" id="FlX-7a-eIK"/>
-                            <constraint firstItem="a40-E4-gNX" firstAttribute="top" secondItem="IuV-BX-NyV" secondAttribute="bottom" constant="50" id="Hdb-NZ-vsx"/>
+                            <constraint firstItem="a40-E4-gNX" firstAttribute="trailing" secondItem="x5d-yq-8RQ" secondAttribute="trailing" id="IB3-aC-L52"/>
                             <constraint firstItem="DkV-4s-n6Q" firstAttribute="top" secondItem="x5d-yq-8RQ" secondAttribute="top" constant="50" id="Iee-K9-alx"/>
                             <constraint firstItem="kRd-q0-wYO" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="30" id="IfI-cJ-6vH"/>
                             <constraint firstItem="GsK-39-wlr" firstAttribute="top" secondItem="DkV-4s-n6Q" secondAttribute="bottom" constant="25" id="KGT-as-Of6"/>
+                            <constraint firstItem="ZXA-bo-vsy" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="30" id="KwJ-5u-24a"/>
                             <constraint firstItem="x5d-yq-8RQ" firstAttribute="trailing" secondItem="GsK-39-wlr" secondAttribute="trailing" constant="10" id="N4V-fh-hTi"/>
+                            <constraint firstItem="KEG-XL-Pi1" firstAttribute="top" secondItem="IuV-BX-NyV" secondAttribute="bottom" constant="23" id="Q5f-LJ-pjd"/>
                             <constraint firstItem="gsY-Za-ySs" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="30" id="UL6-NC-d24"/>
+                            <constraint firstItem="a40-E4-gNX" firstAttribute="top" secondItem="KEG-XL-Pi1" secondAttribute="bottom" constant="33" id="XAI-Jl-8Yc"/>
                             <constraint firstItem="xhk-g1-2kQ" firstAttribute="width" secondItem="A4M-9p-vdO" secondAttribute="width" id="Z6o-1W-bti"/>
                             <constraint firstItem="Yrd-fG-SN6" firstAttribute="top" secondItem="GsK-39-wlr" secondAttribute="bottom" constant="30" id="aIT-Tu-Luk"/>
                             <constraint firstItem="kRd-q0-wYO" firstAttribute="top" secondItem="A4M-9p-vdO" secondAttribute="bottom" constant="40" id="bqg-ac-ksi"/>
-                            <constraint firstItem="a40-E4-gNX" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" id="dWy-vm-kVg"/>
+                            <constraint firstItem="a40-E4-gNX" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" id="cgF-7o-PJ4"/>
                             <constraint firstItem="IuV-BX-NyV" firstAttribute="top" secondItem="Yrd-fG-SN6" secondAttribute="bottom" constant="30" id="eyb-e2-O1X"/>
                             <constraint firstItem="IuV-BX-NyV" firstAttribute="leading" secondItem="gsY-Za-ySs" secondAttribute="trailing" constant="40" id="kmu-Zo-k0v"/>
                             <constraint firstItem="A4M-9p-vdO" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="30" id="m1R-1a-TK6"/>
+                            <constraint firstItem="ZXA-bo-vsy" firstAttribute="top" secondItem="gsY-Za-ySs" secondAttribute="bottom" constant="24" id="mDa-RH-dsp"/>
                             <constraint firstItem="xhk-g1-2kQ" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="30" id="qMJ-VX-BJ0"/>
                             <constraint firstItem="x5d-yq-8RQ" firstAttribute="trailing" secondItem="IuV-BX-NyV" secondAttribute="trailing" constant="10" id="sOD-3V-CUn"/>
                             <constraint firstItem="A4M-9p-vdO" firstAttribute="top" secondItem="x5d-yq-8RQ" secondAttribute="top" constant="50" id="wyh-qU-2If"/>
+                            <constraint firstItem="Lul-wh-bns" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="33" id="xLK-NO-EeH"/>
+                            <constraint firstItem="KEG-XL-Pi1" firstAttribute="leading" secondItem="Lul-wh-bns" secondAttribute="trailing" constant="13" id="xoT-2V-1dB"/>
                             <constraint firstItem="gsY-Za-ySs" firstAttribute="width" secondItem="A4M-9p-vdO" secondAttribute="width" id="zhi-DX-bQB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="x5d-yq-8RQ"/>
@@ -297,6 +332,7 @@
                         <outlet property="button" destination="a40-E4-gNX" id="D9Z-bT-c3D"/>
                         <outlet property="descLabel" destination="kRd-q0-wYO" id="By7-gG-ljh"/>
                         <outlet property="descriptionTextField" destination="GsK-39-wlr" id="iDT-ke-6Vc"/>
+                        <outlet property="myImageView" destination="KEG-XL-Pi1" id="lQn-eb-cf5"/>
                         <outlet property="nameLabel" destination="A4M-9p-vdO" id="Dxs-lF-hfQ"/>
                         <outlet property="nameTextField" destination="DkV-4s-n6Q" id="3az-ll-lgj"/>
                         <outlet property="urlImgLabel" destination="gsY-Za-ySs" id="kzt-Q5-eF8"/>
@@ -305,7 +341,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IKA-Jb-D34" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1092" y="751"/>
+            <point key="canvasLocation" x="-1063.2" y="-1938.08095952024"/>
         </scene>
         <!--All Radio Station-->
         <scene sceneID="zqF-gh-Voe">
@@ -387,11 +423,18 @@
                         <viewLayoutGuide key="safeArea" id="O9g-cN-e5f"/>
                     </view>
                     <navigationItem key="navigationItem" title="All Radio Station" id="TCs-62-BvD">
-                        <barButtonItem key="rightBarButtonItem" image="list" style="plain" id="U0C-MZ-QXF">
-                            <connections>
-                                <action selector="SetNewVC:" destination="VxQ-aX-9sh" id="kbm-2A-hXv"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="list" style="plain" id="U0C-MZ-QXF">
+                                <connections>
+                                    <action selector="SetNewVC:" destination="VxQ-aX-9sh" id="kbm-2A-hXv"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem style="plain" systemItem="add" id="bmK-oc-DIx">
+                                <connections>
+                                    <segue destination="x5h-16-gWY" kind="push" id="QtN-t8-Jue"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="rdT-4I-Vt5" id="pse-ZU-58h"/>
@@ -482,7 +525,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VQK-37-jAl"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Favorites Radio Station" id="7dB-DM-Yeh"/>
+                    <navigationItem key="navigationItem" title="Favorites Radio Station" id="7dB-DM-Yeh">
+                        <barButtonItem key="rightBarButtonItem" image="list" style="plain" id="dSW-e3-ML7">
+                            <connections>
+                                <action selector="SetNewVc:" destination="fmF-bZ-89T" id="FVF-2C-Bm8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="5Vd-Zh-hkh" id="f2k-LK-vHl"/>
                         <segue destination="xFa-1g-xaV" kind="presentation" identifier="RadioPlayer" id="5Fb-Xg-Ogk"/>
@@ -566,7 +615,7 @@
         <!--Settings-->
         <scene sceneID="Bih-cr-v8y">
             <objects>
-                <viewController id="JOJ-J3-Eie" customClass="SettingsViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settings" id="JOJ-J3-Eie" customClass="SettingsViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zc9-qI-SHz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -867,5 +916,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="5Fb-Xg-Ogk"/>
         <segue reference="ILH-e6-uQu"/>
+        <segue reference="QtN-t8-Jue"/>
     </inferredMetricsTieBreakers>
 </document>

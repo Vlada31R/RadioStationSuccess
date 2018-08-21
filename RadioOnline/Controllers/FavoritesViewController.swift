@@ -16,6 +16,11 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
   
     @IBOutlet weak var favoritesTableView: UITableView!
     
+    @IBAction func SetNewVc(_ sender: Any) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "TableVC") as! UITabBarController
+        UIApplication.shared.keyWindow?.rootViewController = viewController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +93,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             favoritesTableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.fade)
         }
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "RadioPlayer", sender: self)
+        performSegue(withIdentifier: "RadioPlayer", sender: indexPath)
     }
     
     //*******************************************************************************************************************************************

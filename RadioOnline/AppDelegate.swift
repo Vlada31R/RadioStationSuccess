@@ -40,9 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             {
                 viewController = mainStoryboard.instantiateViewController(withIdentifier: "TableVC") as! UITabBarController
             }
-            self.window?.rootViewController = viewController
-            self.window?.makeKeyAndVisible()
+            
         }
+        self.window?.rootViewController = viewController
+        self.window?.makeKeyAndVisible()
         
         DataManager.load()
         DataManager.loadFavorites()

@@ -105,14 +105,14 @@
 			isa = PBXGroup;
 			children = (
 				3F42508F212BFA5000B5EB0D /* CollectionTabBarController.swift */,
-				3F2E1DFC212AA23000D06BEB /* AddRadioStationViewController.swift */,
-				3FFDF7212124064C00E69812 /* AllStationViewController.swift */,
-				3F4AE1BC21247C26003120ED /* CollectionFavoritesViewController.swift */,
-				3FFDF7242124300700E69812 /* CollectionViewController.swift */,
 				3F2E1DFE212ABEBB00D06BEB /* CustomTabBarController.swift */,
+				3FFDF7212124064C00E69812 /* AllStationViewController.swift */,
 				3FFDF71F2123272300E69812 /* FavoritesViewController.swift */,
+				3FFDF7242124300700E69812 /* CollectionViewController.swift */,
+				3F4AE1BC21247C26003120ED /* CollectionFavoritesViewController.swift */,
 				3FDE80482126C6E600A37FB8 /* RadioPlayerViewController.swift */,
 				3FF9454421258C1E009C9587 /* SettingsViewController.swift */,
+				3F2E1DFC212AA23000D06BEB /* AddRadioStationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -487,14 +487,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9B6M85MQ7J;
+				DEVELOPMENT_TEAM = 3T7H82P2KH;
 				INFOPLIST_FILE = RadioOnline/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SergP.RadioOnline;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vlada.RadioOnline;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -507,14 +507,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9B6M85MQ7J;
+				DEVELOPMENT_TEAM = 3T7H82P2KH;
 				INFOPLIST_FILE = RadioOnline/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SergP.RadioOnline;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vlada.RadioOnline;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
