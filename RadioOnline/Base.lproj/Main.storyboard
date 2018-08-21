@@ -526,10 +526,10 @@
             </objects>
             <point key="canvasLocation" x="-3223" y="-926"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Collection Tab Bar Controller-->
         <scene sceneID="e1h-CY-0FA">
             <objects>
-                <tabBarController storyboardIdentifier="AllVC" id="I2c-5H-hdk" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="AllVC" id="I2c-5H-hdk" customClass="CollectionTabBarController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="4Hq-oa-2lU"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gRl-VU-Vp0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -615,6 +615,9 @@
                                             <constraint firstAttribute="width" constant="40" id="10k-9L-OxI"/>
                                             <constraint firstAttribute="height" constant="40" id="l0u-xL-1VX"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="listButtonClicked:" destination="JOJ-J3-Eie" eventType="touchUpInside" id="DlR-ZQ-Br4"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l4u-OL-fkp">
                                         <rect key="frame" x="272" y="0.0" width="40" height="40"/>
@@ -622,6 +625,9 @@
                                             <constraint firstAttribute="height" constant="40" id="LKf-ZY-7dp"/>
                                             <constraint firstAttribute="width" constant="40" id="hGf-Qg-VdB"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="collectionButtonClicked:" destination="JOJ-J3-Eie" eventType="touchUpInside" id="lpY-0h-yRa"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mode of showing stations" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2r-JJ-ONa">
                                         <rect key="frame" x="8" y="0.0" width="191.5" height="40"/>

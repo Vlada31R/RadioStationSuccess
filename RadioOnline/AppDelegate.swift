@@ -24,6 +24,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        self.window?.rootViewController = initialViewController
 //        self.window?.makeKeyAndVisible()
         //make bandge
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let userDefaults = UserDefaults.standard
+        var viewController : UITabBarController = mainStoryboard.instantiateViewController(withIdentifier: "TableVC") as! UITabBarController
+        if let mode = userDefaults.string(forKey: "mode")
+        {
+            if mode == "collection"
+            {
+                viewController = mainStoryboard.instantiateViewController(withIdentifier: "AllVC") as! UITabBarController
+                
+            }
+            else if mode == "list"
+            {
+                viewController = mainStoryboard.instantiateViewController(withIdentifier: "TableVC") as! UITabBarController
+            }
+            self.window?.rootViewController = viewController
+            self.window?.makeKeyAndVisible()
+        }
+        
         DataManager.load()
         DataManager.loadFavorites()
         // MPNowPlayingInfoCenter
