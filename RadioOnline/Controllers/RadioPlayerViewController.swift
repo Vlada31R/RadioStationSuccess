@@ -2,6 +2,7 @@ import UIKit
 import MediaPlayer
 import AVFoundation
 import ChameleonFramework
+import Social
 
 var savedTrackArray = [Track]()
 
@@ -30,6 +31,16 @@ class RadioPlayerViewController: UIViewController {
     //Init radio player
     let radioPlayer = FRadioPlayer.shared
     
+    @IBAction func facebookBtn(_ sender: Any) {
+        let fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        fbShare.add(albumImage.image)
+        self.present(fbShare, animated: true, completion: nil)
+    }
+    @IBAction func twitterBtn(_ sender: Any) {
+        let tweetShare: SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+        tweetShare.add(albumImage.image)
+        self.present(tweetShare, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -53,8 +53,7 @@ class CollectionViewCell: UICollectionViewCell {
         if fav == true
         {
             if station.new == true {
-                let image = cell.stationImage.image
-                print(image?.size.width)
+                //let image = cell.stationImage.image
                 //cell.newLabel.frame.origin.x = (cell.stationImage.frame.width - (image?.size.width)!)/2
                 cell.newLabel.layer.cornerRadius = 10
                 cell.newLabel.isHidden = false

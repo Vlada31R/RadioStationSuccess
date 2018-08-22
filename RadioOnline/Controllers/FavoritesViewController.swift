@@ -68,7 +68,6 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.descriptionLabel.text = DataManager.stationsFavorites[indexPath.row].desc
         cell.descriptionLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
         
-        print(DataManager.stationsFavorites[indexPath.row].imageURL)
         if DataManager.stationsFavorites[indexPath.row].imageURL.contains("user")
         {
             let fileManager = FileManager.default
