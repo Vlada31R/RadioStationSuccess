@@ -15,6 +15,13 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     var radioSetter = RadioSetter()
     
     @IBOutlet weak var favoritesTableView: UITableView!
+
+    @IBAction func SetNewVc(_ sender: Any) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "TableVC") as! UITabBarController
+        UIApplication.shared.keyWindow?.rootViewController = viewController
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,12 +69,28 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.descriptionLabel.text = DataManager.stationsFavorites[indexPath.row].desc
         cell.descriptionLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
         
-        let img = DataManager.readImg(name: "\(DataManager.stationsFavorites[indexPath.row].name).png")
-        if img == nil || img == #imageLiteral(resourceName: "stationImage") {
-            cell.imageRadioStation.downloadedFrom(link: DataManager.stationsFavorites[indexPath.row].imageURL, name: "\(DataManager.stations[indexPath.row].name).png")
-        } else {
-            cell.imageRadioStation.image = img
-            //print("image load from device")
+        if DataManager.stationsFavorites[indexPath.row].imageURL.contains("user")
+        {
+            let fileManager = FileManager.default
+            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+            let documentDirectory = URL(fileURLWithPath: path)
+            let destinationPath = documentDirectory.appendingPathComponent("\(DataManager.stationsFavorites[indexPath.row].name).jpg")
+            if fileManager.fileExists(atPath: destinationPath.path){
+                cell.imageRadioStation.image = UIImage(contentsOfFile: destinationPath.path)
+            }else{
+                print("No Image")
+                cell.imageRadioStation.image = #imageLiteral(resourceName: "stationImage")
+            }
+        }
+        else
+        {
+            let img = DataManager.readImg(name: "\(DataManager.stationsFavorites[indexPath.row].name).png")
+            if img == nil || img == #imageLiteral(resourceName: "stationImage") {
+                cell.imageRadioStation.downloadedFrom(link: DataManager.stationsFavorites[indexPath.row].imageURL, name: "\(DataManager.stations[indexPath.row].name).png")
+            } else {
+                cell.imageRadioStation.image = img
+                //print("image load from device")
+            }
         }
         
         if DataManager.stationsFavorites[indexPath.row].new == true {
@@ -87,7 +110,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             favoritesTableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.fade)
         }
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "RadioPlayer", sender: self)
+        performSegue(withIdentifier: "RadioPlayer", sender: indexPath)
     }
     
     //*******************************************************************************************************************************************

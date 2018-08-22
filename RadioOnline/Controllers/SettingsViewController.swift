@@ -77,16 +77,23 @@ class SettingsViewController: UIViewController {
     @IBAction func listButtonClicked(_ sender: Any) {
         list.isSelected = true
         collection.isSelected = false
-        setMode(mode: "list")
+        setMode(mode: "list", identifier: "TableVC")
     }
     @IBAction func collectionButtonClicked(_ sender: Any) {
         collection.isSelected = true
         list.isSelected = false
-        setMode(mode: "collection")
+        setMode(mode: "collection", identifier: "AllVC")
     }
-    func setMode(mode: String) {
+    func setMode(mode: String, identifier : String) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(mode, forKey: "mode")
+        
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let tabController = mainStoryboard.instantiateViewController(withIdentifier: identifier) as! UITabBarController
+        
+        UIApplication.shared.keyWindow?.rootViewController = tabController
+        
     }
     
 }

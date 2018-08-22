@@ -10,7 +10,8 @@ import UIKit
 import ChameleonFramework
 import ProgressHUD
 
-class AddRadioStationViewController: UIViewController {
+
+class AddRadioStationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -22,6 +23,37 @@ class AddRadioStationViewController: UIViewController {
     @IBOutlet weak var urlStreamLabel: UILabel!
     @IBOutlet weak var urlImgLabel: UILabel!
     @IBOutlet weak var button: UIButton!
+    
+    //get image from gallery
+    var libraryURL = ""
+    @IBOutlet weak var myImageView: UIImageView!
+    @IBAction func chooseImageButton(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        self .present(imagePicker, animated: true, completion: nil)
+    }
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            let fileManager = FileManager.default
+            let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("pict.jpg")
+            let image = pickedImage
+            print(paths)
+            let imageData = UIImageJPEGRepresentation(image, 0.5)
+            fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
+            libraryURL = paths
+            
+            myImageView.contentMode = .scaleAspectFit
+            myImageView.image = pickedImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion:nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,8 +122,31 @@ class AddRadioStationViewController: UIViewController {
         let name = nameTextField.text!
         let desc = descriptionTextField.text!
         let urlStream = URLStreamTextField.text!
-        let urlImage = URLImageTextField.text!
+        var urlImage = URLImageTextField.text!
         if name.count > 0 && urlStream.count > 0 {
+            for station in DataManager.stations
+            {
+                if station.name == name
+                {
+                    ProgressHUD.show()
+                    ProgressHUD.showError("Sorry... station with this name already exists")
+                    return
+                }
+            }
+            if libraryURL.count>0
+            {
+                do {
+                    let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+                    let documentDirectory = URL(fileURLWithPath: path)
+                    let originPath = documentDirectory.appendingPathComponent("pict.jpg")
+                    let destinationPath = documentDirectory.appendingPathComponent("\(name).jpg")
+                    libraryURL = destinationPath.path
+                    try FileManager.default.moveItem(at: originPath, to: destinationPath)
+                } catch {
+                    print(error)
+                }
+                urlImage = "user"
+            }
             DataManager.addNewRadioStation(name: name, desc: desc, urlStream: urlStream, urlImage: urlImage)
             NotificationCenter.default.post(name: .reload, object: nil)
             ProgressHUD.show()

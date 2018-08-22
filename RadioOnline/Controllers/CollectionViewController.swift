@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class ViewController: UIViewController {
     
@@ -69,23 +70,22 @@ class ViewController: UIViewController {
             }
             alertController.view.addSubview(imageView)
             
-            var alert = UIAlertController()
             let addAction = UIAlertAction(title: title, style: UIAlertActionStyle.default)
             { (action) in
                 if DataManager.stations[index[1]].favorites == true
                 {
                     DataManager.stations[index[1]].favorites = false
                     DataManager.stations[index[1]].new = false
-                    alert = UIAlertController(title: "Radiostation removed from favorites!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                    ProgressHUD.show()
+                    ProgressHUD.showError("Radio station removed from favorites!")
                 }
                 else
                 {
                     DataManager.stations[index[1]].favorites = true
                     DataManager.stations[index[1]].new = true
-                    alert = UIAlertController(title: "Radiostation add to favorites!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                    ProgressHUD.show()
+                    ProgressHUD.showSuccess("Radio station add to favorites!")
                 }
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
                 
                 DataManager.loadFavorites()
                 NotificationCenter.default.post(name: .reloadFavourites, object: nil)

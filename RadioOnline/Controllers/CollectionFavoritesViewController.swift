@@ -8,6 +8,7 @@
 
 import UIKit
 import ChameleonFramework
+import ProgressHUD
 
 class CollectionFavoritesViewController: UIViewController {
 
@@ -59,6 +60,8 @@ class CollectionFavoritesViewController: UIViewController {
             let removeAction = UIAlertAction(title: "Remove", style: UIAlertActionStyle.default)
             { (action) in
                 DataManager.stationsFavorites[index[1]].favorites = false
+                ProgressHUD.show()
+                ProgressHUD.showError("Radio station removed from favorites!")
                 DataManager.reloadFavorites(index: index[1])
                 self.collectionView.reloadData()
             }
@@ -74,6 +77,11 @@ class CollectionFavoritesViewController: UIViewController {
         }
     }
     
+    @IBAction func SetNewVc(_ sender: Any) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "AllVC") as! UITabBarController
+        UIApplication.shared.keyWindow?.rootViewController = viewController
+    }
     //MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "RadioPlayer", let radioPlayerVC = segue.destination as? RadioPlayerViewController else { return }

@@ -145,12 +145,29 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         cell.descriptionLabel.text = DataManager.stations[indexPath.row].desc
         cell.descriptionLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
         //check image in device and load from device or internet
-        let img = DataManager.readImg(name: "\(DataManager.stations[indexPath.row].name).png")
-        if img == nil || img == #imageLiteral(resourceName: "stationImage") {
-            cell.imageRadioStation.downloadedFrom(link: DataManager.stations[indexPath.row].imageURL, name: "\(DataManager.stations[indexPath.row].name).png")
-        } else {
-            cell.imageRadioStation.image = img
-            //print("image load from device")
+        
+        if DataManager.stations[indexPath.row].imageURL.contains("user")
+        {
+            let fileManager = FileManager.default
+            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+            let documentDirectory = URL(fileURLWithPath: path)
+            let destinationPath = documentDirectory.appendingPathComponent("\(DataManager.stations[indexPath.row].name).jpg")
+            if fileManager.fileExists(atPath: destinationPath.path){
+                cell.imageRadioStation.image = UIImage(contentsOfFile: destinationPath.path)
+            }else{
+                print("No Image")
+                cell.imageRadioStation.image = #imageLiteral(resourceName: "stationImage")
+            }
+        }
+        else
+        {
+            let img = DataManager.readImg(name: "\(DataManager.stations[indexPath.row].name).png")
+            if img == nil || img == #imageLiteral(resourceName: "stationImage") {
+                cell.imageRadioStation.downloadedFrom(link: DataManager.stations[indexPath.row].imageURL, name: "\(DataManager.stations[indexPath.row].name).png")
+            } else {
+                cell.imageRadioStation.image = img
+                //print("image load from device")
+            }
         }
         
         return cell
