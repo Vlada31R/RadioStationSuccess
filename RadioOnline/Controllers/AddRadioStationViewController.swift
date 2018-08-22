@@ -31,6 +31,10 @@ class AddRadioStationViewController: UIViewController {
         recolourAllElements()
     }
     
+    //*******************************************************************************************************************************************
+    //MARK: Recolour all elements (Chameleon framework)
+    //*******************************************************************************************************************************************
+    
     @objc func reload(notification: NSNotification){
         DataManager.changeColor(view: self.view)
         recolourAllElements()
@@ -77,7 +81,10 @@ class AddRadioStationViewController: UIViewController {
         
     }
     
-   
+    //*******************************************************************************************************************************************
+    //MARK: buttton function
+    //*******************************************************************************************************************************************
+    
     @IBAction func addNewRadioStation(_ sender: Any) {
         endEditing()
         let name = nameTextField.text!
@@ -96,6 +103,10 @@ class AddRadioStationViewController: UIViewController {
         }
         
     }
+    
+    //*******************************************************************************************************************************************
+    //MARK: touches method
+    //*******************************************************************************************************************************************
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         endEditing()

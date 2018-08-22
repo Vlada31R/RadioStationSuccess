@@ -69,6 +69,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     //*******************************************************************************************************************************************
     //MARK: tableView cell swipe
     //*******************************************************************************************************************************************
+    
     @available(iOS 9.0, *)
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let share = UITableViewRowAction(style: .normal, title: "           ") { action, index in
@@ -100,9 +101,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         } else {
             share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "delete_favoritesIOS9"))
         }
-        
-        
-        
+
         return [share]
     }
     
@@ -182,9 +181,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     }
     // End of Class
 }
-
-
-
+    
 //*******************************************************************************************************************************************
 //MARK: extension to load image from URL
 //*******************************************************************************************************************************************

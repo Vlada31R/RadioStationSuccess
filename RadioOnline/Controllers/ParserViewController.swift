@@ -16,16 +16,45 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var creteriaTextField: UITextField!
     @IBOutlet weak var countTextField: UITextField!
+    @IBOutlet weak var button: UIButton!
+    
+    var arrayOfURLtoParse = [String]()
+    var radioStationParse = [RadioStation]()
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.tabBarItem.
-        //self.navigationItem.hidesBackButton = true
-        
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
+        DataManager.changeColor(view: self.view)
+        NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
+        recolourAllElements()
+    }
+    
+    //*******************************************************************************************************************************************
+    //MARK: Recolour all elements (Chameleon framework)
+    //*******************************************************************************************************************************************
+    
+    @objc func reload(notification: NSNotification){
+        DataManager.changeColor(view: self.view)
+        tableView.reloadData()
+        recolourAllElements()
+    }
+    
+    func recolourAllElements() {
+        creteriaTextField.textColor = ContrastColorOf(creteriaTextField.backgroundColor!, returnFlat: true)
+        creteriaTextField.layer.borderWidth = 2
+        creteriaTextField.layer.cornerRadius = 6
+        creteriaTextField.attributedPlaceholder = NSAttributedString(string:creteriaTextField.placeholder! , attributes:[NSAttributedStringKey.foregroundColor: ContrastColorOf(creteriaTextField.backgroundColor!, returnFlat: true)])
+        creteriaTextField.layer.borderColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true).cgColor
+        
+        countTextField.layer.borderWidth = 2
+        countTextField.layer.cornerRadius = 6
+        countTextField.attributedPlaceholder = NSAttributedString(string:countTextField.placeholder! , attributes:[NSAttributedStringKey.foregroundColor: ContrastColorOf(countTextField.backgroundColor!, returnFlat: true)])
+        countTextField.layer.borderColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true).cgColor
+        countTextField.textColor = ContrastColorOf(countTextField.backgroundColor!, returnFlat: true)
+        
+        button.tintColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,7 +83,6 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
             cell.imageRadioStation.downloadedFrom(link: radioStationParse[indexPath.row].imageURL, name: "\(radioStationParse[indexPath.row].name).png")
         } else {
             cell.imageRadioStation.image = img
-            //print("image load from device")
         }
         
         return cell
@@ -68,63 +96,72 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
     //MARK: Parser action and function
     //*******************************************************************************************************************************************
     
-    var arrayOfURLtoParse = [String]()
-    var radioStationParse = [RadioStation]()
-    
     @IBAction func parse(_ sender: Any) {
+        
         arrayOfURLtoParse.removeAll()
+        radioStationParse.removeAll()
         countTextField.endEditing(true)
         creteriaTextField.endEditing(true)
         
-        let count = Int(countTextField.text!)!
-        let searchOld = creteriaTextField.text!
-        var search = ""
-        
-        for i in searchOld{
-            if i == " " {
-                search = search + "+"
-            } else {
-                search = search + String(i)
+        if let c = Int(countTextField.text!) {
+            if c < 0 || c > 1000 {
+                ProgressHUD.show()
+                ProgressHUD.showError("Please input new count")
+                tableView.reloadData()
+                return
             }
+        } else {
+            ProgressHUD.show()
+            ProgressHUD.showError("Please input new count")
+            tableView.reloadData()
+            return
         }
-        
-        for i in 0...lroundf(Float(count)/30.0){
-            parseAndGetArrayOfLink(search: search, pos:i*30)
-        }
-        
-        
-        var myArray = [String]()
-        for i in 0...count-1{
-            myArray.append(arrayOfURLtoParse[i])
-        }
-        
-        arrayOfURLtoParse = myArray
-        
-        
+        UIApplication.shared.beginIgnoringInteractionEvents()
         ProgressHUD.show("Please wait...")
-        self.navigationItem.backBarButtonItem?.isEnabled = false
-        //self.navigationItem.leftBarButtonItem.enabled = false
-        let queue = OperationQueue()
+        let count = Int(self.countTextField.text!)!
+        let searchOld = self.creteriaTextField.text!
         
+        let queue = OperationQueue()
         queue.addOperation() {
-            // do something in the background
-            for i in 0...self.arrayOfURLtoParse.count-1{
-                self.parse(myURL: self.arrayOfURLtoParse[i])
-                print("\(i) finish")
+            
+            var search = ""
+            
+            for i in searchOld{
+                if i == " " {
+                    search = search + "+"
+                } else {
+                    search = search + String(i)
+                }
             }
+        
+            for i in 0...lroundf(Float(count)/30.0){
+                self.parseAndGetArrayOfLink(search: search, pos:i*30)
+            }
+        
+            if self.arrayOfURLtoParse.count > 0 {
+        
+                if count-1 < self.arrayOfURLtoParse.count {
+                    var myArray = [String]()
+            
+                    for i in 0...count-1{
+                        myArray.append(self.arrayOfURLtoParse[i])
+                    }
+                    self.arrayOfURLtoParse = myArray
+                }
+        
+                for i in 0...self.arrayOfURLtoParse.count-1{
+                    self.parse(myURL: self.arrayOfURLtoParse[i])
+                }
+            }
+            
             OperationQueue.main.addOperation() {
                 ProgressHUD.dismiss()
                 self.tableView.reloadData()
-                self.navigationItem.backBarButtonItem?.isEnabled = true
-                // when done, update your UI and/or model on the main queue
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
         }
-        
-        
-        
     }
-    
-    
+
     //parser start
     //this function purse one radiostation from array arrayOfURLtoParse
     func parse(myURL: String){
@@ -141,7 +178,6 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
         
         do {
             myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
-            //print("HTML : in string save")
         } catch let error {
             print("Error: \(error)")
         }
@@ -166,7 +202,7 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
         } catch {
             
         }
-        //sheck have station name and url
+        //check have station name and url
         if name != nil && url != nil {
             let a = RadioStation(name: name!, streamURL: url!, imageURL: "", desc: desc!, longDesc: "", favorites: false, new: false)
             radioStationParse.append(a)
@@ -187,7 +223,6 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
         
         do {
             myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
-            //print("HTML : in string save")
         } catch let error {
             print("Error: \(error)")
         }
@@ -198,12 +233,13 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
                 let element = try doc.select("a").array()
                 
                 do{
+                    if 7 > element.count-5 {
+                        return
+                    }
                     for i in 7...element.count-5{
                         arrayOfURLtoParse.append(try element[i].attr("href"))
-                        //print(try element[i].attr("href")+"\(i) \n")
                     }
-                    
-                    
+                
                 } catch {
                     print("error get text")
                 }
@@ -216,12 +252,12 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
             
         }
     }
-    
     //perser finish
     
     //*******************************************************************************************************************************************
     //MARK: tableView cell swipe
     //*******************************************************************************************************************************************
+    
     @available(iOS 9.0, *)
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let share = UITableViewRowAction(style: .normal, title: "           ") { action, index in
@@ -278,7 +314,6 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
             ProgressHUD.showError("Radio station not added to all radio station, because you have this stream url in all station!")
             return false
         }
-        
     }
     
     //*******************************************************************************************************************************************
