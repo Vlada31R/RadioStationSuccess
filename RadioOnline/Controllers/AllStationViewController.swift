@@ -8,8 +8,16 @@
 
 import UIKit
 import ChameleonFramework
-import ProgressHUD  
-
+import ProgressHUD
+    
+struct My {
+    static var cellSnapShot: UIView? = nil
+}
+    
+struct Path {
+    static var initialIndexPath: IndexPath? = nil
+}
+    
 class AllStationViewController:  UIViewController,  UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
@@ -19,8 +27,11 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     //*****************************************************************
     // MARK: - viewDidLoad Method
     //*****************************************************************
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized(gestureRecognizer:)))
+        self.tableView.addGestureRecognizer(longpress)
         radioSetter.setupRadio()
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
@@ -28,7 +39,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
         DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
     }
-    
+
     @objc func reload(notification: NSNotification){
         DataManager.changeColor(view: self.view)
         tableView.reloadData()
@@ -36,6 +47,88 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    //*****************************************************************
+    // MARK: - Method fro drag and drop cell in table view
+    //*****************************************************************
+    
+    @objc func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
+        
+        let longpress = gestureRecognizer as! UILongPressGestureRecognizer
+        let state = longpress.state
+        let locationInView = longpress.location(in: self.tableView)
+        var indexPath = self.tableView.indexPathForRow(at: locationInView)
+        
+        switch state {
+        case .began:
+            if indexPath != nil {
+                Path.initialIndexPath = indexPath
+                let cell = self.tableView.cellForRow(at: indexPath!) as! CustomCell
+                My.cellSnapShot = snapshopOfCell(inputView: cell)
+                var center = cell.center
+                My.cellSnapShot?.center = center
+                My.cellSnapShot?.alpha = 0.0
+                self.tableView.addSubview(My.cellSnapShot!)
+                
+                UIView.animate(withDuration: 0.25, animations: {
+                    center.y = locationInView.y
+                    My.cellSnapShot?.center = center
+                    My.cellSnapShot?.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+                    My.cellSnapShot?.alpha = 0.98
+                    cell.alpha = 0.0
+                }, completion: { (finished) -> Void in
+                    if finished {
+                        cell.isHidden = true
+                    }
+                })
+            }
+            
+        case .changed:
+            var center = My.cellSnapShot!.center
+            center.y = locationInView.y
+            My.cellSnapShot!.center = center
+            if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
+                print(indexPath!.row)
+                print(Path.initialIndexPath!.row)
+                DataManager.swap(old: indexPath!.row, new: Path.initialIndexPath!.row)
+                //swap(&DataManager.stations[indexPath!.row], &DataManager.stations[Path.initialIndexPath!.row])
+                tableView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
+                Path.initialIndexPath = indexPath
+                }
+            
+        default:
+            let cell = self.tableView.cellForRow(at: Path.initialIndexPath!) as! CustomCell
+            cell.isHidden = false
+            cell.alpha = 0.0
+            UIView.animate(withDuration: 0.25, animations: {
+                My.cellSnapShot?.center = cell.center
+                My.cellSnapShot?.transform = .identity
+                My.cellSnapShot?.alpha = 0.0
+                cell.alpha = 1.0
+            }, completion: { (finished) -> Void in
+                if finished {
+                    Path.initialIndexPath = nil
+                    My.cellSnapShot?.removeFromSuperview()
+                    My.cellSnapShot = nil
+                }
+            })
+        }
+    }
+    
+    func snapshopOfCell(inputView: UIView) -> UIView {
+        
+        UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
+        inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        let cellSnapshot : UIView = UIImageView(image: image)
+        cellSnapshot.layer.masksToBounds = false
+        cellSnapshot.layer.cornerRadius = 0.0
+        cellSnapshot.layer.shadowOffset = CGSize(width: -5.0, height: 0.0)
+        cellSnapshot.layer.shadowRadius = 5.0
+        cellSnapshot.layer.shadowOpacity = 0.4
+        return cellSnapshot
     }
     
     //*******************************************************************************************************************************************

@@ -227,6 +227,13 @@ struct DataManager {
         save()
         return true
     }
+    
+    static func swap(old: Int, new: Int){
+        let station = stations[old]
+        stations[old] = stations[new]
+        stations[new] = station
+        save()
+    }
 }
 
 
