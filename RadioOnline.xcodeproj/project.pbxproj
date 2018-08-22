@@ -13,6 +13,7 @@
 		3F425090212BFA5100B5EB0D /* CollectionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F42508F212BFA5000B5EB0D /* CollectionTabBarController.swift */; };
 		3F4AE1BD21247C26003120ED /* CollectionFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4AE1BC21247C26003120ED /* CollectionFavoritesViewController.swift */; };
 		3FA1B408212D506400BFB18E /* ParserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA1B407212D506400BFB18E /* ParserViewController.swift */; };
+		3FA1B40E212D742900BFB18E /* SaveSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA1B40D212D742900BFB18E /* SaveSongViewController.swift */; };
 		3FDE80492126C6E600A37FB8 /* RadioSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDE80472126C6E600A37FB8 /* RadioSetter.swift */; };
 		3FDE804A2126C6E600A37FB8 /* RadioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDE80482126C6E600A37FB8 /* RadioPlayerViewController.swift */; };
 		3FDE80502126C78800A37FB8 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDE804E2126C78800A37FB8 /* Track.swift */; };
@@ -51,6 +52,7 @@
 		3F42508F212BFA5000B5EB0D /* CollectionTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionTabBarController.swift; sourceTree = "<group>"; };
 		3F4AE1BC21247C26003120ED /* CollectionFavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionFavoritesViewController.swift; sourceTree = "<group>"; };
 		3FA1B407212D506400BFB18E /* ParserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserViewController.swift; sourceTree = "<group>"; };
+		3FA1B40D212D742900BFB18E /* SaveSongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveSongViewController.swift; sourceTree = "<group>"; };
 		3FDE80472126C6E600A37FB8 /* RadioSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSetter.swift; sourceTree = "<group>"; };
 		3FDE80482126C6E600A37FB8 /* RadioPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioPlayerViewController.swift; sourceTree = "<group>"; };
 		3FDE804E2126C78800A37FB8 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		3F3DBB19212B10D10019BBBF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3FA1B40D212D742900BFB18E /* SaveSongViewController.swift */,
 				3FA1B407212D506400BFB18E /* ParserViewController.swift */,
 				3F42508F212BFA5000B5EB0D /* CollectionTabBarController.swift */,
 				3F2E1DFE212ABEBB00D06BEB /* CustomTabBarController.swift */,
@@ -332,6 +335,7 @@
 				3FDE805B2126C80A00A37FB8 /* RadioPlayer.swift in Sources */,
 				3F4AE1BD21247C26003120ED /* CollectionFavoritesViewController.swift in Sources */,
 				3FA1B408212D506400BFB18E /* ParserViewController.swift in Sources */,
+				3FA1B40E212D742900BFB18E /* SaveSongViewController.swift in Sources */,
 				3FFDF7222124064C00E69812 /* AllStationViewController.swift in Sources */,
 				3FFDF72E2124300C00E69812 /* CollectionViewCellXib.swift in Sources */,
 				3F2E1DFF212ABEBB00D06BEB /* CustomTabBarController.swift in Sources */,
@@ -493,14 +497,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3T7H82P2KH;
+				DEVELOPMENT_TEAM = 9B6M85MQ7J;
 				INFOPLIST_FILE = RadioOnline/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vlada.RadioOnline;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SergP.RadioOnline;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -513,14 +517,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3T7H82P2KH;
+				DEVELOPMENT_TEAM = 9B6M85MQ7J;
 				INFOPLIST_FILE = RadioOnline/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vlada.RadioOnline;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SergP.RadioOnline;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
