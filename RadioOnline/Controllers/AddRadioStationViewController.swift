@@ -31,6 +31,10 @@ class AddRadioStationViewController: UIViewController {
         recolourAllElements()
     }
     
+    //*******************************************************************************************************************************************
+    //MARK: Recolour all elements (Chameleon framework)
+    //*******************************************************************************************************************************************
+    
     @objc func reload(notification: NSNotification){
         DataManager.changeColor(view: self.view)
         recolourAllElements()
@@ -42,17 +46,26 @@ class AddRadioStationViewController: UIViewController {
         urlStreamLabel.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
         urlImgLabel.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
         
+        
         nameTextField.layer.borderWidth = 2
-        nameTextField.layer.cornerRadius = 10
+        nameTextField.layer.cornerRadius = 6
+        nameTextField.attributedPlaceholder = NSAttributedString(string:nameTextField.placeholder! , attributes:[NSAttributedStringKey.foregroundColor: ContrastColorOf(nameTextField.backgroundColor!, returnFlat: true)])
         nameTextField.layer.borderColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true).cgColor
+        
+        
         descriptionTextField.layer.borderWidth = 2
-        descriptionTextField.layer.cornerRadius = 10
+        descriptionTextField.layer.cornerRadius = 6
+        descriptionTextField.attributedPlaceholder = NSAttributedString(string:descriptionTextField.placeholder! , attributes:[NSAttributedStringKey.foregroundColor: ContrastColorOf(descriptionTextField.backgroundColor!, returnFlat: true)])
         descriptionTextField.layer.borderColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true).cgColor
+        
         URLStreamTextField.layer.borderWidth = 2
-        URLStreamTextField.layer.cornerRadius = 10
+        URLStreamTextField.layer.cornerRadius = 6
+        URLStreamTextField.attributedPlaceholder = NSAttributedString(string:URLStreamTextField.placeholder! , attributes:[NSAttributedStringKey.foregroundColor: ContrastColorOf(URLStreamTextField.backgroundColor!, returnFlat: true)])
         URLStreamTextField.layer.borderColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true).cgColor
+        
         URLImageTextField.layer.borderWidth = 2
-        URLImageTextField.layer.cornerRadius = 10
+        URLImageTextField.layer.cornerRadius = 6
+        URLImageTextField.attributedPlaceholder = NSAttributedString(string:URLImageTextField.placeholder! , attributes:[NSAttributedStringKey.foregroundColor: ContrastColorOf(URLImageTextField.backgroundColor!, returnFlat: true)])
         URLImageTextField.layer.borderColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true).cgColor
         
         nameTextField.textColor = ContrastColorOf(nameTextField.backgroundColor!, returnFlat: true)
@@ -68,8 +81,12 @@ class AddRadioStationViewController: UIViewController {
         
     }
     
-   
+    //*******************************************************************************************************************************************
+    //MARK: buttton function
+    //*******************************************************************************************************************************************
+    
     @IBAction func addNewRadioStation(_ sender: Any) {
+        endEditing()
         let name = nameTextField.text!
         let desc = descriptionTextField.text!
         let urlStream = URLStreamTextField.text!
@@ -79,13 +96,27 @@ class AddRadioStationViewController: UIViewController {
             NotificationCenter.default.post(name: .reload, object: nil)
             ProgressHUD.show()
             ProgressHUD.showSuccess("Radiostation add all station!")
+            self.navigationController?.popViewController(animated: true)
         } else {
             ProgressHUD.show()
-            ProgressHUD.showError("Sorry... some error, please retry!")
+            ProgressHUD.showError("Sorry... some error, please retry! (Name or stream url is empty)")
         }
         
     }
     
-
+    //*******************************************************************************************************************************************
+    //MARK: touches method
+    //*******************************************************************************************************************************************
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        endEditing()
+    }
+    
+    func endEditing(){
+        nameTextField.endEditing(true)
+        descriptionTextField.endEditing(true)
+        URLStreamTextField.endEditing(true)
+        URLImageTextField.endEditing(true)
+    }
 
 }

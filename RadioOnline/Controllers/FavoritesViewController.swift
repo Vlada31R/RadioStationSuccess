@@ -16,7 +16,6 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
   
     @IBOutlet weak var favoritesTableView: UITableView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         radioSetter.setupRadio()
@@ -94,6 +93,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     //*******************************************************************************************************************************************
     //MARK: func - set swipe cell table view
     //*******************************************************************************************************************************************
+    
     @available(iOS 9.0, *)
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let share = UITableViewRowAction(style: .destructive, title: "               ") { action, index in
@@ -180,6 +180,7 @@ extension Notification.Name {
 extension FavoritesViewController: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
         if(!(searchBar.text?.isEmpty)!){
             DataManager.stationsFavorites = DataManager.stationsFavorites.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
             self.favoritesTableView?.reloadData()

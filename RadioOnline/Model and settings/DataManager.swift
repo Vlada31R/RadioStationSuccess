@@ -200,7 +200,7 @@ struct DataManager {
     }
     
     static func addNewRadioStation(name: String, desc: String, urlStream: String, urlImage: String){
-        var newStation = RadioStation(name: name, streamURL: urlStream, imageURL: urlImage, desc: desc, longDesc: "", favorites: false, new: false)
+        let newStation = RadioStation(name: name, streamURL: urlStream, imageURL: urlImage, desc: desc, longDesc: "", favorites: false, new: false)
         stations.append(newStation)
     }
     
@@ -216,6 +216,17 @@ struct DataManager {
     static var stations = [RadioStation]()
     static var countFavorites = 0
     static var stationsFavorites = [RadioStation]()
+    
+    static func addNewStationFromParser(station: RadioStation) -> Bool {
+        for i in stations {
+            if i.streamURL == station.streamURL {
+                return false
+            }
+        }
+        stations.append(station)
+        save()
+        return true
+    }
 }
 
 

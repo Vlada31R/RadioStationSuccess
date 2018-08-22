@@ -8,12 +8,9 @@
 
 import UIKit
 import ChameleonFramework
-import ProgressHUD
-    
+import ProgressHUD  
 
 class AllStationViewController:  UIViewController,  UITableViewDelegate, UITableViewDataSource {
-
-
     
     @IBOutlet var tableView: UITableView!
     
@@ -23,7 +20,6 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     // MARK: - viewDidLoad Method
     //*****************************************************************
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         radioSetter.setupRadio()
         let nib = UINib(nibName: "CustomCell", bundle: nil)
@@ -47,7 +43,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     //*******************************************************************************************************************************************
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(DataManager.stations.count)
+        //print(DataManager.stations.count)
         return (DataManager.stations.count)
     }
     
@@ -73,6 +69,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     //*******************************************************************************************************************************************
     //MARK: tableView cell swipe
     //*******************************************************************************************************************************************
+    
     @available(iOS 9.0, *)
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let share = UITableViewRowAction(style: .normal, title: "           ") { action, index in
@@ -99,10 +96,12 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
             share.backgroundColor = .gray
         }
         
-        share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "favoritesForIOS9"))
-        
-        
-        
+        if DataManager.stations[indexPath.row].favorites == false{
+            share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "favoritesForIOS9"))
+        } else {
+            share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "delete_favoritesIOS9"))
+        }
+
         return [share]
     }
     
@@ -182,9 +181,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     }
     // End of Class
 }
-
-
-
+    
 //*******************************************************************************************************************************************
 //MARK: extension to load image from URL
 //*******************************************************************************************************************************************
@@ -235,6 +232,7 @@ extension UIImageView {
 
 extension AllStationViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
         if(!(searchBar.text?.isEmpty)!){
             DataManager.stations = DataManager.stations.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
             self.tableView?.reloadData()
