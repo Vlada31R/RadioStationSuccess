@@ -89,10 +89,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
             center.y = locationInView.y
             My.cellSnapShot!.center = center
             if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
-                print(indexPath!.row)
-                print(Path.initialIndexPath!.row)
                 DataManager.swap(old: indexPath!.row, new: Path.initialIndexPath!.row)
-                //swap(&DataManager.stations[indexPath!.row], &DataManager.stations[Path.initialIndexPath!.row])
                 tableView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
                 Path.initialIndexPath = indexPath
                 }

@@ -13,7 +13,7 @@ import ChameleonFramework
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var radioSetter = RadioSetter()
-  
+    
     @IBOutlet weak var favoritesTableView: UITableView!
     
     override func viewDidLoad() {

@@ -104,7 +104,7 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
         creteriaTextField.endEditing(true)
         
         if let c = Int(countTextField.text!) {
-            if c < 0 || c > 1000 {
+            if c <= 0 || c > 1000 {
                 ProgressHUD.show()
                 ProgressHUD.showError("Please input new count")
                 tableView.reloadData()
