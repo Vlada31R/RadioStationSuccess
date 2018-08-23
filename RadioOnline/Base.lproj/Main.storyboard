@@ -197,6 +197,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="search" destination="NL4-Ol-TZA" id="wgA-TZ-Wte"/>
                         <outlet property="tableView" destination="GSL-Uv-VQT" id="XIy-8a-uL4"/>
                         <segue destination="xFa-1g-xaV" kind="presentation" identifier="RadioPlayer" id="Wy9-VZ-RdF"/>
                     </connections>
@@ -214,19 +215,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4M-9p-vdO">
-                                <rect key="frame" x="10" y="74" width="100" height="21"/>
+                                <rect key="frame" x="30" y="114" width="100" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRd-q0-wYO">
-                                <rect key="frame" x="10" y="135" width="100" height="21"/>
+                                <rect key="frame" x="30" y="175" width="100" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL stream" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhk-g1-2kQ">
-                                <rect key="frame" x="10" y="196" width="100" height="21"/>
+                                <rect key="frame" x="30" y="236" width="100" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="rVj-D3-Jb1"/>
                                 </constraints>
@@ -235,31 +236,31 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsY-Za-ySs">
-                                <rect key="frame" x="10" y="257" width="100" height="21"/>
+                                <rect key="frame" x="30" y="297" width="100" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DkV-4s-n6Q">
-                                <rect key="frame" x="130" y="74" width="235" height="30"/>
+                                <rect key="frame" x="170" y="114" width="195" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GsK-39-wlr">
-                                <rect key="frame" x="130" y="129" width="235" height="30"/>
+                                <rect key="frame" x="170" y="169" width="195" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="URL new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yrd-fG-SN6">
-                                <rect key="frame" x="130" y="189" width="235" height="30"/>
+                                <rect key="frame" x="170" y="229" width="195" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Image for new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IuV-BX-NyV">
-                                <rect key="frame" x="130" y="249" width="235" height="30"/>
+                                <rect key="frame" x="170" y="289" width="195" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -947,17 +948,8 @@
                                     <segue destination="3p1-PD-JDQ" kind="presentation" id="6QB-k7-YfU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ims-nV-oRb">
-                                <rect key="frame" x="319" y="252" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="twitter"/>
-                                <connections>
-                                    <action selector="twitterBtn:" destination="xFa-1g-xaV" eventType="touchUpInside" id="VPd-tY-NmT"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQv-mH-7oT">
-                                <rect key="frame" x="319" y="204" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQv-mH-7oT">
+                                <rect key="frame" x="333" y="30" width="32" height="32"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" backgroundImage="facebook">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -966,11 +958,19 @@
                                     <action selector="facebookBtn:" destination="xFa-1g-xaV" eventType="touchUpInside" id="bUF-bE-4zx"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ims-nV-oRb">
+                                <rect key="frame" x="333" y="72" width="32" height="32"/>
+                                <state key="normal" backgroundImage="twitter"/>
+                                <connections>
+                                    <action selector="twitterBtn:" destination="xFa-1g-xaV" eventType="touchUpInside" id="VPd-tY-NmT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="centerX" secondItem="q6z-z4-Qdv" secondAttribute="centerX" id="0S4-2G-MHx"/>
                             <constraint firstItem="GaJ-11-MVz" firstAttribute="trailing" secondItem="pLH-Jh-w2v" secondAttribute="trailing" constant="102" id="0n8-oJ-51S"/>
+                            <constraint firstItem="GaJ-11-MVz" firstAttribute="trailing" secondItem="ims-nV-oRb" secondAttribute="trailing" constant="10" id="1Mv-eO-0bB"/>
                             <constraint firstItem="4lE-Y3-nID" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="20" id="20F-Gg-iwJ"/>
                             <constraint firstItem="q6z-z4-Qdv" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="64" id="3cO-te-syQ"/>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="trailing" secondItem="Law-Tk-ENv" secondAttribute="trailing" id="4Kj-qY-mza"/>
@@ -978,6 +978,7 @@
                             <constraint firstItem="6gg-z9-TDz" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="12" id="AxT-mu-wYC"/>
                             <constraint firstItem="pLH-Jh-w2v" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="102" id="BR5-Ds-vFo"/>
                             <constraint firstItem="6gg-z9-TDz" firstAttribute="centerY" secondItem="PJP-51-0lL" secondAttribute="centerY" constant="26.5" id="Brr-7q-kcL"/>
+                            <constraint firstItem="ims-nV-oRb" firstAttribute="top" secondItem="fQv-mH-7oT" secondAttribute="bottom" constant="10" id="C1T-E8-yHJ"/>
                             <constraint firstItem="uBM-Yp-JX9" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="45" id="Dsd-bK-H53"/>
                             <constraint firstItem="6gg-z9-TDz" firstAttribute="centerX" secondItem="q6z-z4-Qdv" secondAttribute="centerX" id="Ez4-gi-BQI"/>
                             <constraint firstItem="GaJ-11-MVz" firstAttribute="bottom" secondItem="Law-Tk-ENv" secondAttribute="bottom" constant="63" id="GCr-7G-BRd"/>
@@ -985,9 +986,11 @@
                             <constraint firstItem="4lE-Y3-nID" firstAttribute="top" secondItem="Uh6-YN-yTS" secondAttribute="bottom" constant="20" id="K1a-BI-HFa"/>
                             <constraint firstItem="q6z-z4-Qdv" firstAttribute="top" secondItem="6gg-z9-TDz" secondAttribute="bottom" constant="7.5" id="Qqk-GW-tYN"/>
                             <constraint firstItem="Law-Tk-ENv" firstAttribute="leading" secondItem="6LS-Z9-yq5" secondAttribute="trailing" constant="66" id="SaA-Ws-gEn"/>
+                            <constraint firstItem="GaJ-11-MVz" firstAttribute="trailing" secondItem="fQv-mH-7oT" secondAttribute="trailing" constant="10" id="Vdj-Oh-aJQ"/>
                             <constraint firstItem="6LS-Z9-yq5" firstAttribute="bottom" secondItem="Law-Tk-ENv" secondAttribute="bottom" id="YjH-6j-aUf"/>
                             <constraint firstItem="pLH-Jh-w2v" firstAttribute="top" secondItem="uBM-Yp-JX9" secondAttribute="bottom" constant="11" id="bkc-yR-ihp"/>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="leading" secondItem="6LS-Z9-yq5" secondAttribute="leading" id="buN-vZ-Opb"/>
+                            <constraint firstItem="fQv-mH-7oT" firstAttribute="top" secondItem="GaJ-11-MVz" secondAttribute="top" constant="10" id="d4N-g2-VHd"/>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="top" secondItem="q6z-z4-Qdv" secondAttribute="bottom" constant="33" id="gqY-9e-WCG"/>
                             <constraint firstItem="Uh6-YN-yTS" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="10" id="lSR-pc-8dF"/>
                             <constraint firstItem="Law-Tk-ENv" firstAttribute="leading" secondItem="6LS-Z9-yq5" secondAttribute="trailing" constant="66" id="my6-Dm-qyj"/>
@@ -1090,10 +1093,8 @@
         <image name="vol-min" width="11" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0Ci-hP-3Rf"/>
-        <segue reference="c7W-ZD-BJ5"/>
-        <segue reference="5Fb-Xg-Ogk"/>
+        <segue reference="Wy9-VZ-RdF"/>
         <segue reference="ILH-e6-uQu"/>
-        <segue reference="QtN-t8-Jue"/>
+        <segue reference="yjC-5d-kTP"/>
     </inferredMetricsTieBreakers>
 </document>

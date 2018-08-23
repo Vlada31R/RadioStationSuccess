@@ -22,7 +22,12 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     
     @IBOutlet var tableView: UITableView!
     
+    @IBOutlet weak var search: UISearchBar!
+    
     var radioSetter = RadioSetter()
+    var flag = false
+    override var prefersStatusBarHidden: Bool {return flag}
+    
     
     //*****************************************************************
     // MARK: - viewDidLoad Method
@@ -47,6 +52,10 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func clearSearchBar(){
+        clearSearchBar()
     }
     
     //*****************************************************************
@@ -134,7 +143,30 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //print(DataManager.stations.count)
+        
         return (DataManager.stations.count)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if tableView.indexPathsForVisibleRows?[0] == nil {return}
+        let index = tableView.indexPathsForVisibleRows![0]
+        //if  index[1] > 0 {
+        print(scrollView.contentOffset.y)
+        if scrollView.contentOffset.y > 0 {
+            flag = true
+            UIView.animate(withDuration: 0.25) {
+                self.setNeedsStatusBarAppearanceUpdate()
+            }
+            
+        } else if scrollView.contentOffset.y < -100 {
+            flag = false
+            UIView.animate(withDuration: 0.25) {
+                self.setNeedsStatusBarAppearanceUpdate()
+            }
+        }
+        
+        print(index)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -286,6 +318,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         radioSetter.radioPlayerViewController = radioPlayerVC
         radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
     }
+    
     // End of Class
 }
     
@@ -331,6 +364,7 @@ extension UIImageView {
             }
         }).resume()
     }
+    
 }
 
 //*******************************************************************************************************************************************
@@ -340,14 +374,21 @@ extension UIImageView {
 extension AllStationViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
-        if(!(searchBar.text?.isEmpty)!){
-            DataManager.stations = DataManager.stations.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
-            self.tableView?.reloadData()
-        }
+//        if(!(searchBar.text?.isEmpty)!){
+//            DataManager.stations = DataManager.stations.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
+//            self.tableView?.reloadData()
+//        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if(!(searchBar.text?.isEmpty)!){
+            DataManager.load()
+            DataManager.stations = DataManager.stations.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
+            self.tableView?.reloadData()
+        }
+        
         if(searchText.isEmpty){
+
             if searchBar.text?.count == 0
             {
                 DataManager.load()
@@ -359,11 +400,11 @@ extension AllStationViewController: UISearchBarDelegate{
         }
     }
 }
+
 extension AllStationViewController{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "RadioPlayer", sender: indexPath)
     }

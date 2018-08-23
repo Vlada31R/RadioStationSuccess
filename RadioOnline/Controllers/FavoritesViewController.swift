@@ -161,6 +161,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         if indexPath.row <= DataManager.stationsFavorites.count {
             DataManager.stationsFavorites[indexPath.row].favorites = false
             DataManager.reloadFavorites(index: indexPath.row)
+            DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
             //favoritesTableView.reloadData()
             return true
         } else {
@@ -185,6 +186,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         radioSetter.radioPlayerViewController = radioPlayerVC
         radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
     }
+    
 }
 
 //*******************************************************************************************************************************************
@@ -204,13 +206,19 @@ extension FavoritesViewController: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
+        
+    }
+    
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //print("work")
         if(!(searchBar.text?.isEmpty)!){
+            DataManager.loadFavorites()
             DataManager.stationsFavorites = DataManager.stationsFavorites.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
             self.favoritesTableView?.reloadData()
         }
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
         if(searchText.isEmpty){
             if searchBar.text?.count == 0
             {
@@ -222,5 +230,7 @@ extension FavoritesViewController: UISearchBarDelegate{
             }
         }
     }
+    
+    
 }
 

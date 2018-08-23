@@ -123,7 +123,7 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
         
         let queue = OperationQueue()
         queue.addOperation() {
-            
+
             var search = ""
             
             for i in searchOld{
@@ -151,14 +151,19 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
         
                 for i in 0...self.arrayOfURLtoParse.count-1{
                     self.parse(myURL: self.arrayOfURLtoParse[i])
-                }
+                    
+                    OperationQueue.main.addOperation() {
+                        self.tableView.reloadData()
+                        let indexPath = IndexPath(row: self.radioStationParse.count-1, section: 0)
+                        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+                        if i == self.arrayOfURLtoParse.count-1 {
+                            ProgressHUD.dismiss()
+                            UIApplication.shared.endIgnoringInteractionEvents()
+                        }
+                    }
             }
-            
-            OperationQueue.main.addOperation() {
-                ProgressHUD.dismiss()
-                self.tableView.reloadData()
-                UIApplication.shared.endIgnoringInteractionEvents()
             }
+
         }
     }
 
