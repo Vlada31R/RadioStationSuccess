@@ -22,6 +22,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     
     @IBOutlet var tableView: UITableView!
     
+    @IBOutlet weak var search: UISearchBar!
     var radioSetter = RadioSetter()
     
     //*****************************************************************
@@ -37,6 +38,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
         DataManager.changeColor(view: self.view)
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(clearSearchBar(notification:)), name: .clear, object: nil)
         DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
     }
 
@@ -47,6 +49,13 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    
+    @objc func clearSearchBar(notification: NSNotification) {
+        search.text = ""
+        DataManager.load()
+        tableView.reloadData()
     }
     
     //*****************************************************************
@@ -347,28 +356,28 @@ extension AllStationViewController: UISearchBarDelegate{
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if(searchText.isEmpty){
-            if searchBar.text?.count == 0
-            {
-                DataManager.load()
-                self.tableView?.reloadData()
-                DispatchQueue.main.async {
-                    searchBar.resignFirstResponder()
-                }
+        if searchBar.text?.count == 0
+        {
+            DataManager.load()
+            self.tableView?.reloadData()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
             }
+        }
+        else
+        {
+            DataManager.load()
+            DataManager.stations = DataManager.stations.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
+            self.tableView?.reloadData()
         }
     }
 }
 extension AllStationViewController{
-    
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "RadioPlayer", sender: indexPath)
     }
-    
-    
     
 }
 

@@ -8,7 +8,6 @@
 
 import UIKit
 import ChameleonFramework
-import Photos
 
 
 class CollectionViewCell: UICollectionViewCell {

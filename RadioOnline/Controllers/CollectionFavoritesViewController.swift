@@ -130,7 +130,7 @@ extension CollectionFavoritesViewController: UICollectionViewDataSource, UIColle
             collectionView.reloadItems(at: [indexPath])
         }
         collectionView.deselectItem(at: indexPath, animated: true)
-        performSegue(withIdentifier: "RadioPlayer", sender: self)
+        performSegue(withIdentifier: "RadioPlayer", sender: indexPath)
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
@@ -148,15 +148,28 @@ extension CollectionFavoritesViewController: UICollectionViewDataSource, UIColle
         }
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if(searchText.isEmpty){
-            if searchBar.text?.count == 0
-            {
-                DataManager.load()
-                self.collectionView?.reloadData()
-                DispatchQueue.main.async {
-                    searchBar.resignFirstResponder()
-                }
+        if searchBar.text?.count == 0
+        {
+            DataManager.loadFavorites()
+            self.collectionView?.reloadData()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
             }
+        }
+        else
+        {
+            searchBar.becomeFirstResponder()
+            DataManager.loadFavorites()
+            DataManager.stationsFavorites = DataManager.stationsFavorites.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
+            self.collectionView?.reloadData()
+            
+        }
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        DataManager.loadFavorites()
+        self.collectionView?.reloadData()
+        DispatchQueue.main.async {
+            searchBar.resignFirstResponder()
         }
     }
 }

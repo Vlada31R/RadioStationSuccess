@@ -193,6 +193,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
 
 extension Notification.Name {
     static let reload = Notification.Name("reload")
+    static let clear = Notification.Name("clear")
     static let reloadFavoritesTableView = Notification.Name("reload Table View")
 }
 
@@ -211,15 +212,19 @@ extension FavoritesViewController: UISearchBarDelegate{
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if(searchText.isEmpty){
-            if searchBar.text?.count == 0
-            {
-                DataManager.loadFavorites()
-                self.favoritesTableView?.reloadData()
-                DispatchQueue.main.async {
-                    searchBar.resignFirstResponder()
-                }
+        if searchBar.text?.count == 0
+        {
+            DataManager.loadFavorites()
+            self.favoritesTableView?.reloadData()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
             }
+        }
+        else
+        {
+            DataManager.loadFavorites()
+            DataManager.stationsFavorites = DataManager.stationsFavorites.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
+            self.favoritesTableView?.reloadData()
         }
     }
 }

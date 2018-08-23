@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class CollectionTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     var playingBar: PlayingBar!
@@ -18,9 +20,13 @@ class CollectionTabBarController: UITabBarController, UITabBarControllerDelegate
         self.view.addSubview(playingBar)
     }
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item.title == "All" {
+        if item.title != nil {
+            DataManager.load()
             DataManager.loadFavorites()
             NotificationCenter.default.post(name: .reloadFavourites, object: nil)
         }
+        
+        
+
     }
 }

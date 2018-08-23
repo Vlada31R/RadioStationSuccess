@@ -197,6 +197,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="search" destination="NL4-Ol-TZA" id="l2K-Uc-JbI"/>
                         <outlet property="tableView" destination="GSL-Uv-VQT" id="XIy-8a-uL4"/>
                         <segue destination="xFa-1g-xaV" kind="presentation" identifier="RadioPlayer" id="Wy9-VZ-RdF"/>
                     </connections>
@@ -364,7 +365,7 @@
         <!--All Radio Station-->
         <scene sceneID="zqF-gh-Voe">
             <objects>
-                <viewController id="VxQ-aX-9sh" customClass="ViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="collectionAll" id="VxQ-aX-9sh" customClass="ViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oNw-aW-3rv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -471,7 +472,7 @@
         <!--Favorite Radio Stations-->
         <scene sceneID="8lZ-x3-0hI">
             <objects>
-                <viewController title="Favorite Radio Stations" id="fmF-bZ-89T" customClass="CollectionFavoritesViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="collectionFavorite" title="Favorite Radio Stations" id="fmF-bZ-89T" customClass="CollectionFavoritesViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKi-hb-aiB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -564,11 +565,11 @@
             </objects>
             <point key="canvasLocation" x="-2049" y="-1600"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Favorites-->
         <scene sceneID="6Mi-Nv-iWe">
             <objects>
                 <navigationController id="jEY-PJ-4lJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="xDh-k3-Gm9"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="favorites" id="xDh-k3-Gm9"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="g3d-Jb-boK">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -962,17 +963,23 @@
                                     <segue destination="3p1-PD-JDQ" kind="presentation" id="6QB-k7-YfU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ims-nV-oRb">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ims-nV-oRb">
                                 <rect key="frame" x="319" y="252" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="17G-gi-WM3"/>
+                                    <constraint firstAttribute="width" constant="40" id="rK4-V1-u1E"/>
+                                </constraints>
                                 <state key="normal" backgroundImage="twitter"/>
                                 <connections>
                                     <action selector="twitterBtn:" destination="xFa-1g-xaV" eventType="touchUpInside" id="VPd-tY-NmT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQv-mH-7oT">
-                                <rect key="frame" x="319" y="204" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQv-mH-7oT">
+                                <rect key="frame" x="319" y="204" width="40" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="cjb-Wt-bCf"/>
+                                    <constraint firstAttribute="width" constant="40" id="f2L-gb-Zop"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" backgroundImage="facebook">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -986,25 +993,31 @@
                         <constraints>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="centerX" secondItem="q6z-z4-Qdv" secondAttribute="centerX" id="0S4-2G-MHx"/>
                             <constraint firstItem="GaJ-11-MVz" firstAttribute="trailing" secondItem="pLH-Jh-w2v" secondAttribute="trailing" constant="102" id="0n8-oJ-51S"/>
+                            <constraint firstItem="GaJ-11-MVz" firstAttribute="trailing" secondItem="ims-nV-oRb" secondAttribute="trailing" constant="16" id="1sk-UR-uPb"/>
                             <constraint firstItem="4lE-Y3-nID" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="20" id="20F-Gg-iwJ"/>
                             <constraint firstItem="q6z-z4-Qdv" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="64" id="3cO-te-syQ"/>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="trailing" secondItem="Law-Tk-ENv" secondAttribute="trailing" id="4Kj-qY-mza"/>
+                            <constraint firstItem="ims-nV-oRb" firstAttribute="top" secondItem="fQv-mH-7oT" secondAttribute="bottom" constant="16" id="76y-CJ-Waz"/>
                             <constraint firstItem="6gg-z9-TDz" firstAttribute="top" secondItem="pLH-Jh-w2v" secondAttribute="bottom" constant="37.5" id="9ic-yF-Fgm"/>
                             <constraint firstItem="6gg-z9-TDz" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="12" id="AxT-mu-wYC"/>
                             <constraint firstItem="pLH-Jh-w2v" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="102" id="BR5-Ds-vFo"/>
                             <constraint firstItem="6gg-z9-TDz" firstAttribute="centerY" secondItem="PJP-51-0lL" secondAttribute="centerY" constant="26.5" id="Brr-7q-kcL"/>
+                            <constraint firstItem="ims-nV-oRb" firstAttribute="leading" secondItem="pLH-Jh-w2v" secondAttribute="trailing" constant="46" id="Bz2-xb-MAG"/>
                             <constraint firstItem="uBM-Yp-JX9" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="45" id="Dsd-bK-H53"/>
                             <constraint firstItem="6gg-z9-TDz" firstAttribute="centerX" secondItem="q6z-z4-Qdv" secondAttribute="centerX" id="Ez4-gi-BQI"/>
                             <constraint firstItem="GaJ-11-MVz" firstAttribute="bottom" secondItem="Law-Tk-ENv" secondAttribute="bottom" constant="63" id="GCr-7G-BRd"/>
                             <constraint firstItem="6LS-Z9-yq5" firstAttribute="top" secondItem="Law-Tk-ENv" secondAttribute="top" id="IBh-IX-CVf"/>
                             <constraint firstItem="4lE-Y3-nID" firstAttribute="top" secondItem="Uh6-YN-yTS" secondAttribute="bottom" constant="20" id="K1a-BI-HFa"/>
+                            <constraint firstItem="GaJ-11-MVz" firstAttribute="trailing" secondItem="fQv-mH-7oT" secondAttribute="trailing" constant="16" id="K3M-US-jHU"/>
                             <constraint firstItem="q6z-z4-Qdv" firstAttribute="top" secondItem="6gg-z9-TDz" secondAttribute="bottom" constant="7.5" id="Qqk-GW-tYN"/>
                             <constraint firstItem="Law-Tk-ENv" firstAttribute="leading" secondItem="6LS-Z9-yq5" secondAttribute="trailing" constant="66" id="SaA-Ws-gEn"/>
+                            <constraint firstItem="fQv-mH-7oT" firstAttribute="top" secondItem="uBM-Yp-JX9" secondAttribute="bottom" constant="93.5" id="UEm-DG-xIa"/>
                             <constraint firstItem="6LS-Z9-yq5" firstAttribute="bottom" secondItem="Law-Tk-ENv" secondAttribute="bottom" id="YjH-6j-aUf"/>
                             <constraint firstItem="pLH-Jh-w2v" firstAttribute="top" secondItem="uBM-Yp-JX9" secondAttribute="bottom" constant="11" id="bkc-yR-ihp"/>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="leading" secondItem="6LS-Z9-yq5" secondAttribute="leading" id="buN-vZ-Opb"/>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="top" secondItem="q6z-z4-Qdv" secondAttribute="bottom" constant="33" id="gqY-9e-WCG"/>
                             <constraint firstItem="Uh6-YN-yTS" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="10" id="lSR-pc-8dF"/>
+                            <constraint firstItem="fQv-mH-7oT" firstAttribute="leading" secondItem="pLH-Jh-w2v" secondAttribute="trailing" constant="46" id="mFr-KM-Ich"/>
                             <constraint firstItem="Law-Tk-ENv" firstAttribute="leading" secondItem="6LS-Z9-yq5" secondAttribute="trailing" constant="66" id="my6-Dm-qyj"/>
                             <constraint firstItem="Uh6-YN-yTS" firstAttribute="top" secondItem="GaJ-11-MVz" secondAttribute="top" id="pgp-aX-80m"/>
                             <constraint firstItem="uBM-Yp-JX9" firstAttribute="top" secondItem="GaJ-11-MVz" secondAttribute="top" constant="17" id="sW3-tM-lv4"/>
@@ -1095,6 +1108,7 @@
         <image name="back-2" width="30" height="30"/>
         <image name="collection" width="25" height="25"/>
         <image name="facebook" width="32" height="32"/>
+        <image name="favorites" width="30" height="30"/>
         <image name="list" width="25" height="25"/>
         <image name="pauseImageButton" width="100" height="100"/>
         <image name="picture" width="32" height="32"/>
@@ -1106,7 +1120,7 @@
         <image name="vol-min" width="11" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qZ5-2w-Vmq"/>
+        <segue reference="5Fb-Xg-Ogk"/>
         <segue reference="f0L-SD-RMr"/>
         <segue reference="ILH-e6-uQu"/>
         <segue reference="QtN-t8-Jue"/>
