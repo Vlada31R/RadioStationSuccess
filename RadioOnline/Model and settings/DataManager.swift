@@ -218,6 +218,7 @@ struct DataManager {
     static var stations = [RadioStation]()
     static var countFavorites = 0
     static var stationsFavorites = [RadioStation]()
+    static var flag = false
     
     static func addNewStationFromParser(station: RadioStation) -> Bool {
         for i in stations {

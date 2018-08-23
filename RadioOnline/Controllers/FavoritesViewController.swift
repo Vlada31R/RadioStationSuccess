@@ -14,9 +14,10 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
 
     var radioSetter = RadioSetter()
     
+    @IBOutlet weak var serach: UISearchBar!
     @IBOutlet weak var favoritesTableView: UITableView!
 
-
+override var prefersStatusBarHidden: Bool {return DataManager.flag}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,30 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if DataManager.stationsFavorites.isEmpty {
+            let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+            let messageLabel = UILabel(frame: rect)
+            messageLabel.text = "favorites is empty..."
+            messageLabel.textColor = UIColor.black
+            messageLabel.numberOfLines = 0
+            messageLabel.textAlignment = .center
+            messageLabel.font = UIFont(name: "TrebuchetMS", size: 20)
+            messageLabel.sizeToFit()
+            
+            self.serach.isHidden = true
+            tableView.backgroundView = messageLabel
+            tableView.separatorStyle = .none
+            return 0
+        } else {
+            self.serach.isHidden = false
+            tableView.backgroundView = nil
+            tableView.separatorStyle = .singleLineEtched
+            return 1
+        }
+        
+    }
 
     //*******************************************************************************************************************************************
     //MARK: Notification method
@@ -45,6 +70,21 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     @objc func reloadTableView(notification: NSNotification){
         DataManager.changeColor(view: self.view)
         favoritesTableView.reloadData()
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > 0 {
+            DataManager.flag = true
+            UIView.animate(withDuration: 0.25) {
+                self.setNeedsStatusBarAppearanceUpdate()
+            }
+            
+        } else if scrollView.contentOffset.y < -100 {
+            DataManager.flag = false
+            UIView.animate(withDuration: 0.25) {
+                self.setNeedsStatusBarAppearanceUpdate()
+            }
+        }
     }
     
     //*******************************************************************************************************************************************

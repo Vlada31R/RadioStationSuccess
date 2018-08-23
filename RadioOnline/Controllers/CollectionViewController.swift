@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     
+    override var prefersStatusBarHidden: Bool {return DataManager.flag}
+    
     var nowPlayingSongBar: UIView!
     var radioSetter = RadioSetter()
     
@@ -117,7 +119,23 @@ class ViewController: UIViewController {
         }
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > 0 {
+            DataManager.flag = true
+            UIView.animate(withDuration: 0.25) {
+                self.setNeedsStatusBarAppearanceUpdate()
+            }
+            
+        } else if scrollView.contentOffset.y < -100 {
+            DataManager.flag = false
+            UIView.animate(withDuration: 0.25) {
+                self.setNeedsStatusBarAppearanceUpdate()
+            }
+        }
+    }
+    
     @IBAction func SetNewVC(_ sender: Any) {
+        DataManager.load()
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = mainStoryboard.instantiateViewController(withIdentifier: "TableVC") as! UITabBarController
         UIApplication.shared.keyWindow?.rootViewController = viewController

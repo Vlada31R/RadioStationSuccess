@@ -26,9 +26,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
 
     @IBOutlet weak var search: UISearchBar!
     
-    
-    var flag = false
-    override var prefersStatusBarHidden: Bool {return flag}
+    override var prefersStatusBarHidden: Bool {return DataManager.flag}
     
 
 
@@ -158,25 +156,18 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        if tableView.indexPathsForVisibleRows?[0] == nil {return}
-        let index = tableView.indexPathsForVisibleRows![0]
-        //if  index[1] > 0 {
-        print(scrollView.contentOffset.y)
         if scrollView.contentOffset.y > 0 {
-            flag = true
+            DataManager.flag = true
             UIView.animate(withDuration: 0.25) {
                 self.setNeedsStatusBarAppearanceUpdate()
             }
             
         } else if scrollView.contentOffset.y < -100 {
-            flag = false
+            DataManager.flag = false
             UIView.animate(withDuration: 0.25) {
                 self.setNeedsStatusBarAppearanceUpdate()
             }
         }
-        
-        print(index)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -304,6 +295,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     //*******************************************************************************************************************************************
     
     @IBAction func action(_ sender: Any) {
+        DataManager.load()
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = mainStoryboard.instantiateViewController(withIdentifier: "AllVC") as! UITabBarController
         UIApplication.shared.keyWindow?.rootViewController = viewController

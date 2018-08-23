@@ -13,6 +13,7 @@ import ProgressHUD
 class CollectionFavoritesViewController: UIViewController {
 
     var radioSetter = RadioSetter()
+    override var prefersStatusBarHidden: Bool {return DataManager.flag}
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -29,6 +30,41 @@ class CollectionFavoritesViewController: UIViewController {
         self.collectionView.addGestureRecognizer(lpgr)
         
         DataManager.changeColor(view: self.view)
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+            if DataManager.stationsFavorites.isEmpty {
+                let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+                let messageLabel = UILabel(frame: rect)
+                messageLabel.text = "favorites is empty..."
+                messageLabel.textColor = UIColor.black
+                messageLabel.numberOfLines = 0
+                messageLabel.textAlignment = .center
+                messageLabel.font = UIFont(name: "TrebuchetMS", size: 20)
+                messageLabel.sizeToFit()
+                
+                
+                collectionView.backgroundView = messageLabel
+                return 0
+            } else {
+                collectionView.backgroundView = nil
+                return 1
+            }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > 0 {
+            DataManager.flag = true
+            UIView.animate(withDuration: 0.25) {
+                self.setNeedsStatusBarAppearanceUpdate()
+            }
+            
+        } else if scrollView.contentOffset.y < -100 {
+            DataManager.flag = false
+            UIView.animate(withDuration: 0.25) {
+                self.setNeedsStatusBarAppearanceUpdate()
+            }
+        }
     }
     
     @objc func reload(notification: NSNotification){

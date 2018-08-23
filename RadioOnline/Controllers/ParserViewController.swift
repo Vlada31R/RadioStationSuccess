@@ -20,6 +20,7 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
     
     var arrayOfURLtoParse = [String]()
     var radioStationParse = [RadioStation]()
+    var flagIsParse = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +66,29 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
     //*******************************************************************************************************************************************
     //MARK: Table View Methods
     //*******************************************************************************************************************************************
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if radioStationParse.isEmpty && flagIsParse == true {
+            let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+            let messageLabel = UILabel(frame: rect)
+            messageLabel.text = "Radio station not found!"
+            messageLabel.textColor = UIColor.black
+            messageLabel.numberOfLines = 0
+            messageLabel.textAlignment = .center
+            messageLabel.font = UIFont(name: "TrebuchetMS", size: 20)
+            messageLabel.sizeToFit()
+            
+            
+            tableView.backgroundView = messageLabel
+            tableView.separatorStyle = .none
+            return 0
+        } else {
+            
+            tableView.backgroundView = nil
+            tableView.separatorStyle = .singleLineEtched
+            return 1
+        }
+        
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return radioStationParse.count
@@ -118,6 +142,7 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
         }
         UIApplication.shared.beginIgnoringInteractionEvents()
         ProgressHUD.show("Please wait...")
+        flagIsParse = true
         let count = Int(self.countTextField.text!)!
         let searchOld = self.creteriaTextField.text!
         
@@ -162,6 +187,12 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
                         }
                     }
             }
+            } else {
+                OperationQueue.main.addOperation() {
+                    self.tableView.reloadData()
+                    ProgressHUD.dismiss()
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                }
             }
 
         }
