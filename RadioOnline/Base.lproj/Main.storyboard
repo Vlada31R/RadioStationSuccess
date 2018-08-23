@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -948,29 +947,11 @@
                                     <segue destination="3p1-PD-JDQ" kind="presentation" id="6QB-k7-YfU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQv-mH-7oT">
-                                <rect key="frame" x="333" y="30" width="32" height="32"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" backgroundImage="facebook">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="facebookBtn:" destination="xFa-1g-xaV" eventType="touchUpInside" id="bUF-bE-4zx"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ims-nV-oRb">
-                                <rect key="frame" x="333" y="72" width="32" height="32"/>
-                                <state key="normal" backgroundImage="twitter"/>
-                                <connections>
-                                    <action selector="twitterBtn:" destination="xFa-1g-xaV" eventType="touchUpInside" id="VPd-tY-NmT"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="centerX" secondItem="q6z-z4-Qdv" secondAttribute="centerX" id="0S4-2G-MHx"/>
                             <constraint firstItem="GaJ-11-MVz" firstAttribute="trailing" secondItem="pLH-Jh-w2v" secondAttribute="trailing" constant="102" id="0n8-oJ-51S"/>
-                            <constraint firstItem="GaJ-11-MVz" firstAttribute="trailing" secondItem="ims-nV-oRb" secondAttribute="trailing" constant="10" id="1Mv-eO-0bB"/>
                             <constraint firstItem="4lE-Y3-nID" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="20" id="20F-Gg-iwJ"/>
                             <constraint firstItem="q6z-z4-Qdv" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="64" id="3cO-te-syQ"/>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="trailing" secondItem="Law-Tk-ENv" secondAttribute="trailing" id="4Kj-qY-mza"/>
@@ -978,7 +959,6 @@
                             <constraint firstItem="6gg-z9-TDz" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="12" id="AxT-mu-wYC"/>
                             <constraint firstItem="pLH-Jh-w2v" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="102" id="BR5-Ds-vFo"/>
                             <constraint firstItem="6gg-z9-TDz" firstAttribute="centerY" secondItem="PJP-51-0lL" secondAttribute="centerY" constant="26.5" id="Brr-7q-kcL"/>
-                            <constraint firstItem="ims-nV-oRb" firstAttribute="top" secondItem="fQv-mH-7oT" secondAttribute="bottom" constant="10" id="C1T-E8-yHJ"/>
                             <constraint firstItem="uBM-Yp-JX9" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="45" id="Dsd-bK-H53"/>
                             <constraint firstItem="6gg-z9-TDz" firstAttribute="centerX" secondItem="q6z-z4-Qdv" secondAttribute="centerX" id="Ez4-gi-BQI"/>
                             <constraint firstItem="GaJ-11-MVz" firstAttribute="bottom" secondItem="Law-Tk-ENv" secondAttribute="bottom" constant="63" id="GCr-7G-BRd"/>
@@ -986,11 +966,9 @@
                             <constraint firstItem="4lE-Y3-nID" firstAttribute="top" secondItem="Uh6-YN-yTS" secondAttribute="bottom" constant="20" id="K1a-BI-HFa"/>
                             <constraint firstItem="q6z-z4-Qdv" firstAttribute="top" secondItem="6gg-z9-TDz" secondAttribute="bottom" constant="7.5" id="Qqk-GW-tYN"/>
                             <constraint firstItem="Law-Tk-ENv" firstAttribute="leading" secondItem="6LS-Z9-yq5" secondAttribute="trailing" constant="66" id="SaA-Ws-gEn"/>
-                            <constraint firstItem="GaJ-11-MVz" firstAttribute="trailing" secondItem="fQv-mH-7oT" secondAttribute="trailing" constant="10" id="Vdj-Oh-aJQ"/>
                             <constraint firstItem="6LS-Z9-yq5" firstAttribute="bottom" secondItem="Law-Tk-ENv" secondAttribute="bottom" id="YjH-6j-aUf"/>
                             <constraint firstItem="pLH-Jh-w2v" firstAttribute="top" secondItem="uBM-Yp-JX9" secondAttribute="bottom" constant="11" id="bkc-yR-ihp"/>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="leading" secondItem="6LS-Z9-yq5" secondAttribute="leading" id="buN-vZ-Opb"/>
-                            <constraint firstItem="fQv-mH-7oT" firstAttribute="top" secondItem="GaJ-11-MVz" secondAttribute="top" constant="10" id="d4N-g2-VHd"/>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="top" secondItem="q6z-z4-Qdv" secondAttribute="bottom" constant="33" id="gqY-9e-WCG"/>
                             <constraint firstItem="Uh6-YN-yTS" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="10" id="lSR-pc-8dF"/>
                             <constraint firstItem="Law-Tk-ENv" firstAttribute="leading" secondItem="6LS-Z9-yq5" secondAttribute="trailing" constant="66" id="my6-Dm-qyj"/>
@@ -1082,13 +1060,11 @@
         <image name="all" width="25" height="25"/>
         <image name="back-2" width="30" height="30"/>
         <image name="collection" width="25" height="25"/>
-        <image name="facebook" width="32" height="32"/>
         <image name="list" width="25" height="25"/>
         <image name="pauseImageButton" width="100" height="100"/>
         <image name="saveButtonImag" width="256" height="256"/>
         <image name="settings" width="25" height="25"/>
         <image name="stopImageButton" width="100" height="100"/>
-        <image name="twitter" width="32" height="32"/>
         <image name="vol-max" width="16" height="14"/>
         <image name="vol-min" width="11" height="12"/>
     </resources>
