@@ -10,6 +10,8 @@ import UIKit
 
 class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
     
+    
+    var newStation: Bool = true
     var radioSetter = RadioSetter()
     var VC = BarViewController()
     
@@ -17,8 +19,10 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         VC.delegate = self
         radioSetter.setupRadio()
-        
+        radioSetter.barViewController = VC
         let newView = VC.view
+        
+        newView?.frame.size = CGSize(width: self.tabBar.frame.width, height: self.view.frame.height * 0.08)
         newView?.frame.origin.y = self.tabBar.frame.minY - (newView?.frame.height)!
         self.view.addSubview(newView!)
          }
@@ -41,18 +45,36 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "RadioPlayer", let radioPlayerVC = segue.destination as? RadioPlayerViewController else { return }
         
-        let newStation: Bool = true
     
         radioSetter.radioPlayerViewController = radioPlayerVC
-        radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
+        radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track)
     }
 
 }
 
 
 extension CustomTabBarController: BarViewControllerDelegate{
+    func didPressPlayingButton() {
+        radioSetter.radioPlayer?.player.togglePlaying()
+    }
+    
+    func didPressStopButton() {
+        radioSetter.radioPlayer?.player.stop()
+    }
+    
+    func didPressNextButton() {
+        
+    }
+    
+    func didPressPreviousButton() {
+        
+    }
+    
     func didTapped(sender: UITapGestureRecognizer) {
 
         performSegue(withIdentifier: "RadioPlayer", sender: self)
     }
+    
 }
+
+

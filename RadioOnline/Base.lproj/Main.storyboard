@@ -202,6 +202,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <searchBar contentMode="redraw" id="ptA-0g-yPT">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
             </objects>
             <point key="canvasLocation" x="-1855" y="475"/>
         </scene>
@@ -1105,8 +1110,8 @@
         <image name="vol-min" width="11" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rT4-4G-lwF"/>
+        <segue reference="Wy9-VZ-RdF"/>
         <segue reference="ILH-e6-uQu"/>
-        <segue reference="QtN-t8-Jue"/>
+        <segue reference="yjC-5d-kTP"/>
     </inferredMetricsTieBreakers>
 </document>

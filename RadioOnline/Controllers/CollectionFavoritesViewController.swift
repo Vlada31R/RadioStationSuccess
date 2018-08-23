@@ -96,8 +96,8 @@ class CollectionFavoritesViewController: UIViewController {
             newStation = false
         }
         
-        radioSetter.radioPlayerViewController = radioPlayerVC
-        radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
+        //radioSetter.radioPlayerViewController = radioPlayerVC
+//        radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
     }
 }
 

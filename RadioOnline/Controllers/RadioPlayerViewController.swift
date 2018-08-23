@@ -23,7 +23,7 @@ class RadioPlayerViewController: UIViewController {
     @IBOutlet weak var songLabel: UILabel!
     @IBOutlet weak var volumeParentView: UIView!
     
-    var newStation: Bool = true
+    //var newStation: Bool = true
     var mpVolumeSlider: UISlider?
     var playingStation: RadioStation?
     var playingTrack: Track?
@@ -53,8 +53,11 @@ class RadioPlayerViewController: UIViewController {
         
         // Setuping Command Center
         //setupRemoteCommandCenter()
-        
-        newStation ? stationDidChanged() : playerStateDidChange(radioPlayer.state)
+        playerStateDidChange(radioPlayer.state)
+        playbackStateDidChange(radioPlayer.playbackState)
+        updateTrackMetadata(with: playingTrack)
+        updateTrackArtwork(with: playingTrack)
+        //newStation ? stationDidChanged() : playerStateDidChange(radioPlayer.state)
         DataManager.changeColor(view: self.view)
         stationName.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
         artistLabel.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
@@ -101,10 +104,9 @@ class RadioPlayerViewController: UIViewController {
     //*****************************************************************
     
     // Load radio information
-    func loadRadio(station: RadioStation?, track: Track?, isNew: Bool = true){
+    func loadRadio(station: RadioStation?, track: Track?){
         playingStation = station
         playingTrack = track
-        newStation = isNew
     }
     
     //*****************************************************************
@@ -231,13 +233,4 @@ class RadioPlayerViewController: UIViewController {
     // End Of Class
 }
 
-extension UIViewController{
-    
-    func addMusicView(parentView: UIView) -> UIView{
-        let rect = CGRect(x: 0, y: parentView.frame.maxY * 0.8, width: parentView.frame.maxX, height: parentView.frame.maxY * 0.2)
-        let newView = UIView(frame: rect)
-        newView.backgroundColor = UIColor.gray
- 
-        return newView
-    }
-}
+

@@ -8,8 +8,8 @@ import MediaPlayer
 class RadioSetter{
     
     var radioPlayer: RadioPlayer?
+    weak var barViewController: BarViewController?
     weak var radioPlayerViewController: RadioPlayerViewController?
-    
     func setupRadio(){
         // Create Audio Session
         do {
@@ -96,21 +96,30 @@ extension RadioSetter: RadioPlayerDelegate {
     
     func playerStateDidChange(_ playerState: FRadioPlayerState) {
         radioPlayerViewController?.playerStateDidChange(playerState)
+
+        barViewController?.playerStateDidChange(playerState)
     }
     
     func playbackStateDidChange(_ playbackState: FRadioPlaybackState) {
-        
         radioPlayerViewController?.playbackStateDidChange(playbackState)
+
+        barViewController?.playbackStateDidChange(playbackState)
     }
     
     func trackDidUpdate(_ track: Track?) {
         updateLockScreen(with: track)
         radioPlayerViewController?.updateTrackMetadata(with: track)
+
+        barViewController?.updateTrackMetadata(with: track)
+
     }
     
     func trackArtworkDidUpdate(_ track: Track?) {
         updateLockScreen(with: track)
         radioPlayerViewController?.updateTrackArtwork(with: track)
+
+        barViewController?.updateTrackArtwork(with: track)
+
     }
 }
 

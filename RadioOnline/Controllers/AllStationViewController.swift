@@ -361,9 +361,22 @@ extension AllStationViewController{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
-        if let tabBar = self.tabBarController as? CustomTabBarController{
+        
+        var newStation: Bool
+        
+        guard let tabBar = self.tabBarController as? CustomTabBarController else{ return }
+        if tabBar.radioSetter.radioPlayer?.station != DataManager.stations[indexPath.row]{
             tabBar.radioSetter.set(radioStation: DataManager.stations[indexPath.row])
+            newStation = true
+        }else{
+            newStation = false
         }
+        tabBar.VC.loadRadio(station: tabBar.radioSetter.radioPlayer?.station, track: tabBar.radioSetter.radioPlayer?.track, isNew: newStation)
+        
+        
+//            if tabBar.radioSetter.radioPlayer?.station != DataManager.stations[indexPath.row]{
+//            tabBar.radioSetter.set(radioStation: DataManager.stations[indexPath.row])
+//        }
         
 //        performSegue(withIdentifier: "RadioPlayer", sender: indexPath)
     }
@@ -371,10 +384,5 @@ extension AllStationViewController{
     
     
 }
-
-
-
-
-
 
 
