@@ -96,8 +96,8 @@ class CollectionFavoritesViewController: UIViewController {
             newStation = false
         }
         
-        radioSetter.radioPlayerViewController = radioPlayerVC
-        radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
+        //radioSetter.radioPlayerViewController = radioPlayerVC
+//        radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
     }
 }
 
@@ -106,8 +106,12 @@ extension Notification.Name {
     static let reloadFavourites = Notification.Name("reload Favourites")
 }
 
-extension CollectionFavoritesViewController: UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate
+extension CollectionFavoritesViewController: UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, UICollectionViewDelegateFlowLayout
 {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width/2-5, height: 145)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
         return DataManager.stationsFavorites.count
