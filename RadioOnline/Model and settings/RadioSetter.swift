@@ -30,6 +30,8 @@ class RadioSetter{
         radioPlayer?.resetRadioPlayer()
         
     }
+    
+    
     //*****************************************************************
     // MARK: - Remote Command Center Controls
     //*****************************************************************
@@ -97,6 +99,7 @@ extension RadioSetter: RadioPlayerDelegate {
     }
     
     func playbackStateDidChange(_ playbackState: FRadioPlaybackState) {
+        
         radioPlayerViewController?.playbackStateDidChange(playbackState)
     }
     

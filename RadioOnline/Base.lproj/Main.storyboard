@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -60,6 +59,7 @@
                         <segue destination="Quc-ae-qil" kind="relationship" relationship="viewControllers" id="9cn-Fm-hnu"/>
                         <segue destination="Kz4-68-Ear" kind="relationship" relationship="viewControllers" id="P7d-nb-LAI"/>
                         <segue destination="oEC-mk-O5L" kind="relationship" relationship="viewControllers" id="Hyf-KN-epq"/>
+                        <segue destination="xFa-1g-xaV" kind="presentation" identifier="RadioPlayer" id="rT4-4G-lwF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GeI-AJ-WS9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -214,19 +214,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4M-9p-vdO">
-                                <rect key="frame" x="10" y="74" width="100" height="21"/>
+                                <rect key="frame" x="30" y="114" width="100" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRd-q0-wYO">
-                                <rect key="frame" x="10" y="135" width="100" height="21"/>
+                                <rect key="frame" x="30" y="175" width="100" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL stream" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhk-g1-2kQ">
-                                <rect key="frame" x="10" y="196" width="100" height="21"/>
+                                <rect key="frame" x="30" y="236" width="100" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="rVj-D3-Jb1"/>
                                 </constraints>
@@ -235,31 +235,31 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsY-Za-ySs">
-                                <rect key="frame" x="10" y="257" width="100" height="21"/>
+                                <rect key="frame" x="30" y="297" width="100" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DkV-4s-n6Q">
-                                <rect key="frame" x="130" y="74" width="235" height="30"/>
+                                <rect key="frame" x="170" y="114" width="195" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GsK-39-wlr">
-                                <rect key="frame" x="130" y="129" width="235" height="30"/>
+                                <rect key="frame" x="170" y="169" width="195" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="URL new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yrd-fG-SN6">
-                                <rect key="frame" x="130" y="189" width="235" height="30"/>
+                                <rect key="frame" x="170" y="229" width="195" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Image for new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IuV-BX-NyV">
-                                <rect key="frame" x="130" y="249" width="235" height="30"/>
+                                <rect key="frame" x="170" y="289" width="195" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -826,10 +826,25 @@
             </objects>
             <point key="canvasLocation" x="-1162.4000000000001" y="-132.68365817091455"/>
         </scene>
+        <!--Modal View Controller-->
+        <scene sceneID="2Dh-BB-669">
+            <objects>
+                <viewController storyboardIdentifier="ModalViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5L1-Ub-Eab" customClass="ModalViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jpm-5f-ujH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="AVd-uF-hot"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xmw-WN-Vcq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="735" y="304"/>
+        </scene>
         <!--Radio Player View Controller-->
         <scene sceneID="MAM-E4-IQx">
             <objects>
-                <viewController id="xFa-1g-xaV" customClass="RadioPlayerViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RadioPlayerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xFa-1g-xaV" customClass="RadioPlayerViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PJP-51-0lL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1090,9 +1105,7 @@
         <image name="vol-min" width="11" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0Ci-hP-3Rf"/>
-        <segue reference="c7W-ZD-BJ5"/>
-        <segue reference="5Fb-Xg-Ogk"/>
+        <segue reference="rT4-4G-lwF"/>
         <segue reference="ILH-e6-uQu"/>
         <segue reference="QtN-t8-Jue"/>
     </inferredMetricsTieBreakers>

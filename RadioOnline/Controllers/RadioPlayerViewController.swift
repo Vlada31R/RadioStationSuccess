@@ -25,8 +25,8 @@ class RadioPlayerViewController: UIViewController {
     
     var newStation: Bool = true
     var mpVolumeSlider: UISlider?
-    var playingStation: RadioStation!
-    var playingTrack: Track!
+    var playingStation: RadioStation?
+    var playingTrack: Track?
     
     //Init radio player
     let radioPlayer = FRadioPlayer.shared
@@ -173,10 +173,10 @@ class RadioPlayerViewController: UIViewController {
         guard let track = track else { return }
         
         // Update track struct
-        playingTrack.artworkImage = track.artworkImage
-        playingTrack.artworkLoaded = track.artworkLoaded
+        playingTrack?.artworkImage = track.artworkImage
+        playingTrack?.artworkLoaded = track.artworkLoaded
         
-        albumImage.image = playingTrack.artworkImage
+        albumImage.image = playingTrack?.artworkImage
         
         // Force app to update display
         view.setNeedsDisplay()
@@ -188,8 +188,8 @@ class RadioPlayerViewController: UIViewController {
     
     // Radio Station Did Changed
     func stationDidChanged(){
-        radioPlayer.radioURL = URL(string: playingStation.streamURL)
-        title = playingStation.name
+        radioPlayer.radioURL = URL(string: (playingStation?.streamURL)!)
+        title = playingStation?.name
     }
     func saveTrack(track: Track?){
         savedTrackArray.append(track!)

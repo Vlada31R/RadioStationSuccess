@@ -12,6 +12,9 @@
 		3F2E1DFF212ABEBB00D06BEB /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2E1DFE212ABEBB00D06BEB /* CustomTabBarController.swift */; };
 		3F425090212BFA5100B5EB0D /* CollectionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F42508F212BFA5000B5EB0D /* CollectionTabBarController.swift */; };
 		3F4AE1BD21247C26003120ED /* CollectionFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4AE1BC21247C26003120ED /* CollectionFavoritesViewController.swift */; };
+		3F9DCBB7212D994F00CB2312 /* BarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9DCBB5212D994F00CB2312 /* BarViewController.swift */; };
+		3F9DCBB8212D994F00CB2312 /* BarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F9DCBB6212D994F00CB2312 /* BarViewController.xib */; };
+		3F9DCBBA212D9A8800CB2312 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9DCBB9212D9A8700CB2312 /* ModalViewController.swift */; };
 		3FA1B408212D506400BFB18E /* ParserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA1B407212D506400BFB18E /* ParserViewController.swift */; };
 		3FA1B40E212D742900BFB18E /* SaveSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA1B40D212D742900BFB18E /* SaveSongViewController.swift */; };
 		3FDE80492126C6E600A37FB8 /* RadioSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDE80472126C6E600A37FB8 /* RadioSetter.swift */; };
@@ -23,8 +26,6 @@
 		3FDE80592126C7DB00A37FB8 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDE80552126C7DB00A37FB8 /* ImageLoader.swift */; };
 		3FDE805B2126C80A00A37FB8 /* RadioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDE805A2126C80A00A37FB8 /* RadioPlayer.swift */; };
 		3FDE805F2127081700A37FB8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FDE805E2127081700A37FB8 /* Info.plist */; };
-		3FF014C6212B07B0008776A5 /* PlayingBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FF014C5212B07B0008776A5 /* PlayingBar.xib */; };
-		3FF014CC212B08CA008776A5 /* PlayingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF014CB212B08CA008776A5 /* PlayingBar.swift */; };
 		3FF9454521258C1E009C9587 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9454421258C1E009C9587 /* SettingsViewController.swift */; };
 		3FFDF6DC2122B4BD00E69812 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF6DB2122B4BD00E69812 /* AppDelegate.swift */; };
 		3FFDF6E12122B4BD00E69812 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDF6DF2122B4BD00E69812 /* Main.storyboard */; };
@@ -51,6 +52,9 @@
 		3F2E1DFE212ABEBB00D06BEB /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		3F42508F212BFA5000B5EB0D /* CollectionTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionTabBarController.swift; sourceTree = "<group>"; };
 		3F4AE1BC21247C26003120ED /* CollectionFavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionFavoritesViewController.swift; sourceTree = "<group>"; };
+		3F9DCBB5212D994F00CB2312 /* BarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarViewController.swift; sourceTree = "<group>"; };
+		3F9DCBB6212D994F00CB2312 /* BarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarViewController.xib; sourceTree = "<group>"; };
+		3F9DCBB9212D9A8700CB2312 /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		3FA1B407212D506400BFB18E /* ParserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserViewController.swift; sourceTree = "<group>"; };
 		3FA1B40D212D742900BFB18E /* SaveSongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveSongViewController.swift; sourceTree = "<group>"; };
 		3FDE80472126C6E600A37FB8 /* RadioSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSetter.swift; sourceTree = "<group>"; };
@@ -62,8 +66,6 @@
 		3FDE80552126C7DB00A37FB8 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		3FDE805A2126C80A00A37FB8 /* RadioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioPlayer.swift; sourceTree = "<group>"; };
 		3FDE805E2127081700A37FB8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
-		3FF014C5212B07B0008776A5 /* PlayingBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayingBar.xib; sourceTree = "<group>"; };
-		3FF014CB212B08CA008776A5 /* PlayingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingBar.swift; sourceTree = "<group>"; };
 		3FF9454421258C1E009C9587 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3FFDF6D82122B4BD00E69812 /* RadioOnline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioOnline.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FFDF6DB2122B4BD00E69812 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		3F3DBB19212B10D10019BBBF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3F9DCBB9212D9A8700CB2312 /* ModalViewController.swift */,
 				3FA1B40D212D742900BFB18E /* SaveSongViewController.swift */,
 				3FA1B407212D506400BFB18E /* ParserViewController.swift */,
 				3F42508F212BFA5000B5EB0D /* CollectionTabBarController.swift */,
@@ -132,8 +135,8 @@
 				3FFDF72A2124300B00E69812 /* CollectionViewCell.swift */,
 				3FFDF7252124300800E69812 /* CollectionViewCellXib.swift */,
 				3FFDF7292124300B00E69812 /* CollectionViewCellXib.xib */,
-				3FF014CB212B08CA008776A5 /* PlayingBar.swift */,
-				3FF014C5212B07B0008776A5 /* PlayingBar.xib */,
+				3F9DCBB5212D994F00CB2312 /* BarViewController.swift */,
+				3F9DCBB6212D994F00CB2312 /* BarViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -270,8 +273,8 @@
 				3FFDF6E62122B4BE00E69812 /* LaunchScreen.storyboard in Resources */,
 				3FFDF6E32122B4BE00E69812 /* Assets.xcassets in Resources */,
 				3FFDF7322124300C00E69812 /* CollectionViewCellXib.xib in Resources */,
-				3FF014C6212B07B0008776A5 /* PlayingBar.xib in Resources */,
 				3FFDF6E12122B4BD00E69812 /* Main.storyboard in Resources */,
+				3F9DCBB8212D994F00CB2312 /* BarViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,16 +341,17 @@
 				3FA1B40E212D742900BFB18E /* SaveSongViewController.swift in Sources */,
 				3FFDF7222124064C00E69812 /* AllStationViewController.swift in Sources */,
 				3FFDF72E2124300C00E69812 /* CollectionViewCellXib.swift in Sources */,
+				3F9DCBB7212D994F00CB2312 /* BarViewController.swift in Sources */,
 				3F2E1DFF212ABEBB00D06BEB /* CustomTabBarController.swift in Sources */,
 				3FFDF71E21231F5B00E69812 /* CustomCell.swift in Sources */,
 				3FFDF7202123272300E69812 /* FavoritesViewController.swift in Sources */,
 				3FFDF6DC2122B4BD00E69812 /* AppDelegate.swift in Sources */,
 				3FF9454521258C1E009C9587 /* SettingsViewController.swift in Sources */,
 				3FDE80502126C78800A37FB8 /* Track.swift in Sources */,
+				3F9DCBBA212D9A8800CB2312 /* ModalViewController.swift in Sources */,
 				3FDE80592126C7DB00A37FB8 /* ImageLoader.swift in Sources */,
 				3FFDF72C2124300C00E69812 /* Settings.swift in Sources */,
 				3FDE80572126C7DB00A37FB8 /* FRadioPlayer.swift in Sources */,
-				3FF014CC212B08CA008776A5 /* PlayingBar.swift in Sources */,
 				3FDE80562126C7DB00A37FB8 /* Reachability.swift in Sources */,
 				3FDE804A2126C6E600A37FB8 /* RadioPlayerViewController.swift in Sources */,
 				3F425090212BFA5100B5EB0D /* CollectionTabBarController.swift in Sources */,
@@ -497,14 +501,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9B6M85MQ7J;
+				DEVELOPMENT_TEAM = BV5CT87MG3;
 				INFOPLIST_FILE = RadioOnline/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SergP.RadioOnline;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MaxTi.RadioOnline;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -517,14 +521,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9B6M85MQ7J;
+				DEVELOPMENT_TEAM = BV5CT87MG3;
 				INFOPLIST_FILE = RadioOnline/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SergP.RadioOnline;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MaxTi.RadioOnline;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

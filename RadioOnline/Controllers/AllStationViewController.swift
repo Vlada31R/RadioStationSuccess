@@ -22,7 +22,6 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     
     @IBOutlet var tableView: UITableView!
     
-    var radioSetter = RadioSetter()
     
     //*****************************************************************
     // MARK: - viewDidLoad Method
@@ -32,7 +31,6 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         super.viewDidLoad()
         let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized(gestureRecognizer:)))
         self.tableView.addGestureRecognizer(longpress)
-        radioSetter.setupRadio()
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
         DataManager.changeColor(view: self.view)
@@ -44,7 +42,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         DataManager.changeColor(view: self.view)
         tableView.reloadData()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -275,16 +273,14 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         let newStation: Bool
         
         if let indexPath = (sender as? IndexPath) {
-            // User clicked on row, load/reset station
-            radioSetter.set(radioStation: DataManager.stations[indexPath.row])
+            //radioSetter.set(radioStation: DataManager.stations[indexPath.row])
             newStation = true
         } else {
-            // User clicked on Now Playing button
             newStation = false
         }
         
-        radioSetter.radioPlayerViewController = radioPlayerVC
-        radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
+//        radioSetter.radioPlayerViewController = radioPlayerVC
+//        radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
     }
     // End of Class
 }
@@ -365,7 +361,11 @@ extension AllStationViewController{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "RadioPlayer", sender: indexPath)
+        if let tabBar = self.tabBarController as? CustomTabBarController{
+            tabBar.radioSetter.set(radioStation: DataManager.stations[indexPath.row])
+        }
+        
+//        performSegue(withIdentifier: "RadioPlayer", sender: indexPath)
     }
     
     

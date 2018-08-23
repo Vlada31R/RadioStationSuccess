@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BarViewController" customModule="RadioOnline" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="LNR-wT-HZk" id="xlN-yM-rJH"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="LNR-wT-HZk">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uxa-z1-aRt">
+                    <rect key="frame" x="2.5" y="2.5" width="55" height="55"/>
+                    <color key="backgroundColor" red="0.94229203459999999" green="0.069714449349999999" blue="0.94318187239999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXn-6u-I1w">
+                    <rect key="frame" x="71" y="34" width="172" height="21"/>
+                    <color key="backgroundColor" red="0.91829532380000001" green="0.88820344210000002" blue="0.54220515489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfY-Wd-udT">
+                    <rect key="frame" x="71" y="6" width="172" height="21"/>
+                    <color key="backgroundColor" red="0.93144387009999996" green="0.25651746990000002" blue="0.041424073280000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="StQ-rf-dqL">
+                    <rect key="frame" x="257" y="15" width="30" height="30"/>
+                    <color key="backgroundColor" red="0.37803041929999998" green="0.98276633020000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Button"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qh-eG-oof">
+                    <rect key="frame" x="316" y="15" width="30" height="30"/>
+                    <color key="backgroundColor" red="0.1102030054" green="0.126299262" blue="0.03258001059" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Button"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.36057245729999998" green="0.81690591570000004" blue="0.95220190289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="blO-s1-snX" firstAttribute="trailing" secondItem="StQ-rf-dqL" secondAttribute="trailing" constant="88" id="8O2-O4-bjX"/>
+                <constraint firstItem="blO-s1-snX" firstAttribute="trailing" secondItem="LfY-Wd-udT" secondAttribute="trailing" constant="132" id="8xc-8u-eA4"/>
+                <constraint firstItem="blO-s1-snX" firstAttribute="bottom" secondItem="3qh-eG-oof" secondAttribute="bottom" constant="15" id="9Ql-Sb-yOb"/>
+                <constraint firstItem="Uxa-z1-aRt" firstAttribute="leading" secondItem="blO-s1-snX" secondAttribute="leading" constant="2.5" id="DJe-Ub-84Y"/>
+                <constraint firstItem="StQ-rf-dqL" firstAttribute="top" secondItem="blO-s1-snX" secondAttribute="top" constant="15" id="DhJ-ox-x4K"/>
+                <constraint firstItem="StQ-rf-dqL" firstAttribute="leading" secondItem="blO-s1-snX" secondAttribute="leading" constant="257" id="G94-uZ-Ppt"/>
+                <constraint firstItem="blO-s1-snX" firstAttribute="trailing" secondItem="JXn-6u-I1w" secondAttribute="trailing" constant="132" id="H0F-ag-VF8"/>
+                <constraint firstItem="blO-s1-snX" firstAttribute="bottom" secondItem="StQ-rf-dqL" secondAttribute="bottom" constant="15" id="O1f-gg-KHJ"/>
+                <constraint firstItem="LfY-Wd-udT" firstAttribute="top" secondItem="blO-s1-snX" secondAttribute="top" constant="6" id="RWQ-8f-TD3"/>
+                <constraint firstItem="Uxa-z1-aRt" firstAttribute="top" secondItem="blO-s1-snX" secondAttribute="top" constant="2.5" id="RgB-xc-bcv"/>
+                <constraint firstItem="JXn-6u-I1w" firstAttribute="top" secondItem="blO-s1-snX" secondAttribute="top" constant="34" id="aP7-YN-aWN"/>
+                <constraint firstItem="3qh-eG-oof" firstAttribute="leading" secondItem="blO-s1-snX" secondAttribute="leading" constant="316" id="avK-cJ-uvM"/>
+                <constraint firstItem="blO-s1-snX" firstAttribute="bottom" secondItem="LfY-Wd-udT" secondAttribute="bottom" constant="33" id="ayr-Q0-SPf"/>
+                <constraint firstItem="JXn-6u-I1w" firstAttribute="leading" secondItem="blO-s1-snX" secondAttribute="leading" constant="71" id="eEl-U6-9Dj"/>
+                <constraint firstItem="blO-s1-snX" firstAttribute="bottom" secondItem="Uxa-z1-aRt" secondAttribute="bottom" constant="2.5" id="lJD-tw-7la"/>
+                <constraint firstItem="LfY-Wd-udT" firstAttribute="leading" secondItem="blO-s1-snX" secondAttribute="leading" constant="71" id="noV-4s-30d"/>
+                <constraint firstItem="blO-s1-snX" firstAttribute="trailing" secondItem="3qh-eG-oof" secondAttribute="trailing" constant="29" id="or2-ON-di0"/>
+                <constraint firstItem="blO-s1-snX" firstAttribute="trailing" secondItem="Uxa-z1-aRt" secondAttribute="trailing" constant="317.5" id="osB-ga-jDr"/>
+                <constraint firstItem="3qh-eG-oof" firstAttribute="top" secondItem="blO-s1-snX" secondAttribute="top" constant="15" id="rVk-PK-cw8"/>
+                <constraint firstItem="blO-s1-snX" firstAttribute="bottom" secondItem="JXn-6u-I1w" secondAttribute="bottom" constant="5" id="ueB-QY-fyO"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="blO-s1-snX"/>
+        </view>
+    </objects>
+</document>

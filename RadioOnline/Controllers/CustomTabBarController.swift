@@ -9,14 +9,19 @@
 import UIKit
 
 class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
-
-    var playingBar: PlayingBar!
+    
+    var radioSetter = RadioSetter()
+    var VC = BarViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        playingBar = PlayingBar.init(frame: CGRect(x: 0, y: self.tabBar.frame.minY - 50, width: self.view.frame.width, height: 50))
-        self.view.addSubview(playingBar)
-    }
+        VC.delegate = self
+        radioSetter.setupRadio()
+        
+        let newView = VC.view
+        newView?.frame.origin.y = self.tabBar.frame.minY - (newView?.frame.height)!
+        self.view.addSubview(newView!)
+         }
 
     
     //this method check tap on a tab bar controller
@@ -33,5 +38,21 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         super.didReceiveMemoryWarning()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "RadioPlayer", let radioPlayerVC = segue.destination as? RadioPlayerViewController else { return }
+        
+        let newStation: Bool = true
+    
+        radioSetter.radioPlayerViewController = radioPlayerVC
+        radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
+    }
 
+}
+
+
+extension CustomTabBarController: BarViewControllerDelegate{
+    func didTapped(sender: UITapGestureRecognizer) {
+
+        performSegue(withIdentifier: "RadioPlayer", sender: self)
+    }
 }
