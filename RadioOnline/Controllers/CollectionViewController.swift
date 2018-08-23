@@ -140,7 +140,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate
+extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "RadioPlayer", sender: indexPath)
@@ -152,6 +152,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! CollectionViewCell
         let station = DataManager.stations[indexPath.row]
         cell.configureStationCell(station: station, view: self.view)
+        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -162,6 +163,10 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
             return headerView
         }
         return UICollectionReusableView()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width/2-5, height: 145)
     }
     
     

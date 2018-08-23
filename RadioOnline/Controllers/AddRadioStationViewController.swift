@@ -23,6 +23,7 @@ class AddRadioStationViewController: UIViewController, UIImagePickerControllerDe
     @IBOutlet weak var urlStreamLabel: UILabel!
     @IBOutlet weak var urlImgLabel: UILabel!
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var orLabel: UILabel!
     
     //get image from gallery
     var libraryURL = ""
@@ -106,6 +107,9 @@ class AddRadioStationViewController: UIViewController, UIImagePickerControllerDe
         URLImageTextField.textColor = ContrastColorOf(URLImageTextField.backgroundColor!, returnFlat: true)
         
         button.tintColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
+        
+        orLabel.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
+        
     }
 
     override func didReceiveMemoryWarning() {
