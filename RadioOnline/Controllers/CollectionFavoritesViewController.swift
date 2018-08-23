@@ -64,6 +64,7 @@ class CollectionFavoritesViewController: UIViewController {
                 ProgressHUD.showError("Radio station removed from favorites!")
                 DataManager.reloadFavorites(index: index[1])
                 self.collectionView.reloadData()
+                DataManager.save()
             }
             
             
@@ -77,11 +78,6 @@ class CollectionFavoritesViewController: UIViewController {
         }
     }
     
-    @IBAction func SetNewVc(_ sender: Any) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "AllVC") as! UITabBarController
-        UIApplication.shared.keyWindow?.rootViewController = viewController
-    }
     //MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "RadioPlayer", let radioPlayerVC = segue.destination as? RadioPlayerViewController else { return }
@@ -130,7 +126,7 @@ extension CollectionFavoritesViewController: UICollectionViewDataSource, UIColle
             collectionView.reloadItems(at: [indexPath])
         }
         collectionView.deselectItem(at: indexPath, animated: true)
-        performSegue(withIdentifier: "RadioPlayer", sender: self)
+        performSegue(withIdentifier: "RadioPlayer", sender: indexPath)
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
@@ -148,15 +144,28 @@ extension CollectionFavoritesViewController: UICollectionViewDataSource, UIColle
         }
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if(searchText.isEmpty){
-            if searchBar.text?.count == 0
-            {
-                DataManager.load()
-                self.collectionView?.reloadData()
-                DispatchQueue.main.async {
-                    searchBar.resignFirstResponder()
-                }
+        if searchBar.text?.count == 0
+        {
+            DataManager.loadFavorites()
+            self.collectionView?.reloadData()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
             }
+        }
+        else
+        {
+            searchBar.becomeFirstResponder()
+            DataManager.loadFavorites()
+            DataManager.stationsFavorites = DataManager.stationsFavorites.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
+            self.collectionView?.reloadData()
+            
+        }
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        DataManager.loadFavorites()
+        self.collectionView?.reloadData()
+        DispatchQueue.main.async {
+            searchBar.resignFirstResponder()
         }
     }
 }

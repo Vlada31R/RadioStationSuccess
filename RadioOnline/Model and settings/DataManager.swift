@@ -203,6 +203,7 @@ struct DataManager {
         let newStation = RadioStation(name: name, streamURL: urlStream, imageURL: urlImage, desc: desc, longDesc: "", favorites: false, new: false)
         stations.append(newStation)
         save()
+
     }
     
     static func readImg(name: String) -> UIImage? {

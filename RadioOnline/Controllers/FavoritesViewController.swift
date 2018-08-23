@@ -16,11 +16,6 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var favoritesTableView: UITableView!
 
-    @IBAction func SetNewVc(_ sender: Any) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "TableVC") as! UITabBarController
-        UIApplication.shared.keyWindow?.rootViewController = viewController
-    }
 
     
     override func viewDidLoad() {
@@ -124,6 +119,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
                 DataManager.stationsFavorites[indexPath.row].favorites = false
                 DataManager.reloadFavorites(index: indexPath.row)
                 self.favoritesTableView.reloadData()
+                DataManager.save()
             } else {
                 print("error deleting radiostation")
                 
@@ -163,6 +159,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             DataManager.reloadFavorites(index: indexPath.row)
             DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
             //favoritesTableView.reloadData()
+            DataManager.save()
             return true
         } else {
             print("error deleting radiostation")
@@ -195,6 +192,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
 
 extension Notification.Name {
     static let reload = Notification.Name("reload")
+    static let clear = Notification.Name("clear")
     static let reloadFavoritesTableView = Notification.Name("reload Table View")
 }
 

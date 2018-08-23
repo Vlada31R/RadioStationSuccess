@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2CA5B4900F48E05AA753F41A /* Pods_RadioOnline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30EAF89276417A8610C608B9 /* Pods_RadioOnline.framework */; };
+		155F2456F6F1F551A28DA8C9 /* Pods_RadioOnline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B9E071C20900F68315913FF /* Pods_RadioOnline.framework */; };
 		3F2E1DFD212AA23000D06BEB /* AddRadioStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2E1DFC212AA23000D06BEB /* AddRadioStationViewController.swift */; };
 		3F2E1DFF212ABEBB00D06BEB /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2E1DFE212ABEBB00D06BEB /* CustomTabBarController.swift */; };
 		3F425090212BFA5100B5EB0D /* CollectionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F42508F212BFA5000B5EB0D /* CollectionTabBarController.swift */; };
@@ -46,7 +46,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		30EAF89276417A8610C608B9 /* Pods_RadioOnline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RadioOnline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33045C6372B62B8AFB0A6679 /* Pods-RadioOnline.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RadioOnline.release.xcconfig"; path = "Pods/Target Support Files/Pods-RadioOnline/Pods-RadioOnline.release.xcconfig"; sourceTree = "<group>"; };
 		3F2E1DFC212AA23000D06BEB /* AddRadioStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRadioStationViewController.swift; sourceTree = "<group>"; };
 		3F2E1DFE212ABEBB00D06BEB /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -84,6 +83,7 @@
 		3FFDF7282124300A00E69812 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3FFDF7292124300B00E69812 /* CollectionViewCellXib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCellXib.xib; sourceTree = "<group>"; };
 		3FFDF72A2124300B00E69812 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		6B9E071C20900F68315913FF /* Pods_RadioOnline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RadioOnline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85CE0378CAF0F4DBDB6518F9 /* Pods-RadioOnline.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RadioOnline.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RadioOnline/Pods-RadioOnline.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CA5B4900F48E05AA753F41A /* Pods_RadioOnline.framework in Frameworks */,
+				155F2456F6F1F551A28DA8C9 /* Pods_RadioOnline.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +102,7 @@
 		334EC28788AE7E51D73B70E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				30EAF89276417A8610C608B9 /* Pods_RadioOnline.framework */,
+				6B9E071C20900F68315913FF /* Pods_RadioOnline.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -501,14 +501,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BV5CT87MG3;
+				DEVELOPMENT_TEAM = 3T7H82P2KH;
 				INFOPLIST_FILE = RadioOnline/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.MaxTi.RadioOnline;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vlada.RadioOnline;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -521,14 +521,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BV5CT87MG3;
+				DEVELOPMENT_TEAM = 3T7H82P2KH;
 				INFOPLIST_FILE = RadioOnline/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.MaxTi.RadioOnline;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vlada.RadioOnline;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

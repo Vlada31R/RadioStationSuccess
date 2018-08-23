@@ -13,11 +13,13 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
     var nowPlayingSongBar: UIView!
     var radioSetter = RadioSetter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         radioSetter.setupRadio()
         
@@ -32,6 +34,7 @@ class ViewController: UIViewController {
         
         DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
     }
+    
     
     @objc func reload(notification: NSNotification){
         DataManager.changeColor(view: self.view)
@@ -169,26 +172,30 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         return CGSize(width: collectionView.frame.width/2-5, height: 145)
     }
     
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if(!(searchBar.text?.isEmpty)!){
-            DataManager.stations = DataManager.stations.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
-            self.collectionView?.reloadData()
-        }
-    }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if(searchText.isEmpty){
-            if searchBar.text?.count == 0
-            {
-                DataManager.load()
-                self.collectionView?.reloadData()
-                DispatchQueue.main.async {
-                    searchBar.resignFirstResponder()
-                }
+        if searchBar.text?.count == 0
+        {
+            DataManager.load()
+            self.collectionView?.reloadData()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
             }
         }
+        else
+        {
+            searchBar.becomeFirstResponder()
+            DataManager.load()
+            DataManager.stations = DataManager.stations.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
+            self.collectionView?.reloadData()
+            
+        }
     }
-    
-    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        DataManager.load()
+        self.collectionView?.reloadData()
+        DispatchQueue.main.async {
+            searchBar.resignFirstResponder()
+        }
+    }
 }
 

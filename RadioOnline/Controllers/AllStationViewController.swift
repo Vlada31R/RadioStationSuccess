@@ -23,12 +23,16 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     @IBOutlet var tableView: UITableView!
     
 
+
     @IBOutlet weak var search: UISearchBar!
     
     
     var flag = false
     override var prefersStatusBarHidden: Bool {return flag}
     
+
+
+    var radioSetter = RadioSetter()
 
     
     //*****************************************************************
@@ -43,6 +47,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
         DataManager.changeColor(view: self.view)
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(clearSearchBar(notification:)), name: .clear, object: nil)
         DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
     }
 
@@ -55,8 +60,12 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         super.didReceiveMemoryWarning()
     }
     
-    func clearSearchBar(){
-        clearSearchBar()
+
+    
+    @objc func clearSearchBar(notification: NSNotification) {
+        search.text = ""
+        DataManager.load()
+        tableView.reloadData()
     }
     
     //*****************************************************************
@@ -363,46 +372,42 @@ extension UIImageView {
             }
         }).resume()
     }
-    
 }
-
 //*******************************************************************************************************************************************
 //MARK: extension to search bar
 //*******************************************************************************************************************************************
 
 extension AllStationViewController: UISearchBarDelegate{
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.endEditing(true)
-//        if(!(searchBar.text?.isEmpty)!){
-//            DataManager.stations = DataManager.stations.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
-//            self.tableView?.reloadData()
-//        }
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if(!(searchBar.text?.isEmpty)!){
-            DataManager.load()
-            DataManager.stations = DataManager.stations.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
-            self.tableView?.reloadData()
+        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            searchBar.endEditing(true)
+            //        if(!(searchBar.text?.isEmpty)!){
+            //            DataManager.stations = DataManager.stations.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
+            //            self.tableView?.reloadData()
+            //        }
         }
         
-        if(searchText.isEmpty){
-
-            if searchBar.text?.count == 0
-            {
+        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            if(!(searchBar.text?.isEmpty)!){
                 DataManager.load()
+                DataManager.stations = DataManager.stations.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
                 self.tableView?.reloadData()
-                DispatchQueue.main.async {
-                    searchBar.resignFirstResponder()
+            }
+            
+            if(searchText.isEmpty){
+                
+                if searchBar.text?.count == 0
+                {
+                    DataManager.load()
+                    self.tableView?.reloadData()
+                    DispatchQueue.main.async {
+                        searchBar.resignFirstResponder()
+                    }
                 }
             }
         }
-    }
 }
 
 extension AllStationViewController{
-    
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -424,8 +429,6 @@ extension AllStationViewController{
         
 //        performSegue(withIdentifier: "RadioPlayer", sender: indexPath)
     }
-    
-    
     
 }
 

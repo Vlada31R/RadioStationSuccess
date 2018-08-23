@@ -59,11 +59,12 @@
                         <segue destination="Quc-ae-qil" kind="relationship" relationship="viewControllers" id="9cn-Fm-hnu"/>
                         <segue destination="Kz4-68-Ear" kind="relationship" relationship="viewControllers" id="P7d-nb-LAI"/>
                         <segue destination="oEC-mk-O5L" kind="relationship" relationship="viewControllers" id="Hyf-KN-epq"/>
+                        <segue destination="xFa-1g-xaV" kind="presentation" identifier="RadioPlayer" id="MRL-oJ-DGK"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GeI-AJ-WS9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4372" y="383"/>
+            <point key="canvasLocation" x="-4372" y="372"/>
         </scene>
         <!--All-->
         <scene sceneID="XWR-5D-gsx">
@@ -128,16 +129,9 @@
                         <viewLayoutGuide key="safeArea" id="mqR-vG-8Fd"/>
                     </view>
                     <tabBarItem key="tabBarItem" tag="2" systemItem="favorites" id="9VE-Ox-uze"/>
-                    <navigationItem key="navigationItem" title="Favorites Radio Station" id="1hG-Nw-sbR">
-                        <barButtonItem key="rightBarButtonItem" image="collection" style="plain" id="K2z-ez-bIc">
-                            <connections>
-                                <action selector="SetNewVc:" destination="Bft-xk-W28" id="z4K-j0-iEY"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Favorites Radio Station" id="1hG-Nw-sbR"/>
                     <connections>
                         <outlet property="favoritesTableView" destination="5lE-JB-qyH" id="q2G-8J-YaS"/>
-                        <segue destination="xFa-1g-xaV" kind="presentation" identifier="RadioPlayer" id="0Ci-hP-3Rf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q5A-na-20D" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -185,7 +179,7 @@
                             </barButtonItem>
                             <barButtonItem style="plain" systemItem="add" id="vSR-bP-AB3">
                                 <connections>
-                                    <segue destination="x5h-16-gWY" kind="push" id="yjC-5d-kTP"/>
+                                    <segue destination="KqR-8H-rUL" kind="push" id="NVb-rD-Afc"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem style="plain" systemItem="compose" id="j4r-Qo-lLd">
@@ -196,165 +190,18 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="search" destination="NL4-Ol-TZA" id="wgA-TZ-Wte"/>
+                        <outlet property="search" destination="NL4-Ol-TZA" id="l2K-Uc-JbI"/>
                         <outlet property="tableView" destination="GSL-Uv-VQT" id="XIy-8a-uL4"/>
-                        <segue destination="xFa-1g-xaV" kind="presentation" identifier="RadioPlayer" id="Wy9-VZ-RdF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1855" y="475"/>
         </scene>
-        <!--Add Radio Station-->
-        <scene sceneID="Dfq-HX-aqj">
-            <objects>
-                <viewController id="x5h-16-gWY" customClass="AddRadioStationViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="S07-fF-18h">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4M-9p-vdO">
-                                <rect key="frame" x="30" y="114" width="100" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRd-q0-wYO">
-                                <rect key="frame" x="30" y="175" width="100" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL stream" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhk-g1-2kQ">
-                                <rect key="frame" x="30" y="236" width="100" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="rVj-D3-Jb1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsY-Za-ySs">
-                                <rect key="frame" x="30" y="297" width="100" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DkV-4s-n6Q">
-                                <rect key="frame" x="170" y="114" width="195" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GsK-39-wlr">
-                                <rect key="frame" x="170" y="169" width="195" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="URL new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yrd-fG-SN6">
-                                <rect key="frame" x="170" y="229" width="195" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Image for new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IuV-BX-NyV">
-                                <rect key="frame" x="170" y="289" width="195" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a40-E4-gNX">
-                                <rect key="frame" x="0.0" y="489" width="375" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Add"/>
-                                <connections>
-                                    <action selector="addNewRadioStation:" destination="x5h-16-gWY" eventType="touchUpInside" id="0ww-2x-gYX"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lul-wh-bns">
-                                <rect key="frame" x="33" y="371" width="138" height="33"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <state key="normal" title="Pick from gallery">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="chooseImageButton:" destination="x5h-16-gWY" eventType="touchUpInside" id="ptR-aX-ApJ"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXA-bo-vsy">
-                                <rect key="frame" x="30" y="342" width="20" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KEG-XL-Pi1">
-                                <rect key="frame" x="184" y="342" width="181" height="114"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="114" id="RlW-tZ-qeg"/>
-                                    <constraint firstAttribute="width" constant="181" id="n4o-c6-f0R"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="xhk-g1-2kQ" firstAttribute="top" secondItem="kRd-q0-wYO" secondAttribute="bottom" constant="40" id="1BU-4S-Jeq"/>
-                            <constraint firstItem="Yrd-fG-SN6" firstAttribute="leading" secondItem="xhk-g1-2kQ" secondAttribute="trailing" constant="40" id="66A-e6-qRy"/>
-                            <constraint firstItem="DkV-4s-n6Q" firstAttribute="leading" secondItem="A4M-9p-vdO" secondAttribute="trailing" constant="40" id="8eO-TY-tzy"/>
-                            <constraint firstItem="GsK-39-wlr" firstAttribute="leading" secondItem="kRd-q0-wYO" secondAttribute="trailing" constant="40" id="At5-cH-F75"/>
-                            <constraint firstItem="Lul-wh-bns" firstAttribute="top" secondItem="ZXA-bo-vsy" secondAttribute="bottom" constant="8" id="BrQ-Fd-55S"/>
-                            <constraint firstItem="kRd-q0-wYO" firstAttribute="width" secondItem="A4M-9p-vdO" secondAttribute="width" id="CE3-jE-8nq"/>
-                            <constraint firstItem="x5d-yq-8RQ" firstAttribute="trailing" secondItem="DkV-4s-n6Q" secondAttribute="trailing" constant="10" id="Cp8-vK-62Z"/>
-                            <constraint firstItem="gsY-Za-ySs" firstAttribute="top" secondItem="xhk-g1-2kQ" secondAttribute="bottom" constant="40" id="Eks-fN-rfh"/>
-                            <constraint firstItem="x5d-yq-8RQ" firstAttribute="trailing" secondItem="Yrd-fG-SN6" secondAttribute="trailing" constant="10" id="FlX-7a-eIK"/>
-                            <constraint firstItem="a40-E4-gNX" firstAttribute="trailing" secondItem="x5d-yq-8RQ" secondAttribute="trailing" id="IB3-aC-L52"/>
-                            <constraint firstItem="DkV-4s-n6Q" firstAttribute="top" secondItem="x5d-yq-8RQ" secondAttribute="top" constant="50" id="Iee-K9-alx"/>
-                            <constraint firstItem="kRd-q0-wYO" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="30" id="IfI-cJ-6vH"/>
-                            <constraint firstItem="GsK-39-wlr" firstAttribute="top" secondItem="DkV-4s-n6Q" secondAttribute="bottom" constant="25" id="KGT-as-Of6"/>
-                            <constraint firstItem="ZXA-bo-vsy" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="30" id="KwJ-5u-24a"/>
-                            <constraint firstItem="x5d-yq-8RQ" firstAttribute="trailing" secondItem="GsK-39-wlr" secondAttribute="trailing" constant="10" id="N4V-fh-hTi"/>
-                            <constraint firstItem="KEG-XL-Pi1" firstAttribute="top" secondItem="IuV-BX-NyV" secondAttribute="bottom" constant="23" id="Q5f-LJ-pjd"/>
-                            <constraint firstItem="gsY-Za-ySs" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="30" id="UL6-NC-d24"/>
-                            <constraint firstItem="a40-E4-gNX" firstAttribute="top" secondItem="KEG-XL-Pi1" secondAttribute="bottom" constant="33" id="XAI-Jl-8Yc"/>
-                            <constraint firstItem="xhk-g1-2kQ" firstAttribute="width" secondItem="A4M-9p-vdO" secondAttribute="width" id="Z6o-1W-bti"/>
-                            <constraint firstItem="Yrd-fG-SN6" firstAttribute="top" secondItem="GsK-39-wlr" secondAttribute="bottom" constant="30" id="aIT-Tu-Luk"/>
-                            <constraint firstItem="kRd-q0-wYO" firstAttribute="top" secondItem="A4M-9p-vdO" secondAttribute="bottom" constant="40" id="bqg-ac-ksi"/>
-                            <constraint firstItem="a40-E4-gNX" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" id="cgF-7o-PJ4"/>
-                            <constraint firstItem="IuV-BX-NyV" firstAttribute="top" secondItem="Yrd-fG-SN6" secondAttribute="bottom" constant="30" id="eyb-e2-O1X"/>
-                            <constraint firstItem="IuV-BX-NyV" firstAttribute="leading" secondItem="gsY-Za-ySs" secondAttribute="trailing" constant="40" id="kmu-Zo-k0v"/>
-                            <constraint firstItem="A4M-9p-vdO" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="30" id="m1R-1a-TK6"/>
-                            <constraint firstItem="ZXA-bo-vsy" firstAttribute="top" secondItem="gsY-Za-ySs" secondAttribute="bottom" constant="24" id="mDa-RH-dsp"/>
-                            <constraint firstItem="xhk-g1-2kQ" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="30" id="qMJ-VX-BJ0"/>
-                            <constraint firstItem="x5d-yq-8RQ" firstAttribute="trailing" secondItem="IuV-BX-NyV" secondAttribute="trailing" constant="10" id="sOD-3V-CUn"/>
-                            <constraint firstItem="A4M-9p-vdO" firstAttribute="top" secondItem="x5d-yq-8RQ" secondAttribute="top" constant="50" id="wyh-qU-2If"/>
-                            <constraint firstItem="Lul-wh-bns" firstAttribute="leading" secondItem="x5d-yq-8RQ" secondAttribute="leading" constant="33" id="xLK-NO-EeH"/>
-                            <constraint firstItem="KEG-XL-Pi1" firstAttribute="leading" secondItem="Lul-wh-bns" secondAttribute="trailing" constant="13" id="xoT-2V-1dB"/>
-                            <constraint firstItem="gsY-Za-ySs" firstAttribute="width" secondItem="A4M-9p-vdO" secondAttribute="width" id="zhi-DX-bQB"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="x5d-yq-8RQ"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Add Radio Station" id="ade-Ud-WNA"/>
-                    <connections>
-                        <outlet property="URLImageTextField" destination="IuV-BX-NyV" id="wlY-ld-f5o"/>
-                        <outlet property="URLStreamTextField" destination="Yrd-fG-SN6" id="FdC-gX-HcN"/>
-                        <outlet property="button" destination="a40-E4-gNX" id="D9Z-bT-c3D"/>
-                        <outlet property="descLabel" destination="kRd-q0-wYO" id="By7-gG-ljh"/>
-                        <outlet property="descriptionTextField" destination="GsK-39-wlr" id="iDT-ke-6Vc"/>
-                        <outlet property="myImageView" destination="KEG-XL-Pi1" id="lQn-eb-cf5"/>
-                        <outlet property="nameLabel" destination="A4M-9p-vdO" id="Dxs-lF-hfQ"/>
-                        <outlet property="nameTextField" destination="DkV-4s-n6Q" id="3az-ll-lgj"/>
-                        <outlet property="urlImgLabel" destination="gsY-Za-ySs" id="kzt-Q5-eF8"/>
-                        <outlet property="urlStreamLabel" destination="xhk-g1-2kQ" id="QhB-UC-2NK"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IKA-Jb-D34" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1063.2" y="-1938.08095952024"/>
-        </scene>
         <!--All Radio Station-->
         <scene sceneID="zqF-gh-Voe">
             <objects>
-                <viewController id="VxQ-aX-9sh" customClass="ViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="collectionAll" id="VxQ-aX-9sh" customClass="ViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oNw-aW-3rv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -439,14 +286,18 @@
                             </barButtonItem>
                             <barButtonItem style="plain" systemItem="add" id="bmK-oc-DIx">
                                 <connections>
-                                    <segue destination="x5h-16-gWY" kind="push" id="QtN-t8-Jue"/>
+                                    <segue destination="KqR-8H-rUL" kind="push" id="XN8-fU-NYc"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="compose" id="J12-8R-QPi">
+                                <connections>
+                                    <segue destination="XJ4-vE-yMH" kind="push" id="KBa-q1-QmY"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="rdT-4I-Vt5" id="pse-ZU-58h"/>
-                        <segue destination="xFa-1g-xaV" kind="presentation" identifier="RadioPlayer" id="qZ5-2w-Vmq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vU4-AJ-jpY" sceneMemberID="firstResponder"/>
@@ -456,7 +307,7 @@
         <!--Favorite Radio Stations-->
         <scene sceneID="8lZ-x3-0hI">
             <objects>
-                <viewController title="Favorite Radio Stations" id="fmF-bZ-89T" customClass="CollectionFavoritesViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="collectionFavorite" title="Favorite Radio Stations" id="fmF-bZ-89T" customClass="CollectionFavoritesViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKi-hb-aiB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -533,27 +384,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VQK-37-jAl"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Favorites Radio Station" id="7dB-DM-Yeh">
-                        <barButtonItem key="rightBarButtonItem" image="list" style="plain" id="dSW-e3-ML7">
-                            <connections>
-                                <action selector="SetNewVc:" destination="fmF-bZ-89T" id="FVF-2C-Bm8"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Favorites Radio Station" id="7dB-DM-Yeh"/>
                     <connections>
                         <outlet property="collectionView" destination="5Vd-Zh-hkh" id="f2k-LK-vHl"/>
-                        <segue destination="xFa-1g-xaV" kind="presentation" identifier="RadioPlayer" id="5Fb-Xg-Ogk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tH8-Dj-kCZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2049" y="-1600"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Favorites-->
         <scene sceneID="6Mi-Nv-iWe">
             <objects>
                 <navigationController id="jEY-PJ-4lJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="xDh-k3-Gm9"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="favorites" id="xDh-k3-Gm9"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="g3d-Jb-boK">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -597,6 +441,7 @@
                         <segue destination="ZMh-be-heT" kind="relationship" relationship="viewControllers" id="MNW-HZ-8kg"/>
                         <segue destination="jEY-PJ-4lJ" kind="relationship" relationship="viewControllers" id="ulr-za-uhM"/>
                         <segue destination="JFc-dM-JSj" kind="relationship" relationship="viewControllers" id="grE-IQ-8aR"/>
+                        <segue destination="xFa-1g-xaV" kind="presentation" identifier="RadioPlayer" id="XYb-6B-9fd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RJh-RX-cCg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -824,7 +669,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cRP-wL-Hi0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1162.4000000000001" y="-132.68365817091455"/>
+            <point key="canvasLocation" x="-562" y="-2043"/>
         </scene>
         <!--Radio Player View Controller-->
         <scene sceneID="MAM-E4-IQx">
@@ -947,30 +792,61 @@
                                     <segue destination="3p1-PD-JDQ" kind="presentation" id="6QB-k7-YfU"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ims-nV-oRb">
+                                <rect key="frame" x="319" y="252" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="17G-gi-WM3"/>
+                                    <constraint firstAttribute="width" constant="40" id="rK4-V1-u1E"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="twitter"/>
+                                <connections>
+                                    <action selector="twitterBtn:" destination="xFa-1g-xaV" eventType="touchUpInside" id="VPd-tY-NmT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQv-mH-7oT">
+                                <rect key="frame" x="319" y="204" width="40" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="cjb-Wt-bCf"/>
+                                    <constraint firstAttribute="width" constant="40" id="f2L-gb-Zop"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" backgroundImage="facebook">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="facebookBtn:" destination="xFa-1g-xaV" eventType="touchUpInside" id="bUF-bE-4zx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="centerX" secondItem="q6z-z4-Qdv" secondAttribute="centerX" id="0S4-2G-MHx"/>
                             <constraint firstItem="GaJ-11-MVz" firstAttribute="trailing" secondItem="pLH-Jh-w2v" secondAttribute="trailing" constant="102" id="0n8-oJ-51S"/>
+                            <constraint firstItem="GaJ-11-MVz" firstAttribute="trailing" secondItem="ims-nV-oRb" secondAttribute="trailing" constant="16" id="1sk-UR-uPb"/>
                             <constraint firstItem="4lE-Y3-nID" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="20" id="20F-Gg-iwJ"/>
                             <constraint firstItem="q6z-z4-Qdv" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="64" id="3cO-te-syQ"/>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="trailing" secondItem="Law-Tk-ENv" secondAttribute="trailing" id="4Kj-qY-mza"/>
+                            <constraint firstItem="ims-nV-oRb" firstAttribute="top" secondItem="fQv-mH-7oT" secondAttribute="bottom" constant="16" id="76y-CJ-Waz"/>
                             <constraint firstItem="6gg-z9-TDz" firstAttribute="top" secondItem="pLH-Jh-w2v" secondAttribute="bottom" constant="37.5" id="9ic-yF-Fgm"/>
                             <constraint firstItem="6gg-z9-TDz" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="12" id="AxT-mu-wYC"/>
                             <constraint firstItem="pLH-Jh-w2v" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="102" id="BR5-Ds-vFo"/>
                             <constraint firstItem="6gg-z9-TDz" firstAttribute="centerY" secondItem="PJP-51-0lL" secondAttribute="centerY" constant="26.5" id="Brr-7q-kcL"/>
+                            <constraint firstItem="ims-nV-oRb" firstAttribute="leading" secondItem="pLH-Jh-w2v" secondAttribute="trailing" constant="46" id="Bz2-xb-MAG"/>
                             <constraint firstItem="uBM-Yp-JX9" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="45" id="Dsd-bK-H53"/>
                             <constraint firstItem="6gg-z9-TDz" firstAttribute="centerX" secondItem="q6z-z4-Qdv" secondAttribute="centerX" id="Ez4-gi-BQI"/>
                             <constraint firstItem="GaJ-11-MVz" firstAttribute="bottom" secondItem="Law-Tk-ENv" secondAttribute="bottom" constant="63" id="GCr-7G-BRd"/>
                             <constraint firstItem="6LS-Z9-yq5" firstAttribute="top" secondItem="Law-Tk-ENv" secondAttribute="top" id="IBh-IX-CVf"/>
                             <constraint firstItem="4lE-Y3-nID" firstAttribute="top" secondItem="Uh6-YN-yTS" secondAttribute="bottom" constant="20" id="K1a-BI-HFa"/>
+                            <constraint firstItem="GaJ-11-MVz" firstAttribute="trailing" secondItem="fQv-mH-7oT" secondAttribute="trailing" constant="16" id="K3M-US-jHU"/>
                             <constraint firstItem="q6z-z4-Qdv" firstAttribute="top" secondItem="6gg-z9-TDz" secondAttribute="bottom" constant="7.5" id="Qqk-GW-tYN"/>
                             <constraint firstItem="Law-Tk-ENv" firstAttribute="leading" secondItem="6LS-Z9-yq5" secondAttribute="trailing" constant="66" id="SaA-Ws-gEn"/>
+                            <constraint firstItem="fQv-mH-7oT" firstAttribute="top" secondItem="uBM-Yp-JX9" secondAttribute="bottom" constant="93.5" id="UEm-DG-xIa"/>
                             <constraint firstItem="6LS-Z9-yq5" firstAttribute="bottom" secondItem="Law-Tk-ENv" secondAttribute="bottom" id="YjH-6j-aUf"/>
                             <constraint firstItem="pLH-Jh-w2v" firstAttribute="top" secondItem="uBM-Yp-JX9" secondAttribute="bottom" constant="11" id="bkc-yR-ihp"/>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="leading" secondItem="6LS-Z9-yq5" secondAttribute="leading" id="buN-vZ-Opb"/>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="top" secondItem="q6z-z4-Qdv" secondAttribute="bottom" constant="33" id="gqY-9e-WCG"/>
                             <constraint firstItem="Uh6-YN-yTS" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="10" id="lSR-pc-8dF"/>
+                            <constraint firstItem="fQv-mH-7oT" firstAttribute="leading" secondItem="pLH-Jh-w2v" secondAttribute="trailing" constant="46" id="mFr-KM-Ich"/>
                             <constraint firstItem="Law-Tk-ENv" firstAttribute="leading" secondItem="6LS-Z9-yq5" secondAttribute="trailing" constant="66" id="my6-Dm-qyj"/>
                             <constraint firstItem="Uh6-YN-yTS" firstAttribute="top" secondItem="GaJ-11-MVz" secondAttribute="top" id="pgp-aX-80m"/>
                             <constraint firstItem="uBM-Yp-JX9" firstAttribute="top" secondItem="GaJ-11-MVz" secondAttribute="top" constant="17" id="sW3-tM-lv4"/>
@@ -1055,22 +931,183 @@
             </objects>
             <point key="canvasLocation" x="3077.5999999999999" y="-537.48125937031489"/>
         </scene>
+        <!--Add Radio Station-->
+        <scene sceneID="TAW-u8-801">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r1C-iS-vxh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="KqR-8H-rUL" customClass="AddRadioStationViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="x8T-69-sJs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZT-xx-Obi">
+                                <rect key="frame" x="10" y="89" width="48" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiC-cP-OT8">
+                                <rect key="frame" x="10" y="135" width="95" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL stream" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMk-jZ-6Dz">
+                                <rect key="frame" x="10" y="181" width="95.5" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="78y-vb-n9j">
+                                <rect key="frame" x="10" y="227" width="88.5" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9DP-CT-VGd">
+                                <rect key="frame" x="165" y="84" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="2a6-ZE-SOa"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eLy-fA-yK9">
+                                <rect key="frame" x="165" y="130" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="eCO-Iw-iD6"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="URL new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jeb-fK-XBQ">
+                                <rect key="frame" x="165" y="176" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="4Cj-RJ-Be8"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Image for new radiostation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="404-x1-j2r">
+                                <rect key="frame" x="165" y="222" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Nn1-ZA-nmG"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PWe-AV-QYZ">
+                                <rect key="frame" x="165" y="268" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="95N-g7-QtF"/>
+                                    <constraint firstAttribute="width" constant="50" id="TEz-Cc-pHg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" backgroundImage="picture">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="chooseImageButton:" destination="KqR-8H-rUL" eventType="touchUpInside" id="IOl-71-DHb"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DAc-SD-myL">
+                                <rect key="frame" x="10" y="273" width="20" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SWJ-0M-GqX">
+                                <rect key="frame" x="235" y="268" width="130" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="2VQ-Bw-wsV"/>
+                                    <constraint firstAttribute="height" constant="130" id="UqK-Sl-BWx"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="brX-ns-8jh">
+                                <rect key="frame" x="0.0" y="406" width="375" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addNewRadioStation:" destination="KqR-8H-rUL" eventType="touchUpInside" id="Fea-sR-huI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SWJ-0M-GqX" firstAttribute="top" secondItem="404-x1-j2r" secondAttribute="bottom" constant="16" id="0mC-X8-XIf"/>
+                            <constraint firstItem="78y-vb-n9j" firstAttribute="top" secondItem="nMk-jZ-6Dz" secondAttribute="bottom" constant="25" id="1Uk-7c-hcw"/>
+                            <constraint firstItem="Vsz-Gl-Kpy" firstAttribute="trailing" secondItem="9DP-CT-VGd" secondAttribute="trailing" constant="10" id="2Yr-eA-t4O"/>
+                            <constraint firstItem="Vsz-Gl-Kpy" firstAttribute="trailing" secondItem="SWJ-0M-GqX" secondAttribute="trailing" constant="10" id="5Vc-3E-jgM"/>
+                            <constraint firstItem="404-x1-j2r" firstAttribute="top" secondItem="jeb-fK-XBQ" secondAttribute="bottom" constant="16" id="73R-0H-PGA"/>
+                            <constraint firstItem="ZiC-cP-OT8" firstAttribute="top" secondItem="hZT-xx-Obi" secondAttribute="bottom" constant="25" id="7vJ-5U-SqD"/>
+                            <constraint firstItem="Vsz-Gl-Kpy" firstAttribute="trailing" secondItem="404-x1-j2r" secondAttribute="trailing" constant="10" id="86W-HW-cgS"/>
+                            <constraint firstItem="DAc-SD-myL" firstAttribute="leading" secondItem="Vsz-Gl-Kpy" secondAttribute="leading" constant="10" id="AZZ-oB-vf4"/>
+                            <constraint firstItem="jeb-fK-XBQ" firstAttribute="top" secondItem="eLy-fA-yK9" secondAttribute="bottom" constant="16" id="DqU-JL-p6V"/>
+                            <constraint firstItem="PWe-AV-QYZ" firstAttribute="top" secondItem="404-x1-j2r" secondAttribute="bottom" constant="16" id="FDZ-n0-bwk"/>
+                            <constraint firstItem="Vsz-Gl-Kpy" firstAttribute="trailing" secondItem="eLy-fA-yK9" secondAttribute="trailing" constant="10" id="GMY-u3-Tb2"/>
+                            <constraint firstItem="brX-ns-8jh" firstAttribute="top" secondItem="SWJ-0M-GqX" secondAttribute="bottom" constant="8" id="Gmv-aG-U50"/>
+                            <constraint firstItem="brX-ns-8jh" firstAttribute="trailing" secondItem="Vsz-Gl-Kpy" secondAttribute="trailing" id="HEb-E3-Tdx"/>
+                            <constraint firstItem="SWJ-0M-GqX" firstAttribute="leading" secondItem="PWe-AV-QYZ" secondAttribute="trailing" constant="20" id="KEw-Im-wXb"/>
+                            <constraint firstItem="Vsz-Gl-Kpy" firstAttribute="trailing" secondItem="9DP-CT-VGd" secondAttribute="trailing" constant="10" id="LAK-lk-YPW"/>
+                            <constraint firstItem="DAc-SD-myL" firstAttribute="top" secondItem="78y-vb-n9j" secondAttribute="bottom" constant="25" id="LD7-bu-4Bl"/>
+                            <constraint firstItem="hZT-xx-Obi" firstAttribute="leading" secondItem="Vsz-Gl-Kpy" secondAttribute="leading" constant="10" id="P9F-nZ-5za"/>
+                            <constraint firstItem="eLy-fA-yK9" firstAttribute="top" secondItem="9DP-CT-VGd" secondAttribute="bottom" constant="16" id="RwN-aD-w3Y"/>
+                            <constraint firstItem="9DP-CT-VGd" firstAttribute="top" secondItem="Vsz-Gl-Kpy" secondAttribute="top" constant="20" id="Ypn-Zy-FBB"/>
+                            <constraint firstItem="nMk-jZ-6Dz" firstAttribute="top" secondItem="ZiC-cP-OT8" secondAttribute="bottom" constant="25" id="by9-hs-hvc"/>
+                            <constraint firstItem="brX-ns-8jh" firstAttribute="leading" secondItem="Vsz-Gl-Kpy" secondAttribute="leading" id="cQT-mK-brh"/>
+                            <constraint firstItem="Vsz-Gl-Kpy" firstAttribute="trailing" secondItem="PWe-AV-QYZ" secondAttribute="trailing" constant="160" id="gOW-dZ-Yat"/>
+                            <constraint firstItem="hZT-xx-Obi" firstAttribute="top" secondItem="Vsz-Gl-Kpy" secondAttribute="top" constant="25" id="j3c-Nu-NSQ"/>
+                            <constraint firstItem="Vsz-Gl-Kpy" firstAttribute="trailing" secondItem="jeb-fK-XBQ" secondAttribute="trailing" constant="10" id="k07-tn-cwT"/>
+                            <constraint firstItem="78y-vb-n9j" firstAttribute="leading" secondItem="Vsz-Gl-Kpy" secondAttribute="leading" constant="10" id="phX-Ca-vCi"/>
+                            <constraint firstItem="9DP-CT-VGd" firstAttribute="top" secondItem="Vsz-Gl-Kpy" secondAttribute="top" constant="20" id="sQq-wP-Fg4"/>
+                            <constraint firstItem="nMk-jZ-6Dz" firstAttribute="leading" secondItem="Vsz-Gl-Kpy" secondAttribute="leading" constant="10" id="tsf-Pt-zKa"/>
+                            <constraint firstItem="ZiC-cP-OT8" firstAttribute="leading" secondItem="Vsz-Gl-Kpy" secondAttribute="leading" constant="10" id="vM6-Qw-iD4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Vsz-Gl-Kpy"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Radio Station" id="v7t-OE-4od"/>
+                    <connections>
+                        <outlet property="URLImageTextField" destination="404-x1-j2r" id="897-pj-vNb"/>
+                        <outlet property="URLStreamTextField" destination="jeb-fK-XBQ" id="Kkn-dM-O77"/>
+                        <outlet property="button" destination="brX-ns-8jh" id="fdO-qt-2C1"/>
+                        <outlet property="descLabel" destination="ZiC-cP-OT8" id="tuR-Gg-yBl"/>
+                        <outlet property="descriptionTextField" destination="eLy-fA-yK9" id="Ntf-vf-8IP"/>
+                        <outlet property="myImageView" destination="SWJ-0M-GqX" id="bJM-gn-FFi"/>
+                        <outlet property="nameLabel" destination="hZT-xx-Obi" id="hid-yv-yuh"/>
+                        <outlet property="nameTextField" destination="9DP-CT-VGd" id="sLc-l6-Hk6"/>
+                        <outlet property="orLabel" destination="DAc-SD-myL" id="jzf-JE-UTq"/>
+                        <outlet property="urlImgLabel" destination="78y-vb-n9j" id="I0i-sP-52i"/>
+                        <outlet property="urlStreamLabel" destination="nMk-jZ-6Dz" id="Xvz-2a-IWP"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-468" y="-161"/>
+        </scene>
     </scenes>
     <resources>
         <image name="all" width="25" height="25"/>
         <image name="back-2" width="30" height="30"/>
         <image name="collection" width="25" height="25"/>
+        <image name="facebook" width="32" height="32"/>
+        <image name="favorites" width="30" height="30"/>
         <image name="list" width="25" height="25"/>
         <image name="pauseImageButton" width="100" height="100"/>
+        <image name="picture" width="32" height="32"/>
         <image name="saveButtonImag" width="256" height="256"/>
         <image name="settings" width="25" height="25"/>
         <image name="stopImageButton" width="100" height="100"/>
+        <image name="twitter" width="32" height="32"/>
         <image name="vol-max" width="16" height="14"/>
         <image name="vol-min" width="11" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Wy9-VZ-RdF"/>
-        <segue reference="ILH-e6-uQu"/>
-        <segue reference="yjC-5d-kTP"/>
+        <segue reference="XN8-fU-NYc"/>
+        <segue reference="XYb-6B-9fd"/>
+        <segue reference="KBa-q1-QmY"/>
+        <segue reference="c7W-ZD-BJ5"/>
     </inferredMetricsTieBreakers>
 </document>

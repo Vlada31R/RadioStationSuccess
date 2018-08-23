@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class CollectionTabBarController: UITabBarController, UITabBarControllerDelegate {
 
 
@@ -16,9 +18,13 @@ class CollectionTabBarController: UITabBarController, UITabBarControllerDelegate
         super.viewDidLoad()
     }
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item.title == "All" {
+        if item.title != nil {
+            DataManager.load()
             DataManager.loadFavorites()
             NotificationCenter.default.post(name: .reloadFavourites, object: nil)
         }
+        
+        
+
     }
 }
