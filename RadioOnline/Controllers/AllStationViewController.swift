@@ -48,7 +48,12 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         NotificationCenter.default.addObserver(self, selector: #selector(clearSearchBar(notification:)), name: .clear, object: nil)
         DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
     }
-
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        let height: CGFloat = self.view.bounds.height * 0.05
+//        let bounds = self.navigationController!.navigationBar.bounds
+//        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: height)
+//    }
     @objc func reload(notification: NSNotification){
         DataManager.changeColor(view: self.view)
         tableView.reloadData()
@@ -293,32 +298,6 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     //*******************************************************************************************************************************************
     //MARK: segue to collectionView
     //*******************************************************************************************************************************************
-    
-    @IBAction func action(_ sender: Any) {
-        DataManager.load()
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "AllVC") as! UITabBarController
-        UIApplication.shared.keyWindow?.rootViewController = viewController
-    }
-    
-    //MARK: - Segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "RadioPlayer", let radioPlayerVC = segue.destination as? RadioPlayerViewController else { return }
-        
-        
-        let newStation: Bool
-        
-        if let indexPath = (sender as? IndexPath) {
-            //radioSetter.set(radioStation: DataManager.stations[indexPath.row])
-            newStation = true
-        } else {
-            newStation = false
-        }
-        
-//        radioSetter.radioPlayerViewController = radioPlayerVC
-//        radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
-    }
-    
     // End of Class
 }
     
@@ -403,23 +382,9 @@ extension AllStationViewController{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        var newStation: Bool
-        
-        guard let tabBar = self.tabBarController as? CustomTabBarController else{ return }
-        if tabBar.radioSetter.radioPlayer?.station != DataManager.stations[indexPath.row]{
-            tabBar.radioSetter.set(radioStation: DataManager.stations[indexPath.row])
-            newStation = true
-        }else{
-            newStation = false
-        }
-        tabBar.VC.loadRadio(station: tabBar.radioSetter.radioPlayer?.station, track: tabBar.radioSetter.radioPlayer?.track, isNew: newStation)
-        
-        
-//            if tabBar.radioSetter.radioPlayer?.station != DataManager.stations[indexPath.row]{
-//            tabBar.radioSetter.set(radioStation: DataManager.stations[indexPath.row])
-//        }
-        
-//        performSegue(withIdentifier: "RadioPlayer", sender: indexPath)
+        DataManager.preparePlayerTV(radioStation: DataManager.stations[indexPath.row], tabBarController: self.tabBarController!)
+
+
     }
     
 }

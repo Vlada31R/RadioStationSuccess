@@ -53,27 +53,27 @@ class SaveSongViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-    func firstSave(){
-        var arrayLoad = [Song]()
-        var song = Song(s: "Nosa", a: "Kokos", i: "https://cdn-radiotime-logos.tunein.com/s98671q.png")
-        
-        arrayLoad.append(song)
-        
-        song = Song(s: "koks", a: "mu", i: "https://cdn-radiotime-logos.tunein.com/s98671q.png")
-        
-        arrayLoad.append(song)
-         song = Song(s: "ggg", a: "my", i: "https://cdn-radiotime-logos.tunein.com/s98671q.png")
-        
-        arrayLoad.append(song)
-         song = Song(s: "eee", a: "hello", i: "https://cdn-radiotime-logos.tunein.com/s98671q.png")
-        
-        arrayLoad.append(song)
-
-        songArray = arrayLoad
-        
-        save()
-        
-    }
+//    func firstSave(){
+//        var arrayLoad = [Song]()
+//        var song = Song(s: "Nosa", a: "Kokos", i: "https://cdn-radiotime-logos.tunein.com/s98671q.png")
+//
+//        arrayLoad.append(song)
+//
+//        song = Song(s: "koks", a: "mu", i: "https://cdn-radiotime-logos.tunein.com/s98671q.png")
+//
+//        arrayLoad.append(song)
+//         song = Song(s: "ggg", a: "my", i: "https://cdn-radiotime-logos.tunein.com/s98671q.png")
+//
+//        arrayLoad.append(song)
+//         song = Song(s: "eee", a: "hello", i: "https://cdn-radiotime-logos.tunein.com/s98671q.png")
+//
+//        arrayLoad.append(song)
+//
+//        songArray = arrayLoad
+//
+//        save()
+//
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -92,7 +92,7 @@ class SaveSongViewController: UIViewController, UITableViewDelegate, UITableView
         cell.descriptionLabel.text = songArray[indexPath.row].artist
         cell.descriptionLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
         
-        cell.imageRadioStation.downloadedFrom(link: songArray[indexPath.row].img)
+        //cell.imageRadioStation.image = songArray[indexPath.row].img
         
         
         return cell
@@ -111,12 +111,12 @@ class SaveSongViewController: UIViewController, UITableViewDelegate, UITableView
 class Song: Codable{
     var song: String
     var artist: String
-    var img: String
+    //var img: NSData
     
-    init(s: String, a: String, i: String){
+    init(s: String, a: String, i: UIImage){
         song = s
         artist = a
-        img = i
+       // img = UIImagePNGRepresentation(i) as! NSData
+       // img = i
     }
 }
-

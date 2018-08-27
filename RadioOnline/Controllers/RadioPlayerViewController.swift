@@ -183,10 +183,13 @@ class RadioPlayerViewController: UIViewController {
         
         switch playbackState {
         case .paused:
+            toggleButton.setImage(#imageLiteral(resourceName: "playImageButton"), for: .normal)
             message = "Station Paused..."
         case .playing:
+            toggleButton.setImage(#imageLiteral(resourceName: "pauseImageButton"), for: .normal)
             message = nil
         case .stopped:
+            toggleButton.setImage(#imageLiteral(resourceName: "playImageButton"), for: .normal)
             message = "Station Stopped..."
         }
         
@@ -230,7 +233,11 @@ class RadioPlayerViewController: UIViewController {
         // Force app to update display
         view.setNeedsDisplay()
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "saveSong", let songVC = segue.destination as? SaveSongViewController{
+            
+        }
+    }
     //*****************************************************************
     // MARK: - Radio Station Changed
     //*****************************************************************
@@ -251,28 +258,17 @@ class RadioPlayerViewController: UIViewController {
     
     // Play Button
     @IBAction func playButtonPressed(_ sender: UIButton) {
-        
-        switch radioPlayer.playbackState {
-        case .paused, .stopped :
-            toggleButton.setImage(#imageLiteral(resourceName: "pauseImageButton"), for: .normal)
-        case .playing :
-            toggleButton.setImage(#imageLiteral(resourceName: "playImageButton"), for: .normal)
-            
-        }
-        
         radioPlayer.togglePlaying()
     }
     
     // Stop Button
     @IBAction func stopButtonPressed(_ sender: UIButton) {
-        toggleButton.setImage(#imageLiteral(resourceName: "playImageButton"), for: .normal)
         radioPlayer.stop()
     }
     
     // Save Button
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        saveTrack(track: playingTrack)
-        print(savedTrackArray)
+       performSegue(withIdentifier: "saveSong", sender: self)
     }
     @IBAction func back(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)

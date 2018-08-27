@@ -56,6 +56,24 @@ class SettingsViewController: UIViewController {
         blueSlider.value = Float(rgbColours![2])
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let tabBarVC = self.tabBarController as? CustomTabBarController{
+            tabBarVC.VC?.view.isHidden = true
+        }
+        if let tabBarVC = self.tabBarController as? CollectionTabBarController{
+            tabBarVC.VC?.view.isHidden = true
+        }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let tabBarVC = self.tabBarController as? CustomTabBarController{
+        tabBarVC.VC?.view.isHidden = false
+        }
+        if let tabBarVC = self.tabBarController as? CollectionTabBarController{
+            tabBarVC.VC?.view.isHidden = false
+        }
+    }
     @IBAction func sliderValueChanged(_ sender: Any) {
         let redInfo=CGFloat(redSlider.value)
         let greenInfo=CGFloat(greenSlider.value)
@@ -93,6 +111,35 @@ class SettingsViewController: UIViewController {
         
         UIApplication.shared.keyWindow?.rootViewController = tabController
         
+      if let newTabBar = tabController as? CollectionTabBarController{
+        if let myTabBar = self.tabBarController as? CustomTabBarController{
+            newTabBar.radioSetter = myTabBar.radioSetter!
+            newTabBar.VC?.playingTrack = myTabBar.VC?.playingTrack
+            newTabBar.VC?.playingStation = myTabBar.VC?.playingStation
+            newTabBar.VC = myTabBar.VC
+            newTabBar.VC?.delegate = newTabBar
+
+            newTabBar.VC?.updateLabels()
+            newTabBar.VC?.updateTrackArtwork(with: myTabBar.VC?.playingTrack)
+            newTabBar.VC?.updateTrackMetadata(with: myTabBar.VC?.playingTrack)
+            newTabBar.VC?.playerStateDidChange((myTabBar.radioSetter?.radioPlayer?.player.state)!)
+            newTabBar.VC?.playbackStateDidChange((myTabBar.radioSetter?.radioPlayer?.player.playbackState)!)
+        }}
+
+        if let newTabBar = tabController as? CustomTabBarController{
+            if let myTabBar = self.tabBarController as? CollectionTabBarController{
+                newTabBar.radioSetter = myTabBar.radioSetter!
+                newTabBar.VC?.playingTrack = myTabBar.VC?.playingTrack
+                newTabBar.VC?.playingStation = myTabBar.VC?.playingStation
+                newTabBar.VC = myTabBar.VC
+                newTabBar.VC?.delegate = newTabBar
+
+                newTabBar.VC?.updateLabels()
+                newTabBar.VC?.updateTrackArtwork(with: myTabBar.VC?.playingTrack)
+                newTabBar.VC?.updateTrackMetadata(with: myTabBar.VC?.playingTrack)
+                newTabBar.VC?.playerStateDidChange((myTabBar.radioSetter?.radioPlayer?.player.state)!)
+                newTabBar.VC?.playbackStateDidChange((myTabBar.radioSetter?.radioPlayer?.player.playbackState)!)
+            }}
     }
     
 }

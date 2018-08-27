@@ -20,6 +20,7 @@ protocol BarViewControllerDelegate {
 class BarViewController: UIViewController {
 
     
+    @IBOutlet weak var toggleButton: UIButton!
     @IBOutlet weak var albumImage: UIImageView!
     @IBOutlet weak var songLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
@@ -35,12 +36,7 @@ class BarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        
-        
-        
-        
+         
         let tapG = UITapGestureRecognizer(target: self, action: #selector(didTapped))
         self.view.addGestureRecognizer(tapG)
         // Do any additional setup after loading the view.
@@ -103,10 +99,13 @@ class BarViewController: UIViewController {
         
         switch playbackState {
         case .paused:
+            toggleButton.setImage(#imageLiteral(resourceName: "playImageButton"), for: .normal)
             message = "Station Paused..."
         case .playing:
+            toggleButton.setImage(#imageLiteral(resourceName: "pauseImageButton"), for: .normal)
             message = nil
         case .stopped:
+            toggleButton.setImage(#imageLiteral(resourceName: "playImageButton"), for: .normal)
             message = "Station Stopped..."
         }
         
@@ -153,7 +152,10 @@ class BarViewController: UIViewController {
    
     // MARK: - Navigation
      @IBAction func togglePressed(_ sender: UIButton) {
+     
+        
         delegate?.didPressPlayingButton()
+        
      }
     @IBAction func stopPressed(_ sender: UIButton) {
         delegate?.didPressStopButton()

@@ -237,6 +237,34 @@ struct DataManager {
         stations[new] = station
         save()
     }
+    
+    static func preparePlayerTV(radioStation: RadioStation, tabBarController: UITabBarController){
+        var newStation: Bool
+        
+        guard let tabBar = tabBarController as? CustomTabBarController  else{ return }
+        if tabBar.radioSetter?.radioPlayer?.station != radioStation{
+            tabBar.radioSetter?.set(radioStation: radioStation)
+            newStation = true
+        }else{
+            newStation = false
+        }
+        tabBar.VC?.loadRadio(station: tabBar.radioSetter?.radioPlayer?.station, track: tabBar.radioSetter?.radioPlayer?.track, isNew: newStation)
+        
+    }
+    
+    static func preparePlayerCV(radioStation: RadioStation, tabBarController: UITabBarController){
+        var newStation: Bool
+        
+        guard let tabBar = tabBarController as? CollectionTabBarController  else{ return }
+        if tabBar.radioSetter?.radioPlayer?.station != radioStation{
+            tabBar.radioSetter?.set(radioStation: radioStation)
+            newStation = true
+        }else{
+            newStation = false
+        }
+        tabBar.VC?.loadRadio(station: tabBar.radioSetter?.radioPlayer?.station, track: tabBar.radioSetter?.radioPlayer?.track, isNew: newStation)
+        
+    }
 }
 
 

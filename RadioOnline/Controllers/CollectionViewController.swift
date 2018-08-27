@@ -16,15 +16,9 @@ class ViewController: UIViewController {
     
     override var prefersStatusBarHidden: Bool {return DataManager.flag}
     
-    var nowPlayingSongBar: UIView!
-    var radioSetter = RadioSetter()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        radioSetter.setupRadio()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
         
         let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(_:)))
@@ -141,30 +135,13 @@ class ViewController: UIViewController {
         UIApplication.shared.keyWindow?.rootViewController = viewController
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "RadioPlayer", let radioPlayerVC = segue.destination as? RadioPlayerViewController else { return }
-        
-        let newStation: Bool
-        
-        if let indexPath = (sender as? IndexPath) {
-            // User clicked on row, load/reset station
-            radioSetter.set(radioStation: DataManager.stations[indexPath.row])
-            newStation = true
-        } else {
-            // User clicked on Now Playing button
-            newStation = false
-        }
-        
-       // radioSetter.radioPlayerViewController = radioPlayerVC
-//        radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
-    }
-
 }
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "RadioPlayer", sender: indexPath)
+        collectionView.deselectItem(at: indexPath, animated: true)
+        DataManager.preparePlayerCV(radioStation: DataManager.stations[indexPath.row], tabBarController: self.tabBarController!)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return DataManager.stations.count

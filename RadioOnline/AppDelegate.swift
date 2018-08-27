@@ -16,8 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
        
-
-        
+        UINavigationBar.appearance().tintColor = .black
+        UITabBar.appearance().tintColor = .black
+//          UINavigationBar.appearance().backgroundColor = .black
 //        self.window = UIWindow(frame: UIScreen.main.bounds)
 //        
 //        let storyboard = UIStoryboard(name: "Main", bundle: nil)

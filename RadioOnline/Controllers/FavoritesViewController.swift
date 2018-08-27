@@ -11,8 +11,6 @@ import Foundation
 import ChameleonFramework
 
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    var radioSetter = RadioSetter()
     
     @IBOutlet weak var serach: UISearchBar!
     @IBOutlet weak var favoritesTableView: UITableView!
@@ -20,9 +18,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
 override var prefersStatusBarHidden: Bool {return DataManager.flag}
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        radioSetter.setupRadio()
-        
+        super.viewDidLoad()        
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(notification:)), name: .reloadFavoritesTableView, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .reload, object: nil)
         let nib = UINib(nibName: "CustomCell", bundle: nil)
@@ -145,7 +141,7 @@ override var prefersStatusBarHidden: Bool {return DataManager.flag}
             favoritesTableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.fade)
         }
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "RadioPlayer", sender: indexPath)
+        DataManager.preparePlayerTV(radioStation: DataManager.stationsFavorites[indexPath.row], tabBarController: self.tabBarController!)
     }
     
     //*******************************************************************************************************************************************
@@ -207,23 +203,6 @@ override var prefersStatusBarHidden: Bool {return DataManager.flag}
         }
     }
     
-    //MARK: - Segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "RadioPlayer", let radioPlayerVC = segue.destination as? RadioPlayerViewController else { return }
-        
-        let newStation: Bool
-        
-        if let indexPath = (sender as? IndexPath) {
-            radioSetter.set(radioStation: DataManager.stationsFavorites[indexPath.row])
-            newStation = true
-        } else {
-            newStation = false
-        }
-        
-        //radioSetter.radioPlayerViewController = radioPlayerVC
-//        radioPlayerVC.loadRadio(station: radioSetter.radioPlayer?.station, track: radioSetter.radioPlayer?.track, isNew: newStation)
-    }
-    
 }
 
 //*******************************************************************************************************************************************
@@ -250,7 +229,6 @@ extension FavoritesViewController: UISearchBarDelegate{
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        //print("work")
         if(!(searchBar.text?.isEmpty)!){
             DataManager.loadFavorites()
             DataManager.stationsFavorites = DataManager.stationsFavorites.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
