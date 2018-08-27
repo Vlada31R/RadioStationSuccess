@@ -19,6 +19,7 @@ class SaveSongViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         //firstSave()
+       // save()
         load()
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
@@ -48,32 +49,35 @@ class SaveSongViewController: UIViewController, UITableViewDelegate, UITableView
             } catch {
                 print("Error decoding data")
             }
-            songArray = array
+            for arrayIndex in array{
+            songArray.append(arrayIndex)
+            }
+            save()
         }
         
     }
     
-//    func firstSave(){
-//        var arrayLoad = [Song]()
-//        var song = Song(s: "Nosa", a: "Kokos", i: "https://cdn-radiotime-logos.tunein.com/s98671q.png")
-//
-//        arrayLoad.append(song)
-//
-//        song = Song(s: "koks", a: "mu", i: "https://cdn-radiotime-logos.tunein.com/s98671q.png")
-//
-//        arrayLoad.append(song)
-//         song = Song(s: "ggg", a: "my", i: "https://cdn-radiotime-logos.tunein.com/s98671q.png")
-//
-//        arrayLoad.append(song)
-//         song = Song(s: "eee", a: "hello", i: "https://cdn-radiotime-logos.tunein.com/s98671q.png")
-//
-//        arrayLoad.append(song)
-//
-//        songArray = arrayLoad
-//
-//        save()
-//
-//    }
+    func firstSave(){
+        var arrayLoad = [Song]()
+        var song = Song(s: "Nosa", a: "Kokos")
+
+        arrayLoad.append(song)
+
+        song = Song(s: "koks", a: "mu")
+
+        arrayLoad.append(song)
+         song = Song(s: "ggg", a: "my")
+
+        arrayLoad.append(song)
+         song = Song(s: "eee", a: "hello")
+
+        arrayLoad.append(song)
+
+        songArray = arrayLoad
+
+        save()
+
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -100,6 +104,7 @@ class SaveSongViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     @IBAction func backButton(_ sender: Any) {
+        self.save()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -108,15 +113,19 @@ class SaveSongViewController: UIViewController, UITableViewDelegate, UITableView
 
 }
 
-class Song: Codable{
+class Song: NSData{
     var song: String
     var artist: String
-    //var img: NSData
+    var img: NSData
     
-    init(s: String, a: String, i: UIImage){
+    init(s: String, a: String, i: UIImage? = nil){
         song = s
         artist = a
        // img = UIImagePNGRepresentation(i) as! NSData
        // img = i
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+
     }
 }

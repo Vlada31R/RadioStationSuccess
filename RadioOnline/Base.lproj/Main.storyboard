@@ -90,7 +90,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="80" sectionHeaderHeight="1" sectionFooterHeight="35" translatesAutoresizingMaskIntoConstraints="NO" id="5lE-JB-qyH">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="80" sectionHeaderHeight="1" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="5lE-JB-qyH">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="mGa-Sc-vx8">
@@ -142,7 +142,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="AllStationViewController" customModule="RadioOnline" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="80" sectionHeaderHeight="1" sectionFooterHeight="35" id="GSL-Uv-VQT">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="80" sectionHeaderHeight="1" sectionFooterHeight="40" id="GSL-Uv-VQT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -609,7 +609,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Hjs-Xr-JHH">
-                                <rect key="frame" x="0.0" y="114" width="375" height="453"/>
+                                <rect key="frame" x="0.0" y="114" width="375" height="446"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="4sa-bB-9Ey" customClass="MyCusstomCell" customModule="RadioOnline" customModuleProvider="target">
@@ -638,7 +638,7 @@
                             <constraint firstItem="Hjs-Xr-JHH" firstAttribute="leading" secondItem="Cw3-ZH-9N0" secondAttribute="leading" id="U7H-zz-Tae"/>
                             <constraint firstItem="V2W-Im-ORP" firstAttribute="leading" secondItem="c99-zo-uTa" secondAttribute="trailing" constant="10" id="WqG-u7-wzo"/>
                             <constraint firstItem="c5J-eq-x3u" firstAttribute="top" secondItem="Cw3-ZH-9N0" secondAttribute="top" constant="10" id="c8r-G3-KsG"/>
-                            <constraint firstItem="Cw3-ZH-9N0" firstAttribute="bottom" secondItem="Hjs-Xr-JHH" secondAttribute="bottom" constant="51" id="dyj-OY-L9K"/>
+                            <constraint firstItem="Cw3-ZH-9N0" firstAttribute="bottom" secondItem="Hjs-Xr-JHH" secondAttribute="bottom" constant="58" id="dyj-OY-L9K"/>
                             <constraint firstItem="Cw3-ZH-9N0" firstAttribute="trailing" secondItem="Hjs-Xr-JHH" secondAttribute="trailing" id="eVX-iY-9ui"/>
                             <constraint firstItem="V2W-Im-ORP" firstAttribute="top" secondItem="Cw3-ZH-9N0" secondAttribute="top" constant="5" id="yCC-X7-c0W"/>
                             <constraint firstItem="c99-zo-uTa" firstAttribute="top" secondItem="Cw3-ZH-9N0" secondAttribute="top" constant="10" id="zLT-Ij-tX4"/>
@@ -1092,9 +1092,9 @@
         <image name="vol-min" width="11" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XN8-fU-NYc"/>
+        <segue reference="NVb-rD-Afc"/>
         <segue reference="MRL-oJ-DGK"/>
-        <segue reference="KBa-q1-QmY"/>
+        <segue reference="dKc-yx-GvM"/>
         <segue reference="c7W-ZD-BJ5"/>
     </inferredMetricsTieBreakers>
 </document>

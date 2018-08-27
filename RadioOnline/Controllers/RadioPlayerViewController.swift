@@ -235,7 +235,7 @@ class RadioPlayerViewController: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "saveSong", let songVC = segue.destination as? SaveSongViewController{
-            
+            songVC.songArray.append(Song(s: (playingTrack?.title)!, a: (playingTrack?.artist)!))
         }
     }
     //*****************************************************************

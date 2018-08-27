@@ -29,21 +29,6 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        if VC == nil{
-//            VC = BarViewController()
-//        }
-//        radioSetter?.barViewController = VC
-//        print(self.tabBar.frame.minY)
-//        VC?.delegate = self
-//        VC?.view.frame.size = CGSize(width: self.tabBar.frame.width, height: self.view.bounds.height * 0.08)
-//        
-//        let newView = VC?.view
-//        
-//        // newView?.frame.size = CGSize(width: self.tabBar.frame.width, height: self.view.bounds.height * 0.08)
-//        newView?.frame.origin.y = self.tabBar.frame.minY - (newView?.frame.height)!
-//        
-//        self.view.addSubview(newView!)
-
 
     }
     
@@ -61,7 +46,7 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         let newView = VC?.view
         
-        newView?.frame.size = CGSize(width: self.tabBar.frame.width, height: self.view.frame.height * 0.08)
+        newView?.frame.size = CGSize(width: self.tabBar.frame.width, height: self.view.frame.height * 0.1)
         newView?.frame.origin.y = self.tabBar.frame.minY - (newView?.frame.height)!
         self.view.addSubview(newView!)
         radioSetter?.barViewController = VC
