@@ -20,7 +20,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" id="LNR-wT-HZk">
+        <view clipsSubviews="YES" alpha="0.75" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" id="LNR-wT-HZk">
             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -74,12 +74,14 @@
             <color key="backgroundColor" red="0.89060476036269431" green="0.89060476036269431" blue="0.89060476036269431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <color key="tintColor" red="0.71834520725388606" green="0.71834520725388606" blue="0.71834520725388606" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="apL-oU-InR" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3qh-eG-oof" secondAttribute="trailing" constant="7" id="0v4-Ki-FHv"/>
                 <constraint firstItem="JXn-6u-I1w" firstAttribute="leading" secondItem="Uxa-z1-aRt" secondAttribute="trailing" constant="19" id="26H-bC-fUl"/>
                 <constraint firstItem="JXn-6u-I1w" firstAttribute="width" secondItem="LfY-Wd-udT" secondAttribute="width" id="5ec-aI-Uox"/>
                 <constraint firstItem="JXn-6u-I1w" firstAttribute="leading" secondItem="LfY-Wd-udT" secondAttribute="leading" id="BcV-uU-enU"/>
                 <constraint firstItem="StQ-rf-dqL" firstAttribute="leading" relation="lessThanOrEqual" secondItem="JXn-6u-I1w" secondAttribute="trailing" constant="22" id="D9C-Tt-AGi"/>
                 <constraint firstItem="Uxa-z1-aRt" firstAttribute="centerY" secondItem="StQ-rf-dqL" secondAttribute="centerY" constant="1" id="IXq-N3-KRO"/>
                 <constraint firstItem="Uxa-z1-aRt" firstAttribute="centerY" secondItem="3qh-eG-oof" secondAttribute="centerY" constant="1" id="L2o-ml-IH6"/>
+                <constraint firstItem="StQ-rf-dqL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LfY-Wd-udT" secondAttribute="trailing" constant="2" id="LjH-hB-1wQ"/>
                 <constraint firstItem="3qh-eG-oof" firstAttribute="top" secondItem="StQ-rf-dqL" secondAttribute="top" id="PfB-Qe-6wJ"/>
                 <constraint firstItem="JXn-6u-I1w" firstAttribute="trailing" secondItem="LfY-Wd-udT" secondAttribute="trailing" id="Rew-Sy-dys"/>
                 <constraint firstItem="Uxa-z1-aRt" firstAttribute="centerY" secondItem="LNR-wT-HZk" secondAttribute="centerY" id="Rw3-GV-LDx"/>

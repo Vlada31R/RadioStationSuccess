@@ -96,12 +96,23 @@ class SaveSongViewController: UIViewController, UITableViewDelegate, UITableView
         cell.descriptionLabel.text = songArray[indexPath.row].artist
         cell.descriptionLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
         
-        //cell.imageRadioStation.image = songArray[indexPath.row].img
+        cell.imageRadioStation.image = #imageLiteral(resourceName: "song")
         
         
         return cell
         
     }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  r, t, Bool -> Void  in
+            self.songArray.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+            deleteAction.backgroundColor = UIColor.red
+        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeConfig
+    }
+    
+   
 
     @IBAction func backButton(_ sender: Any) {
         self.save()
@@ -113,10 +124,10 @@ class SaveSongViewController: UIViewController, UITableViewDelegate, UITableView
 
 }
 
-class Song: NSData{
+class Song: Codable{
     var song: String
     var artist: String
-    var img: NSData
+    //var img: NSData
     
     init(s: String, a: String, i: UIImage? = nil){
         song = s
@@ -125,7 +136,4 @@ class Song: NSData{
        // img = i
     }
     
-    required init?(coder aDecoder: NSCoder) {
-
-    }
 }

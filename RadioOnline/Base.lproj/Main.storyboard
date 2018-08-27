@@ -6,6 +6,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -727,7 +728,9 @@
                             <button opaque="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6LS-Z9-yq5">
                                 <rect key="frame" x="97" y="544" width="60" height="60"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="60" id="Xcd-ba-tNU"/>
                                     <constraint firstAttribute="width" secondItem="6LS-Z9-yq5" secondAttribute="height" multiplier="1:1" id="nRD-7m-DU3"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="rBr-iV-fTe"/>
                                 </constraints>
                                 <state key="normal" title="play" image="pauseImageButton">
                                     <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -739,15 +742,16 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Law-Tk-ENv">
                                 <rect key="frame" x="223" y="544" width="60" height="60"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="Ej8-F1-rA4"/>
                                     <constraint firstAttribute="width" secondItem="Law-Tk-ENv" secondAttribute="height" multiplier="1:1" id="FaY-oW-c8R"/>
-                                    <constraint firstAttribute="height" constant="60" id="j6j-jH-JGz"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="60" id="gop-gp-zJh"/>
                                 </constraints>
                                 <state key="normal" title="stop" image="stopImageButton"/>
                                 <connections>
                                     <action selector="stopButtonPressed:" destination="xFa-1g-xaV" eventType="touchUpInside" id="q9f-Jf-P0V"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Station" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uBM-Yp-JX9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Station" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="uBM-Yp-JX9">
                                 <rect key="frame" x="63" y="20" width="250" height="42"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
                                 <nil key="textColor"/>
@@ -770,7 +774,7 @@
                                 <state key="normal" image="saveButtonImag"/>
                                 <connections>
                                     <action selector="saveButtonPressed:" destination="xFa-1g-xaV" eventType="touchUpInside" id="mkV-QY-OXa"/>
-                                    <segue destination="3p1-PD-JDQ" kind="presentation" identifier="saveSong" id="6QB-k7-YfU"/>
+                                    <segue destination="3p1-PD-JDQ" kind="presentation" identifier="saveSong" id="eOS-fo-aY9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ims-nV-oRb">
@@ -807,6 +811,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHX-nS-vLr">
+                                <rect key="frame" x="16" y="108" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fHX-nS-vLr" secondAttribute="height" multiplier="1:1" id="JiT-Fh-cvs"/>
+                                </constraints>
+                                <state key="normal" image="checkmark"/>
+                                <connections>
+                                    <segue destination="3p1-PD-JDQ" kind="presentation" id="B4D-3f-4dC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -827,12 +841,15 @@
                             <constraint firstItem="6LS-Z9-yq5" firstAttribute="top" secondItem="Law-Tk-ENv" secondAttribute="top" id="IBh-IX-CVf"/>
                             <constraint firstItem="4lE-Y3-nID" firstAttribute="top" secondItem="Uh6-YN-yTS" secondAttribute="bottom" constant="20" id="K1a-BI-HFa"/>
                             <constraint firstItem="GaJ-11-MVz" firstAttribute="trailing" secondItem="fQv-mH-7oT" secondAttribute="trailing" constant="16" id="K3M-US-jHU"/>
+                            <constraint firstItem="pLH-Jh-w2v" firstAttribute="leading" secondItem="fHX-nS-vLr" secondAttribute="trailing" constant="27" id="LIs-lV-xEo"/>
                             <constraint firstAttribute="trailing" secondItem="Law-Tk-ENv" secondAttribute="trailing" constant="92" id="PJN-TL-gbh"/>
                             <constraint firstItem="q6z-z4-Qdv" firstAttribute="top" secondItem="6gg-z9-TDz" secondAttribute="bottom" constant="8" id="Qqk-GW-tYN"/>
                             <constraint firstItem="Law-Tk-ENv" firstAttribute="leading" secondItem="6LS-Z9-yq5" secondAttribute="trailing" constant="66" id="SaA-Ws-gEn"/>
                             <constraint firstItem="fQv-mH-7oT" firstAttribute="top" secondItem="uBM-Yp-JX9" secondAttribute="bottom" constant="93.5" id="UEm-DG-xIa"/>
+                            <constraint firstItem="fHX-nS-vLr" firstAttribute="leading" secondItem="PJP-51-0lL" secondAttribute="leadingMargin" id="Y3P-0p-zyA"/>
                             <constraint firstItem="6LS-Z9-yq5" firstAttribute="bottom" secondItem="Law-Tk-ENv" secondAttribute="bottom" id="YjH-6j-aUf"/>
                             <constraint firstItem="pLH-Jh-w2v" firstAttribute="top" secondItem="uBM-Yp-JX9" secondAttribute="bottom" constant="8" id="bkc-yR-ihp"/>
+                            <constraint firstItem="fHX-nS-vLr" firstAttribute="top" secondItem="4lE-Y3-nID" secondAttribute="bottom" constant="18" id="f0m-uf-GbR"/>
                             <constraint firstItem="fkc-1F-UOk" firstAttribute="top" secondItem="q6z-z4-Qdv" secondAttribute="bottom" constant="8" id="gqY-9e-WCG"/>
                             <constraint firstItem="Uh6-YN-yTS" firstAttribute="leading" secondItem="GaJ-11-MVz" secondAttribute="leading" constant="10" id="lSR-pc-8dF"/>
                             <constraint firstItem="fQv-mH-7oT" firstAttribute="leading" secondItem="pLH-Jh-w2v" secondAttribute="trailing" constant="18" id="mFr-KM-Ich"/>
@@ -873,14 +890,6 @@
                                 <state key="normal" backgroundImage="back-2"/>
                                 <connections>
                                     <action selector="backButton:" destination="3p1-PD-JDQ" eventType="touchUpInside" id="cEM-6p-TlE"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZm-Ls-Wj7">
-                                <rect key="frame" x="329" y="20" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="removeAllButton:" destination="3p1-PD-JDQ" eventType="touchUpInside" id="DSJ-Yr-mPc"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="-1" sectionFooterHeight="35" translatesAutoresizingMaskIntoConstraints="NO" id="1IZ-T2-VJ9">
@@ -1081,6 +1090,7 @@
     <resources>
         <image name="all" width="25" height="25"/>
         <image name="back-2" width="30" height="30"/>
+        <image name="checkmark" width="100" height="100"/>
         <image name="facebook" width="32" height="32"/>
         <image name="pauseImageButton" width="100" height="100"/>
         <image name="picture" width="32" height="32"/>
@@ -1093,6 +1103,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NVb-rD-Afc"/>
+        <segue reference="eOS-fo-aY9"/>
         <segue reference="MRL-oJ-DGK"/>
         <segue reference="dKc-yx-GvM"/>
         <segue reference="c7W-ZD-BJ5"/>

@@ -246,7 +246,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         } else {
             share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "delete_favoritesIOS9"))
         }
-
+        DataManager.save()
         return [share]
     }
     
@@ -292,6 +292,8 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         DataManager.loadFavorites()
         DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
         NotificationCenter.default.post(name: .reloadFavoritesTableView, object: nil)
+        DataManager.save()
+
         return true
     }
     

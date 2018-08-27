@@ -173,6 +173,7 @@ struct DataManager {
                     stations[i].new = false
                     countFavorites = countFavorites - 1
                     stationsFavorites[index].new = false
+                    save()
                     return
                 } else {
                     return
@@ -182,7 +183,7 @@ struct DataManager {
         }
         
         //loadFavorites()
-        save()
+//save()
 
     }
     

@@ -38,7 +38,7 @@ class CollectionTabBarController: UITabBarController, UITabBarControllerDelegate
         
         let newView = VC?.view
         
-        newView?.frame.size = CGSize(width: self.tabBar.frame.width, height: self.view.frame.height * 0.08)
+        newView?.frame.size = CGSize(width: self.tabBar.frame.width, height: self.view.frame.height * 0.1)
         newView?.frame.origin.y = self.tabBar.frame.minY - (newView?.frame.height)!
         self.view.addSubview(newView!)
         radioSetter?.barViewController = VC
@@ -85,8 +85,8 @@ extension CollectionTabBarController: BarViewControllerDelegate{
     }
     
     func didTapped(sender: UITapGestureRecognizer) {
-        
+        if radioSetter?.radioPlayer?.station != nil{
         performSegue(withIdentifier: "RadioPlayer", sender: self)
+        }
     }
-    
 }

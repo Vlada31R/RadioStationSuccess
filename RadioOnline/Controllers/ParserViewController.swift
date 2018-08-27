@@ -113,7 +113,12 @@ class ParserViewController: UIViewController,  UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if let tabBar = self.tabBarController as? CustomTabBarController{
+            DataManager.preparePlayerTV(radioStation: radioStationParse[indexPath.row], tabBarController: self.tabBarController!)
+        }
+        if let tabBar = self.tabBarController as? CollectionTabBarController{
+            DataManager.preparePlayerCV(radioStation: radioStationParse[indexPath.row], tabBarController: self.tabBarController!)
+        }
     }
     
     //*******************************************************************************************************************************************
