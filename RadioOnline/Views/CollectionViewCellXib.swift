@@ -13,20 +13,18 @@ class CollectionViewCellXib: UIView {
     @IBOutlet weak var stationImage: UIImageView!
     @IBOutlet weak var stationName: UILabel!
     @IBOutlet weak var newLabel: UILabel!
-    override init(frame: CGRect)
-    {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
-        
+
     }
-    
-    private func commonInit()
-    {
+
+    private func commonInit() {
         Bundle.main.loadNibNamed("CollectionViewCellXib", owner: self, options: nil)
         addSubview(cell)
         cell.frame = self.bounds

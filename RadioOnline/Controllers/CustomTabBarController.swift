@@ -9,20 +9,19 @@
 import UIKit
 
 class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
-    
+
     var radioSetter: RadioSetter?
     var VC: BarViewController?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+
          }
 
-    
     //this method check tap on a tab bar controller
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         NotificationCenter.default.post(name: .clear, object: nil)
-       
+
         if item.title != nil {
             DataManager.loadFavorites()
             NotificationCenter.default.post(name: .reloadFavoritesTableView, object: nil)
@@ -32,21 +31,21 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         super.viewWillAppear(animated)
 
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if radioSetter == nil{
+        if radioSetter == nil {
             radioSetter = RadioSetter()
             radioSetter?.setupRadio()
-            
+
         }
-        if VC == nil{
+        if VC == nil {
             VC = BarViewController()
         }
         VC?.delegate = self
-        
+
         let newView = VC?.view
-        
+
         newView?.frame.size = CGSize(width: self.tabBar.frame.width, height: self.view.frame.height * 0.1)
         newView?.frame.origin.y = self.tabBar.frame.minY - (newView?.frame.height)!
         self.view.addSubview(newView!)
@@ -56,41 +55,37 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "RadioPlayer", let radioPlayerVC = segue.destination as? RadioPlayerViewController else { return }
-        
-    
+
         radioSetter?.radioPlayerViewController = radioPlayerVC
         radioPlayerVC.loadRadio(station: radioSetter?.radioPlayer?.station, track: radioSetter?.radioPlayer?.track)
     }
 
 }
 
-
-extension CustomTabBarController: BarViewControllerDelegate{
+extension CustomTabBarController: BarViewControllerDelegate {
     func didPressPlayingButton() {
         radioSetter?.radioPlayer?.player.togglePlaying()
     }
-    
+
     func didPressStopButton() {
         radioSetter?.radioPlayer?.player.stop()
     }
-    
+
     func didPressNextButton() {
-        
+
     }
-    
+
     func didPressPreviousButton() {
-        
+
     }
-    
+
     func didTapped(sender: UITapGestureRecognizer) {
-        if radioSetter?.radioPlayer?.station != nil{
+        if radioSetter?.radioPlayer?.station != nil {
         performSegue(withIdentifier: "RadioPlayer", sender: self)
         }
     }
-    
+
 }
-
-

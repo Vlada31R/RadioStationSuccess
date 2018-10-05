@@ -1,4 +1,4 @@
-    //
+//
 //  AllStationViewController.swift
 //  RadioOnline
 //
@@ -9,34 +9,29 @@
 import UIKit
 import ChameleonFramework
 import ProgressHUD
-    
-struct My {
-    static var cellSnapShot: UIView? = nil
-}
-    
-struct Path {
-    static var initialIndexPath: IndexPath? = nil
-}
-    
-class AllStationViewController:  UIViewController,  UITableViewDelegate, UITableViewDataSource {
-    
-    @IBOutlet var tableView: UITableView!
-    
 
+struct My {
+    static var cellSnapShot: UIView?
+}
+
+struct Path {
+    static var initialIndexPath: IndexPath?
+}
+
+class AllStationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    @IBOutlet var tableView: UITableView!
 
     @IBOutlet weak var search: UISearchBar!
-    
-    override var prefersStatusBarHidden: Bool {return DataManager.flag}
-    
 
+    override var prefersStatusBarHidden: Bool {return DataManager.flag}
 
     var radioSetter = RadioSetter()
 
-    
     //*****************************************************************
     // MARK: - viewDidLoad Method
     //*****************************************************************
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized(gestureRecognizer:)))
@@ -48,13 +43,13 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         NotificationCenter.default.addObserver(self, selector: #selector(clearSearchBar(notification:)), name: .clear, object: nil)
         DataManager.updateBandge(TabItems: self.tabBarController?.tabBar.items as NSArray?)
     }
-    
+
 //    override func viewWillAppear(_ animated: Bool) {
 //        let height: CGFloat = self.view.bounds.height * 0.05
 //        let bounds = self.navigationController!.navigationBar.bounds
 //        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: height)
 //    }
-    @objc func reload(notification: NSNotification){
+    @objc func reload(notification: NSNotification) {
         DataManager.changeColor(view: self.view)
         tableView.reloadData()
     }
@@ -62,26 +57,24 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
 
-    
     @objc func clearSearchBar(notification: NSNotification) {
         search.text = ""
         DataManager.load()
         tableView.reloadData()
     }
-    
+
     //*****************************************************************
     // MARK: - Method fro drag and drop cell in table view
     //*****************************************************************
-    
+
     @objc func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
-        
+
         let longpress = gestureRecognizer as! UILongPressGestureRecognizer
         let state = longpress.state
         let locationInView = longpress.location(in: self.tableView)
         var indexPath = self.tableView.indexPathForRow(at: locationInView)
-        
+
         switch state {
         case .began:
             if indexPath != nil {
@@ -92,7 +85,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
                 My.cellSnapShot?.center = center
                 My.cellSnapShot?.alpha = 0.0
                 self.tableView.addSubview(My.cellSnapShot!)
-                
+
                 UIView.animate(withDuration: 0.25, animations: {
                     center.y = locationInView.y
                     My.cellSnapShot?.center = center
@@ -105,7 +98,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
                     }
                 })
             }
-            
+
         case .changed:
             var center = My.cellSnapShot!.center
             center.y = locationInView.y
@@ -115,7 +108,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
                 tableView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
                 Path.initialIndexPath = indexPath
                 }
-            
+
         default:
             let cell = self.tableView.cellForRow(at: Path.initialIndexPath!) as! CustomCell
             cell.isHidden = false
@@ -134,14 +127,14 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
             })
         }
     }
-    
+
     func snapshopOfCell(inputView: UIView) -> UIView {
-        
+
         UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
         inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        let cellSnapshot : UIView = UIImageView(image: image)
+        let cellSnapshot: UIView = UIImageView(image: image)
         cellSnapshot.layer.masksToBounds = false
         cellSnapshot.layer.cornerRadius = 0.0
         cellSnapshot.layer.shadowOffset = CGSize(width: -5.0, height: 0.0)
@@ -149,24 +142,24 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         cellSnapshot.layer.shadowOpacity = 0.4
         return cellSnapshot
     }
-    
+
     //*******************************************************************************************************************************************
-    //MARK: tableView method
+    // MARK: tableView method
     //*******************************************************************************************************************************************
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //print(DataManager.stations.count)
-        
+
         return (DataManager.stations.count)
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y > 0 {
             DataManager.flag = true
             UIView.animate(withDuration: 0.25) {
                 self.setNeedsStatusBarAppearanceUpdate()
             }
-            
+
         } else if scrollView.contentOffset.y < -100 {
             DataManager.flag = false
             UIView.animate(withDuration: 0.25) {
@@ -174,7 +167,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
             }
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomCell
         cell.backgroundColor = self.view.backgroundColor
@@ -183,22 +176,19 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         cell.descriptionLabel.text = DataManager.stations[indexPath.row].desc
         cell.descriptionLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
         //check image in device and load from device or internet
-        
-        if DataManager.stations[indexPath.row].imageURL.contains("user")
-        {
+
+        if DataManager.stations[indexPath.row].imageURL.contains("user") {
             let fileManager = FileManager.default
             let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
             let documentDirectory = URL(fileURLWithPath: path)
             let destinationPath = documentDirectory.appendingPathComponent("\(DataManager.stations[indexPath.row].name).jpg")
-            if fileManager.fileExists(atPath: destinationPath.path){
+            if fileManager.fileExists(atPath: destinationPath.path) {
                 cell.imageRadioStation.image = UIImage(contentsOfFile: destinationPath.path)
-            }else{
+            } else {
                 print("No Image")
                 cell.imageRadioStation.image = #imageLiteral(resourceName: "stationImage")
             }
-        }
-        else
-        {
+        } else {
             let img = DataManager.readImg(name: "\(DataManager.stations[indexPath.row].name).png")
             if img == nil || img == #imageLiteral(resourceName: "stationImage") {
                 cell.imageRadioStation.downloadedFrom(link: DataManager.stations[indexPath.row].imageURL, name: "\(DataManager.stations[indexPath.row].name).png")
@@ -207,17 +197,17 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
                 //print("image load from device")
             }
         }
-        
+
         return cell
     }
-    
+
     //*******************************************************************************************************************************************
-    //MARK: tableView cell swipe
+    // MARK: tableView cell swipe
     //*******************************************************************************************************************************************
-    
+
     @available(iOS 9.0, *)
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let share = UITableViewRowAction(style: .normal, title: "           ") { action, index in
+        let share = UITableViewRowAction(style: .normal, title: "           ") { _, _ in
             if DataManager.stations[indexPath.row].favorites == true {
                 DataManager.stations[indexPath.row].favorites = false
                 DataManager.stations[indexPath.row].new = false
@@ -240,8 +230,8 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         } else {
             share.backgroundColor = .gray
         }
-        
-        if DataManager.stations[indexPath.row].favorites == false{
+
+        if DataManager.stations[indexPath.row].favorites == false {
             share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "favoritesForIOS9"))
         } else {
             share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "delete_favoritesIOS9"))
@@ -249,7 +239,7 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         DataManager.save()
         return [share]
     }
-    
+
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let flagAction = self.contextualToggleFlagAction(forRowAtIndexPath: indexPath)
@@ -261,11 +251,11 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         let swipeConfig = UISwipeActionsConfiguration(actions: [flagAction])
         return swipeConfig
     }
-    
+
     @available(iOS 11.0, *)
     func contextualToggleFlagAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .normal, title: "Flag") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-            
+        let action = UIContextualAction(style: .normal, title: "Flag") { (_: UIContextualAction, _: UIView, completionHandler: (Bool) -> Void) in
+
             if self.addFavorites(indexPath) {
                 completionHandler(true)
             } else {
@@ -275,9 +265,9 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
         action.image = UIImage(named: "favorites")
         return action
     }
-    
+
     @available(iOS 11.0, *)
-    func addFavorites(_ indexPath: IndexPath) -> Bool{
+    func addFavorites(_ indexPath: IndexPath) -> Bool {
         if DataManager.stations[indexPath.row].favorites == true {
             DataManager.stations[indexPath.row].favorites = false
             DataManager.stations[indexPath.row].new = false
@@ -296,19 +286,19 @@ class AllStationViewController:  UIViewController,  UITableViewDelegate, UITable
 
         return true
     }
-    
+
     //*******************************************************************************************************************************************
-    //MARK: segue to collectionView
+    // MARK: segue to collectionView
     //*******************************************************************************************************************************************
     // End of Class
 }
-    
+
 //*******************************************************************************************************************************************
-//MARK: extension to load image from URL
+// MARK: extension to load image from URL
 //*******************************************************************************************************************************************
 
 extension UIImageView {
-    func downloadedFrom(link:String, name: String) {
+    func downloadedFrom(link: String, name: String) {
         self.image = #imageLiteral(resourceName: "stationImage")
         //check empty url, if url empty return else load img and save
         if link == "" {
@@ -316,7 +306,7 @@ extension UIImageView {
         }
         guard let url = URL(string: link) else { return }
         URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) -> Void in
-            guard let data = data , error == nil, let image = UIImage(data: data) else { return }
+            guard let data = data, error == nil, let image = UIImage(data: data) else { return }
             DispatchQueue.main.async { () -> Void in
                 self.image = image
                 //save image in device when image load from URL
@@ -334,12 +324,12 @@ extension UIImageView {
             }
         }).resume()
     }
-    
-    func downloadedFrom(link:String) {
+
+    func downloadedFrom(link: String) {
         self.image = #imageLiteral(resourceName: "stationImage")
         guard let url = URL(string: link) else { return }
         URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) -> Void in
-            guard let data = data , error == nil, let image = UIImage(data: data) else { return }
+            guard let data = data, error == nil, let image = UIImage(data: data) else { return }
             DispatchQueue.main.async { () -> Void in
                 self.image = image
             }
@@ -347,10 +337,10 @@ extension UIImageView {
     }
 }
 //*******************************************************************************************************************************************
-//MARK: extension to search bar
+// MARK: extension to search bar
 //*******************************************************************************************************************************************
 
-extension AllStationViewController: UISearchBarDelegate{
+extension AllStationViewController: UISearchBarDelegate {
         func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
             searchBar.endEditing(true)
             //        if(!(searchBar.text?.isEmpty)!){
@@ -358,18 +348,17 @@ extension AllStationViewController: UISearchBarDelegate{
             //            self.tableView?.reloadData()
             //        }
         }
-        
+
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            if(!(searchBar.text?.isEmpty)!){
+            if(!(searchBar.text?.isEmpty)!) {
                 DataManager.load()
-                DataManager.stations = DataManager.stations.filter{$0.name.lowercased().contains(searchBar.text!.lowercased())}
+                DataManager.stations = DataManager.stations.filter {$0.name.lowercased().contains(searchBar.text!.lowercased())}
                 self.tableView?.reloadData()
             }
-            
-            if(searchText.isEmpty){
-                
-                if searchBar.text?.count == 0
-                {
+
+            if(searchText.isEmpty) {
+
+                if searchBar.text?.count == 0 {
                     DataManager.load()
                     self.tableView?.reloadData()
                     DispatchQueue.main.async {
@@ -380,15 +369,12 @@ extension AllStationViewController: UISearchBarDelegate{
         }
 }
 
-extension AllStationViewController{
+extension AllStationViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+
         DataManager.preparePlayerTV(radioStation: DataManager.stations[indexPath.row], tabBarController: self.tabBarController!)
 
-
     }
-    
+
 }
-
-

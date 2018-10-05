@@ -13,9 +13,9 @@ import ChameleonFramework
 class SaveSongViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    
+
     var songArray = [Song]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //firstSave()
@@ -24,8 +24,8 @@ class SaveSongViewController: UIViewController, UITableViewDelegate, UITableView
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "Cell")
     }
-    
-    func save(){
+
+    func save() {
         let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Song.plist")
         let encoder = PropertyListEncoder()
         do {
@@ -34,12 +34,10 @@ class SaveSongViewController: UIViewController, UITableViewDelegate, UITableView
         } catch {
             print("some write error")
         }
-        
+
     }
-    
-    
-    
-    func load()  {
+
+    func load() {
         let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Song.plist")
         var array = [Song]()
         if let data = try? Data(contentsOf: dataFilePath!) {
@@ -49,15 +47,15 @@ class SaveSongViewController: UIViewController, UITableViewDelegate, UITableView
             } catch {
                 print("Error decoding data")
             }
-            for arrayIndex in array{
+            for arrayIndex in array {
             songArray.append(arrayIndex)
             }
             save()
         }
-        
+
     }
-    
-    func firstSave(){
+
+    func firstSave() {
         var arrayLoad = [Song]()
         var song = Song(s: "Nosa", a: "Kokos")
 
@@ -83,11 +81,11 @@ class SaveSongViewController: UIViewController, UITableViewDelegate, UITableView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songArray.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomCell
         cell.backgroundColor = self.view.backgroundColor
@@ -95,45 +93,42 @@ class SaveSongViewController: UIViewController, UITableViewDelegate, UITableView
         cell.nameLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
         cell.descriptionLabel.text = songArray[indexPath.row].artist
         cell.descriptionLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
-        
+
         cell.imageRadioStation.image = #imageLiteral(resourceName: "song")
-        
-        
+
         return cell
-        
+
     }
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  r, t, Bool -> Void  in
-            self.songArray.remove(at: indexPath.row)
-            tableView.reloadData()
-        }
-            deleteAction.backgroundColor = UIColor.red
-        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
-        return swipeConfig
-    }
-    
-   
+//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  r, t, Bool -> Void  in
+//            self.songArray.remove(at: indexPath.row)
+//            tableView.reloadData()
+//        }
+//            deleteAction.backgroundColor = UIColor.red
+//        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
+//        return swipeConfig
+//    }
 
     @IBAction func backButton(_ sender: Any) {
         self.save()
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     @IBAction func removeAllButton(_ sender: Any) {
     }
 
 }
 
-class Song: Codable{
+class Song: Codable {
     var song: String
     var artist: String
     //var img: NSData
-    
-    init(s: String, a: String, i: UIImage? = nil){
+
+    init(s: String, a: String, i: UIImage? = nil) {
         song = s
         artist = a
        // img = UIImagePNGRepresentation(i) as! NSData
        // img = i
     }
-    
+
 }

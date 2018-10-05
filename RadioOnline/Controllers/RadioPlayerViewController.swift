@@ -14,25 +14,24 @@ protocol RadioPlayerViewControllerDelegate: class {
 }
 
 class RadioPlayerViewController: UIViewController {
-    
-    
+
     @IBOutlet weak var toggleButton: UIButton!
     @IBOutlet weak var stationName: UILabel!
     @IBOutlet weak var albumImage: UIImageView!
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var songLabel: UILabel!
     @IBOutlet weak var volumeParentView: UIView!
-    
+
     //var newStation: Bool = true
     var mpVolumeSlider: UISlider?
     var playingStation: RadioStation?
     var playingTrack: Track?
-    
+
     //Init radio player
     let radioPlayer = FRadioPlayer.shared
-    
+
     @IBAction func facebookBtn(_ sender: Any) {
-        let fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        let fbShare: SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
         fbShare.add(albumImage.image)
         //fbShare.add(textToImage(drawText: songLabel.text as! NSString, inImage: albumImage.image!, atPoint: CGPointMake(0, albumImage.frame.height)))
         //fbShare.setInitialText("#\(playingStation.streamURL)")
@@ -43,7 +42,7 @@ class RadioPlayerViewController: UIViewController {
         tweetShare.add(albumImage.image)
         self.present(tweetShare, animated: true, completion: nil)
     }
-    
+
 //    func textToImage(drawText: NSString, inImage: UIImage, atPoint: CGPoint) -> UIImage{
 //
 //
@@ -86,16 +85,16 @@ class RadioPlayerViewController: UIViewController {
     func CGPointMake(_ x: CGFloat, _ y: CGFloat) -> CGPoint {
         return CGPoint(x: x, y: y)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Setting background image
         //self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "back"))
-        
+
         // Setuping Volume Slider
         setupVolumeSlider()
-        
+
         // Setuping Command Center
         //setupRemoteCommandCenter()
         playerStateDidChange(radioPlayer.state)
@@ -108,20 +107,20 @@ class RadioPlayerViewController: UIViewController {
         artistLabel.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
         songLabel.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true)
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     // Show and Hide NavBar
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
+
     //*****************************************************************
     // MARK: - Setup Slider
     //*****************************************************************
@@ -132,38 +131,38 @@ class RadioPlayerViewController: UIViewController {
             guard let volumeSlider = subview as? UISlider else { continue }
             mpVolumeSlider = volumeSlider
         }
-        
+
         guard let mpVolumeSlider = mpVolumeSlider else { return }
-        
+
         volumeParentView.addSubview(mpVolumeSlider)
-        
+
         mpVolumeSlider.translatesAutoresizingMaskIntoConstraints = false
         mpVolumeSlider.leftAnchor.constraint(equalTo: volumeParentView.leftAnchor).isActive = true
         mpVolumeSlider.rightAnchor.constraint(equalTo: volumeParentView.rightAnchor).isActive = true
         mpVolumeSlider.centerYAnchor.constraint(equalTo: volumeParentView.centerYAnchor).isActive = true
-        
+
         mpVolumeSlider.setThumbImage(#imageLiteral(resourceName: "slider-ball"), for: .normal)
     }
     //*****************************************************************
     // MARK: - Load Initial Information
     //*****************************************************************
-    
+
     // Load radio information
 
-    func loadRadio(station: RadioStation?, track: Track?){
+    func loadRadio(station: RadioStation?, track: Track?) {
 
         playingStation = station
         playingTrack = track
     }
-    
+
     //*****************************************************************
     // MARK: - Updating Labels and Metadata
     //*****************************************************************
-    
-    func playerStateDidChange(_ playerState: FRadioPlayerState){
-        
+
+    func playerStateDidChange(_ playerState: FRadioPlayerState) {
+
         var message = String()
-        
+
         switch playerState {
         case .loading:
             message = "Loading..."
@@ -176,11 +175,11 @@ class RadioPlayerViewController: UIViewController {
         }
         updateLabels(with: message, animate: true)
     }
-    
-    func playbackStateDidChange(_ playbackState: FRadioPlaybackState){
-        
+
+    func playbackStateDidChange(_ playbackState: FRadioPlaybackState) {
+
         let message: String?
-        
+
         switch playbackState {
         case .paused:
             toggleButton.setImage(#imageLiteral(resourceName: "playImageButton"), for: .normal)
@@ -192,80 +191,79 @@ class RadioPlayerViewController: UIViewController {
             toggleButton.setImage(#imageLiteral(resourceName: "playImageButton"), for: .normal)
             message = "Station Stopped..."
         }
-        
+
         updateLabels(with: message, animate: true)
     }
 
     // Update Labels
-    func updateLabels(with message: String? = nil, animate: Bool = true){
+    func updateLabels(with message: String? = nil, animate: Bool = true) {
         guard let message = message else {
             songLabel.text = playingTrack?.title
             artistLabel.text = playingTrack?.artist
             stationName.text = playingStation?.name
-            
+
             return
         }
         guard songLabel.text != message else { return }
-        
+
         songLabel.text = message
         artistLabel.text = playingStation?.name
     }
-    
+
     // Update Track Metadata
     func updateTrackMetadata(with track: Track?) {
         guard let track = track else { return }
-        
+
         playingTrack = track
-        
+
         updateLabels()
     }
-    
+
     // Update track with new artwork
     func updateTrackArtwork(with track: Track?) {
         guard let track = track else { return }
-        
+
         // Update track struct
         playingTrack?.artworkImage = track.artworkImage
         playingTrack?.artworkLoaded = track.artworkLoaded
-        
+
         albumImage.image = playingTrack?.artworkImage
-        
+
         // Force app to update display
         view.setNeedsDisplay()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "saveSong", let songVC = segue.destination as? SaveSongViewController{
+        if segue.identifier == "saveSong", let songVC = segue.destination as? SaveSongViewController {
             songVC.songArray.append(Song(s: (playingTrack?.title)!, a: (playingTrack?.artist)!))
         }
     }
     //*****************************************************************
     // MARK: - Radio Station Changed
     //*****************************************************************
-    
+
     // Radio Station Did Changed
-    func stationDidChanged(){
+    func stationDidChanged() {
         radioPlayer.radioURL = URL(string: (playingStation?.streamURL)!)
         title = playingStation?.name
     }
-    func saveTrack(track: Track?){
+    func saveTrack(track: Track?) {
         savedTrackArray.append(track!)
     }
-    
-    
+
     //*****************************************************************
     // MARK: - Button Actions
     //*****************************************************************
-    
+
     // Play Button
     @IBAction func playButtonPressed(_ sender: UIButton) {
         radioPlayer.togglePlaying()
     }
-    
+
     // Stop Button
     @IBAction func stopButtonPressed(_ sender: UIButton) {
         radioPlayer.stop()
     }
-    
+
     // Save Button
     @IBAction func saveButtonPressed(_ sender: UIButton) {
        performSegue(withIdentifier: "saveSong", sender: self)
@@ -275,5 +273,3 @@ class RadioPlayerViewController: UIViewController {
     }
     // End Of Class
 }
-
-

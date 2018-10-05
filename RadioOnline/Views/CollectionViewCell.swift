@@ -9,30 +9,26 @@
 import UIKit
 import ChameleonFramework
 
-
 class CollectionViewCell: UICollectionViewCell {
-    
+
     @IBOutlet weak var cell: CollectionViewCellXib!
-    
-    func configureStationCell(station: RadioStation, view: UIView,fav : Bool = false) {
+
+    func configureStationCell(station: RadioStation, view: UIView, fav: Bool = false) {
 
         cell.stationName.text = station.name
         print(station.imageURL)
-        if station.imageURL.contains("user")
-        {
+        if station.imageURL.contains("user") {
             let fileManager = FileManager.default
             let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
             let documentDirectory = URL(fileURLWithPath: path)
             let destinationPath = documentDirectory.appendingPathComponent("\(station.name).jpg")
-            if fileManager.fileExists(atPath: destinationPath.path){
+            if fileManager.fileExists(atPath: destinationPath.path) {
                 cell.stationImage.image = UIImage(contentsOfFile: destinationPath.path)
-            }else{
+            } else {
                 print("No Image")
                 cell.stationImage.image = #imageLiteral(resourceName: "stationImage")
             }
-        }
-        else
-        {
+        } else {
             let img = DataManager.readImg(name: "\(station.name).png")
             if img == nil || img == #imageLiteral(resourceName: "stationImage") {
                 cell.stationImage.downloadedFrom(link: station.imageURL, name: "\(station.name).png")
@@ -40,17 +36,16 @@ class CollectionViewCell: UICollectionViewCell {
                 cell.stationImage.image = img
             }
         }
-        
+
         cell.stationName.textColor = ContrastColorOf(view.backgroundColor!, returnFlat: true)
-        
+
         cell.backgroundColor = view.backgroundColor
         for subview in cell.subviews {
             subview.backgroundColor = view.backgroundColor
         }
-        
+
         cell.newLabel.isHidden = true
-        if fav == true
-        {
+        if fav == true {
             if station.new == true {
                 //let image = cell.stationImage.image
                 //cell.newLabel.frame.origin.x = (cell.stationImage.frame.width - (image?.size.width)!)/2

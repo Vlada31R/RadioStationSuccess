@@ -24,31 +24,31 @@ protocol RadioPlayerDelegate: class {
 //*****************************************************************
 
 class RadioPlayer {
-    
+
     weak var delegate: RadioPlayerDelegate?
-    
+
     let player = FRadioPlayer.shared
-    
+
     var station: RadioStation? {
         didSet { resetTrack(with: station) }
     }
-    
+
     private(set) var track: Track?
-    
+
     init() {
         player.delegate = self
     }
-    
+
     func resetRadioPlayer() {
         station = nil
         track = nil
         player.radioURL = nil
     }
-    
+
     //*****************************************************************
     // MARK: - Track loading/updates
     //*****************************************************************
-    
+
     // Update the track with an artist name and track name
     func updateTrackMetadata(artistName: String, trackName: String) {
         if track == nil {
@@ -57,24 +57,24 @@ class RadioPlayer {
             track?.title = trackName
             track?.artist = artistName
         }
-        
+
         delegate?.trackDidUpdate(track)
     }
-    
+
     // Update the track artwork with a UIImage
     func updateTrackArtwork(with image: UIImage, artworkLoaded: Bool) {
         track?.artworkImage = image
         track?.artworkLoaded = artworkLoaded
         delegate?.trackArtworkDidUpdate(track)
     }
-    
+
     // Reset the track metadata and artwork to use the current station infos
     func resetTrack(with station: RadioStation?) {
         guard let station = station else { track = nil; return }
         updateTrackMetadata(artistName: station.desc, trackName: station.name)
         resetArtwork(with: station)
     }
-    
+
     // Reset the track Artwork to current station image
     func resetArtwork(with station: RadioStation?) {
         guard let station = station else { track = nil; return }
@@ -82,12 +82,12 @@ class RadioPlayer {
             self.updateTrackArtwork(with: image, artworkLoaded: false)
         }
     }
-    
+
     //*****************************************************************
     // MARK: - Private helpers
     //*****************************************************************
-    
-    private func getStationImage(from station: RadioStation, completionHandler: @escaping (_ image: UIImage) -> ()) {
+
+    private func getStationImage(from station: RadioStation, completionHandler: @escaping (_ image: UIImage) -> Void) {
 //
 //        if station.imageURL.range(of: "http") != nil {
 //            // load current station image from network
@@ -103,15 +103,15 @@ class RadioPlayer {
 }
 
 extension RadioPlayer: FRadioPlayerDelegate {
-    
+
     func radioPlayer(_ player: FRadioPlayer, playerStateDidChange state: FRadioPlayerState) {
         delegate?.playerStateDidChange(state)
     }
-    
+
     func radioPlayer(_ player: FRadioPlayer, playbackStateDidChange state: FRadioPlaybackState) {
         delegate?.playbackStateDidChange(state)
     }
-    
+
     func radioPlayer(_ player: FRadioPlayer, metadataDidChange artistName: String?, trackName: String?) {
         guard
             let artistName = artistName, !artistName.isEmpty,
@@ -119,14 +119,14 @@ extension RadioPlayer: FRadioPlayerDelegate {
                 resetTrack(with: station)
                 return
         }
-        
+
         updateTrackMetadata(artistName: artistName, trackName: trackName)
     }
-    
+
     func radioPlayer(_ player: FRadioPlayer, artworkDidChange artworkURL: URL?) {
         guard let artworkURL = artworkURL else { resetArtwork(with: station); return }
-        
-        ImageLoader.sharedLoader.imageForUrl(urlString: artworkURL.absoluteString) { (image, stringURL) in
+
+        ImageLoader.sharedLoader.imageForUrl(urlString: artworkURL.absoluteString) { (image, _) in
             guard let image = image else { self.resetArtwork(with: self.station); return }
             self.updateTrackArtwork(with: image, artworkLoaded: true)
         }
