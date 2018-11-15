@@ -39,6 +39,7 @@
 		3FFDF7312124300C00E69812 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF7282124300A00E69812 /* DataManager.swift */; };
 		3FFDF7322124300C00E69812 /* CollectionViewCellXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDF7292124300B00E69812 /* CollectionViewCellXib.xib */; };
 		3FFDF7332124300C00E69812 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF72A2124300B00E69812 /* CollectionViewCell.swift */; };
+		DE029D82219D6D650095CE54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE029D81219D6D650095CE54 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,7 +63,6 @@
 		3FF9454421258C1E009C9587 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3FFDF6D82122B4BD00E69812 /* RadioOnline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioOnline.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FFDF6DB2122B4BD00E69812 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3FFDF6E02122B4BD00E69812 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3FFDF6E22122B4BE00E69812 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FFDF6E52122B4BE00E69812 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3FFDF71B21231F4A00E69812 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
@@ -79,6 +79,7 @@
 		3FFDF72A2124300B00E69812 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		6B9E071C20900F68315913FF /* Pods_RadioOnline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RadioOnline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85CE0378CAF0F4DBDB6518F9 /* Pods-RadioOnline.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RadioOnline.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RadioOnline/Pods-RadioOnline.debug.xcconfig"; sourceTree = "<group>"; };
+		DE029D81219D6D650095CE54 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DEA4988F2167A9CD00A8D968 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		DEA498912167A9F700A8D968 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -173,8 +174,8 @@
 				3FFDF73721243A8300E69812 /* Model and settings */,
 				3FFDF6DB2122B4BD00E69812 /* AppDelegate.swift */,
 				3FDE805A2126C80A00A37FB8 /* RadioPlayer.swift */,
-				3FFDF6DF2122B4BD00E69812 /* Main.storyboard */,
 				3FFDF6E22122B4BE00E69812 /* Assets.xcassets */,
+				DE029D81219D6D650095CE54 /* Main.storyboard */,
 				3FFDF6E42122B4BE00E69812 /* LaunchScreen.storyboard */,
 				DEA498912167A9F700A8D968 /* Info.plist */,
 				DEA4988F2167A9CD00A8D968 /* Info.plist */,
@@ -265,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FFDF71C21231F4A00E69812 /* CustomCell.xib in Resources */,
+				DE029D82219D6D650095CE54 /* Main.storyboard in Resources */,
 				3FFDF6E32122B4BE00E69812 /* Assets.xcassets in Resources */,
 				3FFDF7322124300C00E69812 /* CollectionViewCellXib.xib in Resources */,
 				3F9DCBB8212D994F00CB2312 /* BarViewController.xib in Resources */,
@@ -354,14 +356,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		3FFDF6DF2122B4BD00E69812 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3FFDF6E02122B4BD00E69812 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3FFDF6E42122B4BE00E69812 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

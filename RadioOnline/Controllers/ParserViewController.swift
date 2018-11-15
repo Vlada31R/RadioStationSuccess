@@ -19,7 +19,7 @@ class ParserViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var button: UIButton!
 
     var arrayOfURLtoParse = [String]()
-    var radioStationParse = [RadioStation]()
+    //var radioStationParse = [RadioStation]()
     var flagIsParse = false
 
     override func viewDidLoad() {
@@ -67,7 +67,7 @@ class ParserViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: Table View Methods
     //*******************************************************************************************************************************************
     func numberOfSections(in tableView: UITableView) -> Int {
-        if radioStationParse.isEmpty && flagIsParse == true {
+        if radioStationParse.valueArray.isEmpty && flagIsParse == true {
             let rect = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
             let messageLabel = UILabel(frame: rect)
             messageLabel.text = "Radio station not found!"
@@ -90,20 +90,20 @@ class ParserViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return radioStationParse.count
+        return radioStationParse.valueArray.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomCell
         cell.backgroundColor = self.view.backgroundColor
-        cell.nameLabel.text = radioStationParse[indexPath.row].name
+        cell.nameLabel.text = radioStationParse.valueArray[indexPath.row].name
         cell.nameLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
-        cell.descriptionLabel.text = radioStationParse[indexPath.row].desc
+        cell.descriptionLabel.text = radioStationParse.valueArray[indexPath.row].desc
         cell.descriptionLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
 
-        let img = DataManager.readImg(name: "\(radioStationParse[indexPath.row].name).png")
+        let img = DataManager.readImg(name: "\(radioStationParse.valueArray[indexPath.row].name).png")
         if img == nil || img == #imageLiteral(resourceName: "stationImage") {
-            cell.imageRadioStation.downloadedFrom(link: radioStationParse[indexPath.row].imageURL, name: "\(radioStationParse[indexPath.row].name).png")
+            cell.imageRadioStation.downloadedFrom(link: radioStationParse.valueArray[indexPath.row].imageURL, name: "\(radioStationParse.valueArray[indexPath.row].name).png")
         } else {
             cell.imageRadioStation.image = img
         }
@@ -113,10 +113,10 @@ class ParserViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let tabBar = self.tabBarController as? CustomTabBarController {
-            DataManager.preparePlayerTV(radioStation: radioStationParse[indexPath.row], tabBarController: self.tabBarController!)
+            DataManager.preparePlayerTV(radioStation: radioStationParse.valueArray[indexPath.row], tabBarController: self.tabBarController!)
         }
         if let tabBar = self.tabBarController as? CollectionTabBarController {
-            DataManager.preparePlayerCV(radioStation: radioStationParse[indexPath.row], tabBarController: self.tabBarController!)
+            DataManager.preparePlayerCV(radioStation: radioStationParse.valueArray[indexPath.row], tabBarController: self.tabBarController!)
         }
     }
 
@@ -127,7 +127,7 @@ class ParserViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func parse(_ sender: Any) {
 
         arrayOfURLtoParse.removeAll()
-        radioStationParse.removeAll()
+        radioStationParse.removeAllInArray()
         countTextField.endEditing(true)
         creteriaTextField.endEditing(true)
 
@@ -150,9 +150,9 @@ class ParserViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let count = Int(self.countTextField.text!)!
         let searchOld = self.creteriaTextField.text!
 
-        let queue = OperationQueue()
-        queue.addOperation {
-
+        let dispatchGroup = DispatchGroup()
+        let queue = DispatchQueue.init(label: "Concurrent", attributes: .concurrent)
+        queue.async(group: dispatchGroup){
             var search = ""
 
             for i in searchOld {
@@ -166,41 +166,70 @@ class ParserViewController: UIViewController, UITableViewDelegate, UITableViewDa
             for i in 0...lroundf(Float(count)/30.0) {
                 self.parseAndGetArrayOfLink(search: search, pos: i*30)
             }
-
+        }
+        dispatchGroup.notify(queue: .global()) {
             if self.arrayOfURLtoParse.count > 0 {
-
-                if count-1 < self.arrayOfURLtoParse.count {
-                    var myArray = [String]()
-
-                    for i in 0...count-1 {
-                        myArray.append(self.arrayOfURLtoParse[i])
-                    }
-                    self.arrayOfURLtoParse = myArray
-                }
-
-                for i in 0...self.arrayOfURLtoParse.count-1 {
-                    self.parse(myURL: self.arrayOfURLtoParse[i])
-
-                    OperationQueue.main.addOperation {
-                        self.tableView.reloadData()
-                        let indexPath = IndexPath(row: self.radioStationParse.count-1, section: 0)
-                        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
-                        if i == self.arrayOfURLtoParse.count-1 {
-                            ProgressHUD.dismiss()
-                            UIApplication.shared.endIgnoringInteractionEvents()
-                        }
-                    }
-            }
+                self.parsURLArray(count: count)
             } else {
-                OperationQueue.main.addOperation {
+                DispatchQueue.main.async {
                     self.tableView.reloadData()
                     ProgressHUD.dismiss()
                     UIApplication.shared.endIgnoringInteractionEvents()
                 }
             }
+        }
 
+    }
+
+    fileprivate func parsURLArray(count: Int) {
+        var parsCount = count
+        if self.arrayOfURLtoParse.count < count - 1 {
+            parsCount = self.arrayOfURLtoParse.count - 1
+        }
+        let dispatchGroup = DispatchGroup()
+        let queue = DispatchQueue.init(label: "Concurrent", attributes: .concurrent)
+
+        for i in 0...count-1 {
+            queue.async(group: dispatchGroup){
+                print("\(Thread.current) start parse, index: \(i)")
+                self.parse(myURL: self.arrayOfURLtoParse[i])
+                print("\(Thread.current) finish parse, index: \(i)")
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    let indexPath = IndexPath(row: self.tableView.numberOfRows(inSection: 0)-1, section: 0)
+                    self.tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+                }
+            }
+        }
+        dispatchGroup.notify(queue: .main) {
+            ProgressHUD.dismiss()
+            UIApplication.shared.endIgnoringInteractionEvents()
         }
     }
+
+    class SafeArray<T> {
+        private var array = [T]()
+        private let queue = DispatchQueue(label: "Array queue", attributes: .concurrent)
+
+        public func append(_ value: T) {
+            queue.async(flags: .barrier) {
+                self.array.append(value)
+            }
+        }
+
+        public var valueArray: [T] {
+            var result = [T]()
+            queue.sync {
+                result = self.array
+            }
+            return result
+        }
+
+        public func removeAllInArray() {
+            self.array.removeAll()
+        }
+    }
+    var radioStationParse = SafeArray<RadioStation>()
 
     //parser start
     //this function purse one radiostation from array arrayOfURLtoParse
@@ -302,7 +331,7 @@ class ParserViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let share = UITableViewRowAction(style: .normal, title: "           ") { _, _ in
 
-            if DataManager.addNewStationFromParser(station: self.radioStationParse[indexPath.row]) {
+            if DataManager.addNewStationFromParser(station: self.radioStationParse.valueArray[indexPath.row]) {
                 ProgressHUD.show()
                 ProgressHUD.showSuccess("Radio station added to all radio station!")
                 tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.fade)
@@ -344,7 +373,7 @@ class ParserViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @available(iOS 11.0, *)
     func addToAllStation(_ indexPath: IndexPath) -> Bool {
-        if DataManager.addNewStationFromParser(station: radioStationParse[indexPath.row]) {
+        if DataManager.addNewStationFromParser(station: radioStationParse.valueArray[indexPath.row]) {
             ProgressHUD.show()
             ProgressHUD.showSuccess("Radio station added to all radio station!")
             NotificationCenter.default.post(name: .reload, object: nil)
