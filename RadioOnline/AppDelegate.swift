@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        self.window?.rootViewController = initialViewController
 //        self.window?.makeKeyAndVisible()
         //make bandge
-
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let userDefaults = UserDefaults.standard
