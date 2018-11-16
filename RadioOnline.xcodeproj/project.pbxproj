@@ -40,6 +40,7 @@
 		3FFDF7322124300C00E69812 /* CollectionViewCellXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDF7292124300B00E69812 /* CollectionViewCellXib.xib */; };
 		3FFDF7332124300C00E69812 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFDF72A2124300B00E69812 /* CollectionViewCell.swift */; };
 		DE029D82219D6D650095CE54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE029D81219D6D650095CE54 /* Main.storyboard */; };
+		DE029D84219DD27D0095CE54 /* SafeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE029D83219DD27D0095CE54 /* SafeArray.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		6B9E071C20900F68315913FF /* Pods_RadioOnline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RadioOnline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85CE0378CAF0F4DBDB6518F9 /* Pods-RadioOnline.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RadioOnline.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RadioOnline/Pods-RadioOnline.debug.xcconfig"; sourceTree = "<group>"; };
 		DE029D81219D6D650095CE54 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		DE029D83219DD27D0095CE54 /* SafeArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeArray.swift; sourceTree = "<group>"; };
 		DEA4988F2167A9CD00A8D968 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		DEA498912167A9F700A8D968 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -192,6 +194,7 @@
 				3FFDF7282124300A00E69812 /* DataManager.swift */,
 				3FFDF7272124300900E69812 /* RadioStation.swift */,
 				3FFDF7232124300700E69812 /* Settings.swift */,
+				DE029D83219DD27D0095CE54 /* SafeArray.swift */,
 			);
 			path = "Model and settings";
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				3F2E1DFD212AA23000D06BEB /* AddRadioStationViewController.swift in Sources */,
 				3FDE80582126C7DB00A37FB8 /* FRadioAPI.swift in Sources */,
 				3FFDF7312124300C00E69812 /* DataManager.swift in Sources */,
+				DE029D84219DD27D0095CE54 /* SafeArray.swift in Sources */,
 				3FFDF72F2124300C00E69812 /* SearchCollectionReusableView.swift in Sources */,
 				3FDE80492126C6E600A37FB8 /* RadioSetter.swift in Sources */,
 				3FFDF7302124300C00E69812 /* RadioStation.swift in Sources */,

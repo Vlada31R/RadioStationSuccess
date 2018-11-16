@@ -19,7 +19,7 @@ class ParserViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var button: UIButton!
 
     var arrayOfURLtoParse = [String]()
-    //var radioStationParse = [RadioStation]()
+    var radioStationParse = SafeArray<RadioStation>()
     var flagIsParse = false
 
     override func viewDidLoad() {
@@ -102,7 +102,7 @@ class ParserViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.descriptionLabel.textColor = ContrastColorOf(tableView.backgroundColor!, returnFlat: true)
 
         let img = DataManager.readImg(name: "\(radioStationParse.valueArray[indexPath.row].name).png")
-        if img == nil || img == #imageLiteral(resourceName: "stationImage") {
+        if img == nil || img == UIImage(named: "stationImage")! {
             cell.imageRadioStation.downloadedFrom(link: radioStationParse.valueArray[indexPath.row].imageURL, name: "\(radioStationParse.valueArray[indexPath.row].name).png")
         } else {
             cell.imageRadioStation.image = img
@@ -150,23 +150,25 @@ class ParserViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let count = Int(self.countTextField.text!)!
         let searchOld = self.creteriaTextField.text!
 
-        let dispatchGroup = DispatchGroup()
-        let queue = DispatchQueue.init(label: "Concurrent", attributes: .concurrent)
-        queue.async(group: dispatchGroup){
-            var search = ""
+        var search = ""
 
-            for i in searchOld {
-                if i == " " {
-                    search = search + "+"
-                } else {
-                    search = search + String(i)
-                }
+        for i in searchOld {
+            if i == " " {
+                search = search + "+"
+            } else {
+                search = search + String(i)
             }
+        }
 
-            for i in 0...lroundf(Float(count)/30.0) {
+        let dispatchGroup = DispatchGroup()
+        let queue = DispatchQueue.init(label: "Concurrent2", attributes: .concurrent)
+
+        for i in 0...lroundf(Float(count)/30.0) {
+            queue.async(group: dispatchGroup) {
                 self.parseAndGetArrayOfLink(search: search, pos: i*30)
             }
         }
+
         dispatchGroup.notify(queue: .global()) {
             if self.arrayOfURLtoParse.count > 0 {
                 self.parsURLArray(count: count)
@@ -182,54 +184,30 @@ class ParserViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     fileprivate func parsURLArray(count: Int) {
-        var parsCount = count
-        if self.arrayOfURLtoParse.count < count - 1 {
-            parsCount = self.arrayOfURLtoParse.count - 1
-        }
+        let  parsCount = self.arrayOfURLtoParse.count < count - 1 ? self.arrayOfURLtoParse.count - 1  : count - 1
+
         let dispatchGroup = DispatchGroup()
         let queue = DispatchQueue.init(label: "Concurrent", attributes: .concurrent)
 
-        for i in 0...count-1 {
+        for i in 0...parsCount {
             queue.async(group: dispatchGroup){
-                print("\(Thread.current) start parse, index: \(i)")
                 self.parse(myURL: self.arrayOfURLtoParse[i])
-                print("\(Thread.current) finish parse, index: \(i)")
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     let indexPath = IndexPath(row: self.tableView.numberOfRows(inSection: 0)-1, section: 0)
                     self.tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
                 }
             }
+
         }
         dispatchGroup.notify(queue: .main) {
+            print(Date())
+            self.tableView.reloadData()
             ProgressHUD.dismiss()
             UIApplication.shared.endIgnoringInteractionEvents()
         }
     }
 
-    class SafeArray<T> {
-        private var array = [T]()
-        private let queue = DispatchQueue(label: "Array queue", attributes: .concurrent)
-
-        public func append(_ value: T) {
-            queue.async(flags: .barrier) {
-                self.array.append(value)
-            }
-        }
-
-        public var valueArray: [T] {
-            var result = [T]()
-            queue.sync {
-                result = self.array
-            }
-            return result
-        }
-
-        public func removeAllInArray() {
-            self.array.removeAll()
-        }
-    }
-    var radioStationParse = SafeArray<RadioStation>()
 
     //parser start
     //this function purse one radiostation from array arrayOfURLtoParse
@@ -342,7 +320,7 @@ class ParserViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.fade)
             }
         }
-        share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "downloadForios9"))
+        share.backgroundColor = UIColor(patternImage: UIImage(named: "stationImage")!)
 
         return [share]
     }

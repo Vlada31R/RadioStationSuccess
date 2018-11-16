@@ -16,6 +16,7 @@
                 <navigationController id="Kz4-68-Ear" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="uwo-cE-ss0"/>
                     <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Dh5-6b-lIQ">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -32,6 +33,7 @@
                 <navigationController id="oEC-mk-O5L" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" id="Ado-aK-afQ"/>
                     <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TA8-aa-4Tx">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -69,6 +71,7 @@
                 <navigationController id="Quc-ae-qil" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="All" image="all" id="oMH-CP-zMs"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="353-yJ-sAf">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -382,6 +385,7 @@
                 <navigationController id="jEY-PJ-4lJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="xDh-k3-Gm9"/>
                     <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="g3d-Jb-boK">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -398,6 +402,7 @@
                 <navigationController id="JFc-dM-JSj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" id="33s-mU-TTz"/>
                     <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="B1e-Jf-1GG">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -435,6 +440,7 @@
                 <navigationController id="ZMh-be-heT" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="All" image="all" id="63g-wo-L7e"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GUy-Iw-Ck4">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -771,7 +777,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ims-nV-oRb">
-                                <rect key="frame" x="319" y="204" width="40" height="40"/>
+                                <rect key="frame" x="319" y="203.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="17G-gi-WM3"/>
                                     <constraint firstAttribute="width" constant="40" id="rK4-V1-u1E"/>
@@ -782,7 +788,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQv-mH-7oT">
-                                <rect key="frame" x="319" y="156" width="40" height="32"/>
+                                <rect key="frame" x="319" y="155.5" width="40" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="cjb-Wt-bCf"/>
                                     <constraint firstAttribute="width" constant="40" id="f2L-gb-Zop"/>
